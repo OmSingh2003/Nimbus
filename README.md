@@ -22,7 +22,7 @@
 
 ## 🛠️ Tech Stack
 
-* **Language:** [Go](https://golang.org/) (version 1.19+)
+* **Language:** [Go](https://golang.org/) (version 1.24+)
 * **API Frameworks:** [Gin](https://github.com/gin-gonic/gin), [gRPC](https://grpc.io/), [gRPC Gateway](https://github.com/grpc-ecosystem/grpc-gateway)
 * **Database:** [PostgreSQL](https://www.postgresql.org/)
 * **ORM/SQL Builder:** [SQLC](https://github.com/sqlc-dev/sqlc)
