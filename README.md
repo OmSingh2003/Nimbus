@@ -89,10 +89,9 @@ Follow these steps to set up the project for local development:
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/simple-bank.git](https://github.com/YOUR_USERNAME/simple-bank.git)
+    git clone [https://github.com/OmSingh2003/simple-bank.git](https://github.com/OmSingh2003/simple-bank.git)
     cd simple-bank
     ```
-    *(Replace `YOUR_USERNAME` with your actual GitHub username)*
 
 2.  **Set up Environment Variables:**
     Copy the example environment file and update it with your specific configuration.
@@ -188,4 +187,4 @@ Install Cert-Manager:(For automatic TLS certificate management)kubectl apply -f 
 ├── go.mod      # Go module dependencies
 ├── Makefile    # Make targets for common tasks
 └── main.go     # Main application entry point (often calls cmd)
-(Adjust this structure based on your actual project layout)🔄 CI/CDThis project uses GitHub Actions for continuous integration. The workflow includes:Running linters (golangci-lint).Running unit tests.Building the application.(Describe your specific CI/CD setup here)🤝 ContributingContributions are welcome! Please follow standard Go practices and ensure tests pass before submitting a pull request.(Add more detailed contribution guidelines if needed)📜 LicenseThis project is licensed under the MIT License - see the LICENSE file for details.(Replace LICENSE if you use a different license or file name)*Remember to replace placeholders like YOUR_USERNAME, add actual CI/CD badge URLs, choose a license, and adjust the project structure/Makefile commands
+(Adjust this structure based on your actual project layout)🔄 CI/CDThis project uses GitHub Actions for continuous integration. The workflow includes:Running linters (golangci-lint).Running unit tests.Building the application.(Describe your specific CI/CD setup here)🤝 ContributingContributions are welcome! Please follow standard Go practices and ensure tests pass before submitting a pull request.(Add more detailed contribution guidelines if needed)📜 LicenseThis project is licensed under the MIT License - see the LICENSE file for details.
