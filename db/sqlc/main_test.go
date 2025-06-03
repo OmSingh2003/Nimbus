@@ -17,14 +17,15 @@ const (
 )
 
 func TestMain(m *testing.M) {
-	// Open a connection pool to the database.
-	conn, err := sql.Open(dbDriver, dbSource)
+	// Open a connection pool to the database
+	var err error 
+	testDB, err := sql.Open(dbDriver, dbSource)
 	if err != nil {
 		log.Fatal("Cannot connect to the database:", err)
 	}
 	defer conn.Close() // Ensure the connection pool is closed when TestMain exits.
 
-	testQueries = New(conn)
+	testQueries = New(testDB)
 
 	// Run all tests in the package. os.Exit passes the test result code back.
 	os.Exit(m.Run())
