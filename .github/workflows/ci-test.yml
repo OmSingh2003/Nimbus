@@ -12,12 +12,12 @@ jobs:
     services:
       # Label used to access the service container
       postgres:
-        # Docker Hub image with specific version
+
         image: postgres:17
         # Provide environment variables for postgres
         env:
           POSTGRES_PASSWORD: secret
-          POSTGRES_USER: root 
+          POSTGRES_USER: root # User explicitly set to root
           POSTGRES_DB: simple_bank
         # Map port 5432 to host
         ports:
@@ -34,7 +34,7 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v5 # Updated to v5 for latest features
       with:
-        go-version: '1.22' # Recommended: Use a recent stable Go version
+        go-version: '1.22' 
 
     - name: Install migrate CLI
       run: |
@@ -49,13 +49,15 @@ jobs:
     - name: Run migrations
       # Using the directly installed migrate CLI for clarity and control
       run: |
-        migrate -path db/migration -database "postgresql://postgres:secret@localhost:5432/simple_bank?sslmode=disable" -verbose up
+       
+        migrate -path db/migration -database "postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable" -verbose up
       env:
-        DATABASE_URL: "postgresql://postgres:secret@localhost:5432/simple_bank?sslmode=disable"
+       
+        DATABASE_URL: "postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable"
 
     - name: Download Go modules
       run: go mod download
 
     - name: Run Tests
-      # Assuming 'make test' handles running your Go tests
+     
       run: make test
