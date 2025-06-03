@@ -10,6 +10,7 @@ import (
 )
 
 var testQueries *Queries
+var testStore *Store
 
 const (
 	dbDriver = "postgres"
@@ -23,9 +24,10 @@ func TestMain(m *testing.M) {
 	if err != nil {
 		log.Fatal("Cannot connect to the database:", err)
 	}
-	defer conn.Close() // Ensure the connection pool is closed when TestMain exits.
+	defer testDB.Close() // Ensure the connection pool is closed when TestMain exits.
 
 	testQueries = New(testDB)
+	testStore = NewStore(testDB)
 
 	// Run all tests in the package. os.Exit passes the test result code back.
 	os.Exit(m.Run())
