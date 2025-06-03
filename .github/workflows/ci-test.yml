@@ -17,8 +17,7 @@ jobs:
         # Provide environment variables for postgres
         env:
           POSTGRES_PASSWORD: secret
-          # IMPORTANT: Ensure this matches the user in your connection string
-          POSTGRES_USER: postgres # Changed from 'root' to 'postgres'
+          POSTGRES_USER: root 
           POSTGRES_DB: simple_bank
         # Map port 5432 to host
         ports:
