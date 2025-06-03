@@ -91,18 +91,35 @@ func (store *Store) TransferTX(ctx context.Context, arg TransferTXParams) (Trans
 		}
 
 		// 3. Update balances
-		result.FromAccount, err = q.AddAccountBalance(ctx, AddAccountBalanceParams{
-			ID:      arg.FromAccountID,
-			Balance: -arg.Amount,
-		})
-		if err != nil {
-			return err
-		}
+		// To avoid deadlock, we need to acquire locks in consistent order
+		// Always lock the account with smaller ID first
+		if arg.FromAccountID < arg.ToAccountID {
+			result.FromAccount, err = q.AddAccountBalance(ctx, AddAccountBalanceParams{
+				ID:      arg.FromAccountID,
+				Balance: -arg.Amount,
+			})
+			if err != nil {
+				return err
+			}
 
-		result.ToAccount, err = q.AddAccountBalance(ctx, AddAccountBalanceParams{
-			ID:      arg.ToAccountID,
-			Balance: arg.Amount,
-		})
+			result.ToAccount, err = q.AddAccountBalance(ctx, AddAccountBalanceParams{
+				ID:      arg.ToAccountID,
+				Balance: arg.Amount,
+			})
+		} else {
+			result.ToAccount, err = q.AddAccountBalance(ctx, AddAccountBalanceParams{
+				ID:      arg.ToAccountID,
+				Balance: arg.Amount,
+			})
+			if err != nil {
+				return err
+			}
+
+			result.FromAccount, err = q.AddAccountBalance(ctx, AddAccountBalanceParams{
+				ID:      arg.FromAccountID,
+				Balance: -arg.Amount,
+			})
+		}
 		return err
 	})
 

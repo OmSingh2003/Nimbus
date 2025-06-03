@@ -10,6 +10,12 @@ RETURNING *;
 SELECT * FROM account
 WHERE id = $1 LIMIT 1;
 
+SELECT * FROM account
+WHERE id = $1 LIMIT 1
+FOR UPDATE;
+
+
+
 -- name: ListAccounts :many
 SELECT * FROM account
 ORDER BY id
@@ -24,3 +30,9 @@ WHERE id = $1;
 -- name: DeleteAccount :exec
 DELETE FROM account
 WHERE id = $1;
+
+-- name: AddAccountBalance :one
+UPDATE account
+SET balance = balance + $2
+WHERE id = $1
+RETURNING *;
