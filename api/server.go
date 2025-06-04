@@ -1,6 +1,8 @@
 package api 
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	db "github.com/OmSingh2003/simple-bank/db/sqlc"
 )
@@ -30,4 +32,9 @@ func (server *Server) Start(address string) error {
 
 func errorResponse(err error) gin.H {
 	return gin.H{"error": err.Error()}
+}
+
+// ServeHTTP implements http.Handler interface for testing
+func (server *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	server.router.ServeHTTP(w, r)
 }
