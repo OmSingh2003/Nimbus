@@ -18,7 +18,8 @@ sqlc:
 
 test:
 	go test -v -cover ./... 
-
+mock :
+	 mockgen -package mockdb -destination db/mock/store.go github.com/OmSingh2003/simple-bank/db/sqlc Store
 server:
 	go run main.go
 
