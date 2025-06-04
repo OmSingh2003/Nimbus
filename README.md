@@ -1,7 +1,9 @@
 # simple-bank
 
 [![Go Version](https://img.shields.io/badge/Go-1.24+-blue.svg)](https://golang.org/)
-[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen)](https://github.com/YOUR_USERNAME/simple-bank/actions) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) Full-featured backend system for a simple bank built with Go. Implements REST/gRPC APIs (Gin/gRPC Gateway), PostgreSQL DB access (SQLC & migrations), JWT/PASETO authentication, asynchronous task processing (Redis/Asynq), Docker deployment strategies, and CI/CD pipelines.
+[![CI Test Status](https://github.com/OmSingh2003/simple-bank/actions/workflows/ci-test.yml/badge.svg)](https://github.com/OmSingh2003/simple-bank/actions/workflows/ci-test.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+Full-featured backend system for a simple bank built with Go. Implements REST/gRPC APIs (Gin/gRPC Gateway), PostgreSQL DB access (SQLC & migrations), JWT/PASETO authentication, asynchronous task processing (Redis/Asynq), Docker deployment strategies, and CI/CD pipelines.
 
 **Status:** Currently under active development.
 
