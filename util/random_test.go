@@ -31,6 +31,20 @@ func TestRandomMoney(t *testing.T) {
 }
 
 func TestRandomCurrency(t *testing.T) {
-    currency := RandomCurrency()
-    require.Contains(t, []string{"USD", "EUR", "INR"}, currency)
+	currency := RandomCurrency()
+	require.Contains(t, []string{"USD", "EUR", "INR"}, currency)
+}
+
+func TestRandomStrongPassword(t *testing.T) {
+	password := RandomStrongPassword()
+	require.NotEmpty(t, password)
+	
+	// Should pass password validation
+	err := ValidatePassword(password)
+	require.NoError(t, err)
+	
+	// Should be hashable
+	hashedPassword, err := HashPassword(password)
+	require.NoError(t, err)
+	require.NotEmpty(t, hashedPassword)
 }

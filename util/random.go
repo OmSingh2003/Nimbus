@@ -44,7 +44,15 @@ func RandomCurrency() string {
 	n := len(currencies)
 	return currencies[rand.Intn(n)] // Fixed: indexing currencies with []
 }
-// generates a random emial 
+// generates a random email 
 func RandomEmail() string{
 	return fmt.Sprintf("%s@gmail.com",RandomString(6))
+}
+
+// generates a random strong password for testing
+func RandomStrongPassword() string {
+	return fmt.Sprintf("%s%s%d!", 
+		strings.ToUpper(RandomString(4)), 
+		strings.ToLower(RandomString(4)), 
+		RandomInt(10, 99))
 }
