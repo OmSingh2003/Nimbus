@@ -9,8 +9,11 @@ import (
 )
 
 func createRandomAccount(t *testing.T) Account {
+	// Create a user first (required due to foreign key constraint)
+	user := createRandomUser(t)
+
 	arg := CreateAccountParams{
-		Owner:    util.RandomOwner(),
+		Owner:    user.Username,
 		Balance:  util.RandomMoney(),
 		Currency: util.RandomCurrency(),
 	}
