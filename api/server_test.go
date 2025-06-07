@@ -13,7 +13,7 @@ func TestNewServer(t *testing.T) {
     defer ctrl.Finish()
 
     store := mockdb.NewMockStore(ctrl)
-    server := NewServer(store)
+    server := NewTestServer(t, store)
 
     require.NotNil(t, server)
     require.NotNil(t, server.store)
@@ -43,7 +43,7 @@ func TestStartServer(t *testing.T) {
     defer ctrl.Finish()
 
     store := mockdb.NewMockStore(ctrl)
-    server := NewServer(store)
+    server := NewTestServer(t, store)
 
     // Test with invalid address
     err := server.Start("invalid:address")

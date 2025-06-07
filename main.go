@@ -9,7 +9,6 @@ import (
 	"github.com/OmSingh2003/simple-bank/util"
 	_ "github.com/lib/pq"
 )
-
 func main() {
 	config, err := util.LoadConfig(".")
 	if err != nil {
@@ -22,7 +21,10 @@ func main() {
 	}
 
 	store := db.NewStore(conn)
-	server := api.NewServer(store)
+	server, err := api.NewServer(config, store)
+	if err != nil {
+		log.Fatal("Cannot create server:", err)
+	}
 
 	err = server.Start(config.ServerAddress)
 	if err != nil {
