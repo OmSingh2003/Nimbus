@@ -1,0 +1,48 @@
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: simple_bank_postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/migration:/docker-entrypoint-initdb.d
+    networks:
+      - simple_bank_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  simple_bank_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: simple_bank_app
+    environment:
+      DB_DRIVER: postgres
+      DB_SOURCE: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?sslmode=disable
+      SERVER_ADDRESS: 0.0.0.0:8080
+      TOKEN_SYMMETRIC_KEY: ${TOKEN_SYMMETRIC_KEY}
+      ACCESS_TOKEN_DURATION: ${ACCESS_TOKEN_DURATION}
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - simple_bank_network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  simple_bank_network:
+    driver: bridge

@@ -1,0 +1,33 @@
+# Ignore git files
+.git
+.gitignore
+
+# Ignore documentation
+README.md
+LICENSE
+
+# Ignore build artifacts
+simplebank
+simple-bank
+*.log
+coverage.out
+
+# Ignore Docker files
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Ignore local environment
+app.env
+app.docker.env
+
+# Ignore IDE files
+.vscode
+.idea
+*.swp
+*.swo
+
+# Ignore temporary files
+*.tmp
+*.temp
+
