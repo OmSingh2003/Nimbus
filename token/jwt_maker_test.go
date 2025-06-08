@@ -18,25 +18,26 @@ func TestJWTMaker(t *testing.T) {
 	issuedAt := time.Now()
 	expiredAt := issuedAt.Add(duration)
 
-	token, err := maker.CreateToken(username, duration)
-	require.NoError(t, err)
-	require.NotEmpty(t, token)
-
-	payload, err := maker.VerifyToken(token)
+	token, payload, err := maker.CreateToken(username, duration)
 	require.NoError(t, err)
 	require.NotEmpty(t, payload)
+	require.NotEmpty(t, token)
 
-	require.NotZero(t, payload.ID)
-	require.Equal(t, username, payload.Username)
-	require.WithinDuration(t, issuedAt, payload.IssuedAt, time.Second)
-	require.WithinDuration(t, expiredAt, payload.ExpiredAt, time.Second)
+	verifiedPayload, err := maker.VerifyToken(token)
+	require.NoError(t, err)
+	require.NotEmpty(t, verifiedPayload)
+
+	require.NotZero(t, verifiedPayload.ID)
+	require.Equal(t, username, verifiedPayload.Username)
+	require.WithinDuration(t, issuedAt, verifiedPayload.IssuedAt, time.Second)
+	require.WithinDuration(t, expiredAt, verifiedPayload.ExpiredAt, time.Second)
 }
 
 func TestExpiredJWTToken(t *testing.T) {
 	maker, err := NewJWTMaker("12345678901234567890123456789012")
 	require.NoError(t, err)
 
-	token, err := maker.CreateToken("username", -time.Minute)
+	token, _, err := maker.CreateToken("username", -time.Minute)
 	require.NoError(t, err)
 	require.NotEmpty(t, token)
 

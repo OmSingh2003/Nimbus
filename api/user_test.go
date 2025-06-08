@@ -10,13 +10,15 @@ import (
 	"net/http/httptest"
 	"reflect"
 	"testing"
+	"time"
 
-	"github.com/gin-gonic/gin"
-	"github.com/stretchr/testify/require"
-	"go.uber.org/mock/gomock"
+	"github.com/google/uuid"
 	mockdb "github.com/OmSingh2003/simple-bank/db/mockdb"
 	db "github.com/OmSingh2003/simple-bank/db/sqlc"
 	"github.com/OmSingh2003/simple-bank/util"
+	"github.com/gin-gonic/gin"
+	"github.com/stretchr/testify/require"
+	"go.uber.org/mock/gomock"
 )
 
 type eqCreateUserParamsMatcher struct {
@@ -216,7 +218,19 @@ func TestLoginUserAPI(t *testing.T) {
 					GetUser(gomock.Any(), gomock.Eq(user.Username)).
 					Times(1).
 					Return(user, nil)
-				// Session creation is not implemented yet, so remove this expectation
+				store.EXPECT().
+					CreateSession(gomock.Any(), gomock.Any()).
+					Times(1).
+					Return(db.Session{
+						ID:           uuid.New(),
+						Username:     user.Username,
+						RefreshToken: "refresh_token",
+						UserAgent:    "test-agent",
+						ClientIp:     "192.168.1.1",
+						IsBoolean:    false,
+						ExpiresAt:    time.Now().Add(24 * time.Hour),
+						CreatedAt:    time.Now(),
+					}, nil)
 			},
 			checkResponse: func(recorder *httptest.ResponseRecorder) {
 				require.Equal(t, http.StatusOK, recorder.Code)
