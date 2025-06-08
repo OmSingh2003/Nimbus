@@ -1,7 +1,7 @@
 
 services:
   postgres:
-    image: postgres:15-alpine
+    image: postgres:17
     container_name: simple_bank_postgres
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
