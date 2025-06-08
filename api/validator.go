@@ -2,7 +2,7 @@ package api
 
 import (
 	"github.com/go-playground/validator/v10"
-	"github.com/OmSingh2003/simple-bank/util"
+	"github.com/OmSingh2003/vaultguard-api/util"
 )
 
 var validCurrency validator.Func = func (fieldLevel validator.FieldLevel) bool {

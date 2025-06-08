@@ -3,7 +3,7 @@ package api
 import (
     "testing"
 
-    mockdb "github.com/OmSingh2003/simple-bank/db/mockdb"
+    mockdb "github.com/OmSingh2003/vaultguard-api/db/mockdb"
     "github.com/stretchr/testify/require"
     "go.uber.org/mock/gomock"
 )

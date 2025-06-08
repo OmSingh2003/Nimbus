@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"net/http"
 
-	db "github.com/OmSingh2003/simple-bank/db/sqlc"
-	"github.com/OmSingh2003/simple-bank/token"
-	"github.com/OmSingh2003/simple-bank/util"
+	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
+	"github.com/OmSingh2003/vaultguard-api/token"
+	"github.com/OmSingh2003/vaultguard-api/util"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/go-playground/validator/v10"

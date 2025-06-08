@@ -6,12 +6,14 @@ import (
 	"os"
 	"testing"
 
-	"github.com/OmSingh2003/simple-bank/util"
+	"github.com/OmSingh2003/vaultguard-api/util"
 	_ "github.com/lib/pq"
 )
 
-var testQueries *Queries
-var testStore Store
+var (
+	testQueries *Queries
+	testStore   Store
+)
 
 func TestMain(m *testing.M) {
 	config, err := util.LoadConfig("../..")

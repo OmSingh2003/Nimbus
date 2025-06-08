@@ -1,9 +1,9 @@
-# simple-bank
+# VaultGuard API
 
 [![Go Version](https://img.shields.io/badge/Go-1.24+-blue.svg)](https://golang.org/)
-[![CI Test Status](https://github.com/OmSingh2003/simple-bank/actions/workflows/ci-test.yml/badge.svg)](https://github.com/OmSingh2003/simple-bank/actions/workflows/ci-test.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI Test Status](https://github.com/OmSingh2003/vaultguard-api/actions/workflows/ci-test.yml/badge.svg)](https://github.com/OmSingh2003/vaultguard-api/actions/workflows/ci-test.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Full-featured backend system for a simple bank built with Go. Implements REST/gRPC APIs (Gin/gRPC Gateway), PostgreSQL DB access (SQLC & migrations), JWT/PASETO authentication, asynchronous task processing (Redis/Asynq), Docker deployment strategies, and CI/CD pipelines.
+Full-featured backend system for VaultGuard API built with Go. Implements REST/gRPC APIs (Gin/gRPC Gateway), PostgreSQL DB access (SQLC & migrations), JWT/PASETO authentication, asynchronous task processing (Redis/Asynq), Docker deployment strategies, and CI/CD pipelines.
 
 **Status:** Currently under active development.
 
@@ -91,8 +91,8 @@ Follow these steps to set up the project for local development:
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/OmSingh2003/simple-bank.git](https://github.com/OmSingh2003/simple-bank.git)
-    cd simple-bank
+    git clone [https://github.com/OmSingh2003/vaultguard-api.git](https://github.com/OmSingh2003/vaultguard-api.git)
+    cd vaultguard-api
     ```
 
 2.  **Set up Environment Variables:**
@@ -113,7 +113,7 @@ Follow these steps to set up the project for local development:
     ```
 
 4.  **Create Database:**
-    Connects to the running Postgres container and creates the `simple_bank` database.
+    Connects to the running Postgres container and creates the `vaultguard_api` database.
     ```bash
     make createdb
     ```
@@ -169,9 +169,9 @@ Roll back the last applied migration:make migratedown1
 Create a new migration file:Replace <migration_name> with a descriptive name (e.g., add_users_table).make new_migration name=<migration_name>
 📄 Database DocumentationGenerate and view database documentation using DBML and dbdocs:Generate DBML schema file (if needed):(This might be manual or part of another process depending on your setup)Generate schema SQL file from DBML:(Useful for visualizing or comparing)make db_schema
 Generate and publish documentation website:(Requires prior dbdocs login)make db_docs
-Access the DB documentation at the URL provided by the command output. (Password: secret - as noted in your input, consider if this should be documented or secured differently)📄 API Documentation (Swagger)API documentation is automatically generated from the Protobuf definitions and served via Swagger UI.Once the server is running (using docker-compose up or make server), access the Swagger UI at:http://localhost:8080/swagger/☁️ Deployment (Kubernetes Example)These are example steps for setting up prerequisites in a Kubernetes cluster for deployment:Install Nginx Ingress Controller:(Example for AWS, check provider docs for others)kubectl apply -f [https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.48.1/deploy/static/provider/aws/deploy.yaml](https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.48.1/deploy/static/provider/aws/deploy.yaml)
+    Access the DB documentation at the URL provided by the command output. (Password: secret - as noted in your input, consider if this should be documented or secured differently)📄 API Documentation (Swagger)API documentation is automatically generated from the Protobuf definitions and served via Swagger UI.Once the server is running (using docker-compose up or make server), access the Swagger UI at:http://localhost:8080/swagger/☁️ Deployment (Kubernetes Example)These are example steps for setting up prerequisites in a Kubernetes cluster for deployment:Install Nginx Ingress Controller:(Example for AWS, check provider docs for others)kubectl apply -f [https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.48.1/deploy/static/provider/aws/deploy.yaml](https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.48.1/deploy/static/provider/aws/deploy.yaml)
 Install Cert-Manager:(For automatic TLS certificate management)kubectl apply -f [https://github.com/jetstack/cert-manager/releases/download/v1.4.0/cert-manager.yaml](https://github.com/jetstack/cert-manager/releases/download/v1.4.0/cert-manager.yaml)
-(Note: Ensure you use versions compatible with your cluster. These are examples.)(Add specific deployment steps for the simple-bank application itself here, e.g., applying Kubernetes manifests for Deployments, Services, Ingress, Secrets, etc.)🏗️ Project Structure (Overview).
+(Note: Ensure you use versions compatible with your cluster. These are examples.)(Add specific deployment steps for the VaultGuard API application itself here, e.g., applying Kubernetes manifests for Deployments, Services, Ingress, Secrets, etc.)🏗️ Project Structure (Overview).
 ├── api         # Gin handlers, middleware, server setup
 ├── cmd         # Main application entry points (server, worker)
 ├── db          # Database migrations and SQLC queries/schema

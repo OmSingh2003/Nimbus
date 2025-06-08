@@ -4,9 +4,9 @@ import (
 	"database/sql"
 	"log"
 
-	"github.com/OmSingh2003/simple-bank/api"
-	db "github.com/OmSingh2003/simple-bank/db/sqlc"
-	"github.com/OmSingh2003/simple-bank/util"
+	"github.com/OmSingh2003/vaultguard-api/api"
+	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
+	"github.com/OmSingh2003/vaultguard-api/util"
 	_ "github.com/lib/pq"
 )
 func main() {

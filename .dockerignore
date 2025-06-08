@@ -7,8 +7,8 @@ README.md
 LICENSE
 
 # Ignore build artifacts
-simplebank
-simple-bank
+vaultguard-api
+vaultguard_api
 *.log
 coverage.out
 

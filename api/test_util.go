@@ -4,8 +4,8 @@ import (
 	"testing"
 	"time"
 
-	db "github.com/OmSingh2003/simple-bank/db/sqlc"
-	"github.com/OmSingh2003/simple-bank/util"
+	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
+	"github.com/OmSingh2003/vaultguard-api/util"
 	"github.com/stretchr/testify/require"
 )
 

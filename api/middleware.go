@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/OmSingh2003/vaultguard-api/token"
 	"github.com/gin-gonic/gin"
-	"github.com/OmSingh2003/simple-bank/token"
 )
 
 const (

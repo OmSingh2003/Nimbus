@@ -1,7 +1,7 @@
-Project simple_bank {
+Project VaultGuard_API {
   database_type: 'PostgreSQL'
   Note: '''
-    # Simple Bank Database
+    # VaultGuard API Database
   '''
 }
 

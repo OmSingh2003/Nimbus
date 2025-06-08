@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/OmSingh2003/simple-bank/util"
+	"github.com/OmSingh2003/vaultguard-api/util"
 	"github.com/stretchr/testify/require"
 )
 

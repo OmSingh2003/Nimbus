@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	mockdb "github.com/OmSingh2003/simple-bank/db/mockdb"
-	db "github.com/OmSingh2003/simple-bank/db/sqlc"
-	"github.com/OmSingh2003/simple-bank/token"
-	"github.com/OmSingh2003/simple-bank/util"
+	mockdb "github.com/OmSingh2003/vaultguard-api/db/mockdb"
+	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
+	"github.com/OmSingh2003/vaultguard-api/token"
+	"github.com/OmSingh2003/vaultguard-api/util"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/mock/gomock"
 )

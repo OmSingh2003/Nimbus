@@ -2,7 +2,7 @@
 services:
   postgres:
     image: postgres:17
-    container_name: simple_bank_postgres
+    container_name: vaultguard_api_postgres
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -13,18 +13,18 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./db/migration:/docker-entrypoint-initdb.d
     networks:
-      - simple_bank_network
+      - vaultguard_api_network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 10s
       timeout: 5s
       retries: 5
 
-  simple_bank_app:
+  vaultguard_api_app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: simple_bank_app
+    container_name: vaultguard_api_app
     environment:
       DB_DRIVER: postgres
       DB_SOURCE: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?sslmode=disable
@@ -37,12 +37,12 @@ services:
       postgres:
         condition: service_healthy
     networks:
-      - simple_bank_network
+      - vaultguard_api_network
     restart: unless-stopped
 
 volumes:
   postgres_data:
 
 networks:
-  simple_bank_network:
+  vaultguard_api_network:
     driver: bridge
