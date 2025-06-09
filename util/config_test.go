@@ -18,7 +18,7 @@ func TestLoadConfig(t *testing.T) {
 		configContent := `
 DB_DRIVER=mysql
 DB_SOURCE=mysql://root:password@localhost:3306/vaultguard_api
-SERVER_ADDRESS=127.0.0.1:9090
+HTTP_SERVER_ADDRESS=127.0.0.1:9090
 `
 		err = os.WriteFile(tempDir+"/app.env", []byte(configContent), 0o644)
 		require.NoError(t, err)
@@ -26,12 +26,12 @@ SERVER_ADDRESS=127.0.0.1:9090
 		// Set environment variables that should override file config
 		os.Setenv("DB_DRIVER", "postgres")
 		os.Setenv("DB_SOURCE", "postgres://test:test@localhost:5432/test_db")
-		os.Setenv("SERVER_ADDRESS", "0.0.0.0:8080")
+		os.Setenv("HTTP_SERVER_ADDRESS", "0.0.0.0:8080")
 
 		defer func() {
 			os.Unsetenv("DB_DRIVER")
 			os.Unsetenv("DB_SOURCE")
-			os.Unsetenv("SERVER_ADDRESS")
+			os.Unsetenv("HTTP_SERVER_ADDRESS")
 		}()
 
 		config, err := LoadConfig(tempDir)
