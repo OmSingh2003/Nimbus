@@ -16,7 +16,6 @@ migrateup1:
 migratedown:
 	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/vaultguard_api?sslmode=disable" -verbose down
 
-
 migratedown1:
 	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/vaultguard_api?sslmode=disable" -verbose down 1
 
@@ -24,15 +23,27 @@ db_docs:
 	dbdocs build doc/db.dbml
 
 db_schema:
-	 dbml2sql --postgres -o doc/schema.sql 
+	dbml2sql --postgres -o doc/schema.sql
+
 sqlc:
 	sqlc generate
 
 test:
-	go test -v -cover ./... 
-mock :
-	 mockgen -package mockdb -destination db/mockdb/store.go github.com/OmSingh2003/vaultguard-api/db/sqlc Store
+	go test -v -cover ./...
+
+mock:
+	mockgen -package mockdb -destination db/mockdb/store.go github.com/OmSingh2003/vaultguard-api/db/sqlc Store
+
 server:
 	go run main.go
 
-.PHONY: postgres createdb dropdb migrateup migrateup1 migratedown migratedown1 db_docs db_schema sqlc test mock server 
+proto:
+	protoc --proto_path=proto --go_out=pb --go_opt=paths=source_relative --go-grpc_out=pb --go-grpc_opt=paths=source_relative proto/*.proto
+
+.PHONY: postgres createdb dropdb migrateup migrateup1 migratedown migratedown1 db_docs db_schema sqlc test mock server proto clean_proto rebuild_proto
+
+clean_proto:
+	rm -f pb/*.pb.go
+
+rebuild_proto: clean_proto proto
+
