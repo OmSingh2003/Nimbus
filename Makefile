@@ -40,10 +40,15 @@ server:
 proto:
 	protoc --proto_path=proto --go_out=pb --go_opt=paths=source_relative --go-grpc_out=pb --go-grpc_opt=paths=source_relative proto/*.proto
 
-.PHONY: postgres createdb dropdb migrateup migrateup1 migratedown migratedown1 db_docs db_schema sqlc test mock server proto clean_proto rebuild_proto
+.PHONY: postgres createdb dropdb migrateup migrateup1 migratedown migratedown1 db_docs db_schema sqlc test mock server proto clean_proto rebuild_proto evan evans
 
 clean_proto:
 	rm -f pb/*.pb.go
 
 rebuild_proto: clean_proto proto
 
+evan:
+	 evans --host localhost --port 9090 -r repl
+
+evans :
+	evans --path proto --proto service_vaultguard_api.proto --host localhost --port 9090

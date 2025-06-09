@@ -40,7 +40,7 @@ SERVER_ADDRESS=127.0.0.1:9090
 		// Environment variables should take precedence
 		require.Equal(t, "postgres", config.DBDriver)
 		require.Equal(t, "postgres://test:test@localhost:5432/test_db", config.DBSource)
-		require.Equal(t, "0.0.0.0:8080", config.ServerAddress)
+		require.Equal(t, "0.0.0.0:8080", config.HTTPServerAddress)
 	})
 
 	t.Run("InvalidPath", func(t *testing.T) {
