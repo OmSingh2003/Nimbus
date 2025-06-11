@@ -1,16 +1,18 @@
 package main
 
 import (
+	"context"
 	"database/sql"
-
 	"log"
 	"net"
+	"net/http"
 
 	"github.com/OmSingh2003/vaultguard-api/api"
 	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
 	"github.com/OmSingh2003/vaultguard-api/gapi"
 	"github.com/OmSingh2003/vaultguard-api/pb"
 	"github.com/OmSingh2003/vaultguard-api/util"
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	_ "github.com/lib/pq"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -28,10 +30,37 @@ func main() {
 	}
 
 	store := db.NewStore(conn)
-	
-	// Run both HTTP and gRPC servers concurrently
-	go runGinServer(config, store)
+
+	// Run both HTTP Gateway and gRPC servers concurrently
+	go runGatewayServer(config, store)
 	runGrpcServer(config, store)
+}
+
+func runGatewayServer(config util.Config, store db.Store) {
+	server, err := gapi.NewServer(config, store)
+	if err != nil {
+		log.Fatal("Cannot create gRPC server:", err)
+	}
+
+	grpcMux := runtime.NewServeMux()
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+	err = pb.RegisterVaultguardAPIHandlerServer(ctx, grpcMux, server)
+	if err != nil {
+		log.Fatal("cannot register handle server")
+	}
+	mux := http.NewServeMux()
+	mux.Handle("/", grpcMux)
+	listener, err := net.Listen("tcp", config.HTTPServerAddress)
+	if err != nil {
+		log.Fatal("Cannot create gateway listener:", err)
+	}
+
+	log.Printf("Start HTTP gateway server at %s", listener.Addr().String())
+	err = http.Serve(listener, mux)
+	if err != nil {
+		log.Fatal("Cannot start HTTP gateway server:", err)
+	}
 }
 
 func runGrpcServer(config util.Config, store db.Store) {

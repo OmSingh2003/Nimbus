@@ -7,6 +7,7 @@
 package pb
 
 import (
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -25,11 +26,11 @@ var File_service_vaultguard_api_proto protoreflect.FileDescriptor
 const file_service_vaultguard_api_proto_rawDesc = "" +
 	"\n" +
 	"\x1cservice_vaultguard_api.proto\x12\x02pb\x1a\n" +
-	"user.proto2\x86\x01\n" +
-	"\rVaultguardAPI\x12;\n" +
+	"user.proto\x1a\x1cgoogle/api/annotations.proto2\xbd\x01\n" +
+	"\rVaultguardAPI\x12W\n" +
 	"\n" +
-	"CreateUser\x12\x15.pb.CreateUserRequest\x1a\x16.pb.CreateUserResponse\x128\n" +
-	"\tLoginUser\x12\x14.pb.LoginUserRequest\x1a\x15.pb.LoginUserResponseB*Z(github.com/OmSingh2003/vaultguard-api/pbb\x06proto3"
+	"CreateUser\x12\x15.pb.CreateUserRequest\x1a\x16.pb.CreateUserResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v1/create_user\x12S\n" +
+	"\tLoginUser\x12\x14.pb.LoginUserRequest\x1a\x15.pb.LoginUserResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/login_userB*Z(github.com/OmSingh2003/vaultguard-api/pbb\x06proto3"
 
 var file_service_vaultguard_api_proto_goTypes = []any{
 	(*CreateUserRequest)(nil),  // 0: pb.CreateUserRequest
