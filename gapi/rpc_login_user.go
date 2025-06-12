@@ -37,13 +37,13 @@ func (server *Server) LoginUser(ctx context.Context, req *pb.LoginUserRequest) (
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "failed to create refresh token: %s", err)
 	}
-
+	mtdt := server.extractMetadata(ctx)
 	session, err := server.store.CreateSession(ctx, db.CreateSessionParams{
 		ID:           refreshPayload.ID,
 		Username:     user.Username,
 		RefreshToken: refreshToken,
-		UserAgent:    "", // TODO: Extract from gRPC metadata
-		ClientIp:     "", // TODO: Extract from gRPC metadata
+		UserAgent:    mtdt.UserAgent,
+		ClientIp:     mtdt.ClientIP,
 		IsBoolean:    false,
 		ExpiresAt:    refreshPayload.ExpiredAt,
 	})
@@ -52,12 +52,12 @@ func (server *Server) LoginUser(ctx context.Context, req *pb.LoginUserRequest) (
 	}
 
 	rsp := &pb.LoginUserResponse{
-		User:                      convertUser(user),
-		AccessToken:               accessToken,
-		AccessTokenExpiresAt:      timestamppb.New(accessPayload.ExpiredAt),
-		RefreshToken:              refreshToken,
-		RefreshTokenExpiresAt:     timestamppb.New(refreshPayload.ExpiredAt),
-		SessionId:                 session.ID.String(),
+		User:                  convertUser(user),
+		AccessToken:           accessToken,
+		AccessTokenExpiresAt:  timestamppb.New(accessPayload.ExpiredAt),
+		RefreshToken:          refreshToken,
+		RefreshTokenExpiresAt: timestamppb.New(refreshPayload.ExpiredAt),
+		SessionId:             session.ID.String(),
 	}
 	return rsp, nil
 }
