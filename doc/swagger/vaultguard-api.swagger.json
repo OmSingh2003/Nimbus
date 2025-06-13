@@ -1,0 +1,197 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "service_vaultguard_api.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "VaultguardAPI"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/create_user": {
+      "post": {
+        "operationId": "VaultguardAPI_CreateUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbCreateUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbCreateUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "VaultguardAPI"
+        ]
+      }
+    },
+    "/v1/login_user": {
+      "post": {
+        "operationId": "VaultguardAPI_LoginUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbLoginUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbLoginUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "VaultguardAPI"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "pbCreateUserRequest": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "pbCreateUserResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/pbUser"
+        }
+      }
+    },
+    "pbLoginUserRequest": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "pbLoginUserResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/pbUser"
+        },
+        "accessToken": {
+          "type": "string"
+        },
+        "accessTokenExpiresAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "refreshToken": {
+          "type": "string"
+        },
+        "refreshTokenExpiresAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sessionId": {
+          "type": "string"
+        }
+      }
+    },
+    "pbUser": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "passwordChangedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
