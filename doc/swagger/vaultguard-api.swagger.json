@@ -1,13 +1,23 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "service_vaultguard_api.proto",
-    "version": "version not set"
+    "title": "VaultGuard API",
+    "description": "A secure vault management API",
+    "version": "1.0",
+    "contact": {
+      "name": "Om Singh",
+      "url": "https://github.com/OmSingh2003/VaultGuard-API",
+      "email": "omsingh.ailearn@gmail.com"
+    }
   },
   "tags": [
     {
       "name": "VaultguardAPI"
     }
+  ],
+  "schemes": [
+    "https",
+    "http"
   ],
   "consumes": [
     "application/json"
@@ -18,18 +28,12 @@
   "paths": {
     "/v1/create_user": {
       "post": {
-        "operationId": "VaultguardAPI_CreateUser",
+        "operationId": "CreateUser",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/pbCreateUserResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -50,18 +54,12 @@
     },
     "/v1/login_user": {
       "post": {
-        "operationId": "VaultguardAPI_LoginUser",
+        "operationId": "LoginUser",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/pbLoginUserResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -162,34 +160,6 @@
         "createdAt": {
           "type": "string",
           "format": "date-time"
-        }
-      }
-    },
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "@type": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": {}
-    },
-    "rpcStatus": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/protobufAny"
-          }
         }
       }
     }
