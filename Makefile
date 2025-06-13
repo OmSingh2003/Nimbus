@@ -38,7 +38,7 @@ server:
 	go run main.go
 
 proto:
-	protoc --proto_path=proto --go_out=pb --go_opt=paths=source_relative --go-grpc_out=pb --go-grpc_opt=paths=source_relative  --grpc-gateway_out=pb --grpc-gateway_opt paths=source_relative  proto/*.proto
+	protoc --proto_path=proto --go_out=pb --go_opt=paths=source_relative --go-grpc_out=pb --go-grpc_opt=paths=source_relative  --grpc-gateway_out=pb --grpc-gateway_opt paths=source_relative   --openapiv2_out=doc/swagger --openapiv2_opt=allow_merge=true,merge_file_name=vaultguard-api,disable_default_errors=true,simple_operation_ids=true  proto/*.proto
 
 .PHONY: postgres createdb dropdb migrateup migrateup1 migratedown migratedown1 db_docs db_schema sqlc test mock server proto clean_proto rebuild_proto evan evans
 
