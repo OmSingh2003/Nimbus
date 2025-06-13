@@ -3,7 +3,7 @@
   "info": {
     "title": "VaultGuard API",
     "description": "A secure vault management API",
-    "version": "1.0",
+    "version": "1.1",
     "contact": {
       "name": "Om Singh",
       "url": "https://github.com/OmSingh2003/VaultGuard-API",
@@ -28,6 +28,8 @@
   "paths": {
     "/v1/create_user": {
       "post": {
+        "summary": "Create a new user account",
+        "description": "Creates a new user account in the VaultGuard system. This endpoint validates user input, securely hashes passwords, and stores user credentials in the database. Returns user details upon successful creation.",
         "operationId": "CreateUser",
         "responses": {
           "200": {
@@ -54,6 +56,8 @@
     },
     "/v1/login_user": {
       "post": {
+        "summary": "Authenticate user login",
+        "description": "Authenticates a user with their credentials and returns access tokens. This endpoint validates username/email and password, generates JWT tokens for session management, and provides secure access to protected resources.",
         "operationId": "LoginUser",
         "responses": {
           "200": {

@@ -10,7 +10,7 @@ option go_package = "github.com/OmSingh2003/vaultguard-api/pb";
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: {
     title: "VaultGuard API"
-    version: "1.0"
+    version: "1.1"
     description: "A secure vault management API"
     contact: {
       name: "Om Singh"
@@ -30,11 +30,19 @@ service VaultguardAPI {
       post: "/v1/create_user"
       body: "*"
     };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Creates a new user account in the VaultGuard system. This endpoint validates user input, securely hashes passwords, and stores user credentials in the database. Returns user details upon successful creation."
+      summary: "Create a new user account"
+    };
   }
   rpc LoginUser(LoginUserRequest) returns (LoginUserResponse) {
     option (google.api.http) = {
       post: "/v1/login_user"
       body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Authenticates a user with their credentials and returns access tokens. This endpoint validates username/email and password, generates JWT tokens for session management, and provides secure access to protected resources."
+      summary: "Authenticate user login"
     };
   }
 }

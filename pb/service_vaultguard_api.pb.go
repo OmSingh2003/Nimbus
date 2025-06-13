@@ -27,13 +27,13 @@ var File_service_vaultguard_api_proto protoreflect.FileDescriptor
 const file_service_vaultguard_api_proto_rawDesc = "" +
 	"\n" +
 	"\x1cservice_vaultguard_api.proto\x12\x02pb\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\n" +
-	"user.proto2\xbd\x01\n" +
-	"\rVaultguardAPI\x12W\n" +
+	"user.proto2\xad\x05\n" +
+	"\rVaultguardAPI\x12\xc9\x02\n" +
 	"\n" +
-	"CreateUser\x12\x15.pb.CreateUserRequest\x1a\x16.pb.CreateUserResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v1/create_user\x12S\n" +
-	"\tLoginUser\x12\x14.pb.LoginUserRequest\x1a\x15.pb.LoginUserResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/login_userB\xe3\x01\x92A\xb5\x01\x12\x8a\x01\n" +
+	"CreateUser\x12\x15.pb.CreateUserRequest\x1a\x16.pb.CreateUserResponse\"\x8b\x02\x92A\xed\x01\x12\x19Create a new user account\x1a\xcf\x01Creates a new user account in the VaultGuard system. This endpoint validates user input, securely hashes passwords, and stores user credentials in the database. Returns user details upon successful creation.\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v1/create_user\x12\xcf\x02\n" +
+	"\tLoginUser\x12\x14.pb.LoginUserRequest\x1a\x15.pb.LoginUserResponse\"\x94\x02\x92A\xf7\x01\x12\x17Authenticate user login\x1a\xdb\x01Authenticates a user with their credentials and returns access tokens. This endpoint validates username/email and password, generates JWT tokens for session management, and provides secure access to protected resources.\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/login_userB\xe3\x01\x92A\xb5\x01\x12\x8a\x01\n" +
 	"\x0eVaultGuard API\x12\x1dA secure vault management API\"T\n" +
-	"\bOm Singh\x12-https://github.com/OmSingh2003/VaultGuard-API\x1a\x19omsingh.ailearn@gmail.com2\x031.0*\x02\x02\x012\x10application/json:\x10application/jsonZ(github.com/OmSingh2003/vaultguard-api/pbb\x06proto3"
+	"\bOm Singh\x12-https://github.com/OmSingh2003/VaultGuard-API\x1a\x19omsingh.ailearn@gmail.com2\x031.1*\x02\x02\x012\x10application/json:\x10application/jsonZ(github.com/OmSingh2003/vaultguard-api/pbb\x06proto3"
 
 var file_service_vaultguard_api_proto_goTypes = []any{
 	(*CreateUserRequest)(nil),  // 0: pb.CreateUserRequest
