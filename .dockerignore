@@ -19,7 +19,6 @@ docker-compose.yml
 
 # Ignore local environment
 app.env
-app.docker.env
 
 # Ignore IDE files
 .vscode

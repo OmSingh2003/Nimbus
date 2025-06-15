@@ -1,6 +1,6 @@
 module github.com/OmSingh2003/vaultguard-api
 
-go 1.24.2
+go 1.23
 
 require (
 	github.com/gin-gonic/gin v1.10.1

@@ -2,6 +2,31 @@
 app.env
 *.env
 app.docker.env
+.env.local
+.env.*.local
+
+# Go build outputs
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go test binary, built with `go test -c`
+*.test
+
+# Go coverage files
+*.out
+*.prof
+coverage.html
+coverage.txt
+
+# Go workspace file
+go.work
+go.work.sum
+
+# Dependency directories
+vendor/
 
 # OS generated files
 .DS_Store
@@ -12,32 +37,49 @@ app.docker.env
 ehthumbs.db
 Thumbs.db
 
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
 # Editor files
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
+.vim/
+.netrwhist
 
-# Build outputs
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
+# Docker
+docker-compose.override.yml
 
-# Test binary, built with `go test -c`
-*.test
-
-# Output of the go coverage tool
-*.out
-
-# Go workspace file
-go.work
-
-# Dependency directories
-vendor/
+# Database
+*.db
+*.sqlite
+*.sqlite3
 
 # Logs
 *.log
+logs/
 
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Application specific
+vaultguard-api
+main
+/bin/
+/dist/
+/build/
