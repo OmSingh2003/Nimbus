@@ -20,6 +20,17 @@ func (server *Server) UpdateUser(ctx context.Context, req *pb.UpdateUserRequest)
 		return nil, InvalidArgumentError(violations)
 	}
 
+	// Get the authenticated user from the token
+	authPayload, err := server.getAuthPayload(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	// Ensure user can only update their own profile
+	if authPayload.Username != req.GetUsername() {
+		return nil, status.Errorf(codes.PermissionDenied, "cannot update other user's information")
+	}
+
 	arg := db.UpdateUserParams{
 		Username: req.GetUsername(),
 	}

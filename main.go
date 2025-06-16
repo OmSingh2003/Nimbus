@@ -79,7 +79,9 @@ func runGrpcServer(config util.Config, store db.Store) {
 		log.Fatal("Cannot create gRPC server:", err)
 	}
 
-	grpcServer := grpc.NewServer()
+	grpcServer := grpc.NewServer(
+		grpc.UnaryInterceptor(server.AuthorizationInterceptor),
+	)
 	pb.RegisterVaultguardAPIServer(grpcServer, server)
 	reflection.Register(grpcServer)
 
