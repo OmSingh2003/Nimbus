@@ -3,7 +3,7 @@
   "info": {
     "title": "VaultGuard API",
     "description": "A secure vault management API",
-    "version": "1.1",
+    "version": "1.2",
     "contact": {
       "name": "Om Singh",
       "url": "https://github.com/OmSingh2003/VaultGuard-API",
@@ -81,6 +81,34 @@
           "VaultguardAPI"
         ]
       }
+    },
+    "/v1/update_user": {
+      "patch": {
+        "summary": "Updates user account",
+        "description": "Updates user account in the VaultGuard system. This endpoint validates user input, securely hashes passwords if provided, and updates user credentials in the database. Returns updated user details upon successful modification.",
+        "operationId": "UpdateUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbUpdateUserResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbUpdateUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "VaultguardAPI"
+        ]
+      }
     }
   },
   "definitions": {
@@ -142,6 +170,31 @@
         },
         "sessionId": {
           "type": "string"
+        }
+      }
+    },
+    "pbUpdateUserRequest": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "pbUpdateUserResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/pbUser"
         }
       }
     },
