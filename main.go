@@ -9,13 +9,13 @@ import (
 
 	"github.com/OmSingh2003/vaultguard-api/api"
 	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
+	_ "github.com/OmSingh2003/vaultguard-api/doc/statik"
 	"github.com/OmSingh2003/vaultguard-api/gapi"
 	"github.com/OmSingh2003/vaultguard-api/pb"
 	"github.com/OmSingh2003/vaultguard-api/util"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	"github.com/rakyll/statik/fs"
-	_ "github.com/OmSingh2003/vaultguard-api/doc/statik"
 	_ "github.com/lib/pq"
+	"github.com/rakyll/statik/fs"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
@@ -78,9 +78,11 @@ func runGrpcServer(config util.Config, store db.Store) {
 	if err != nil {
 		log.Fatal("Cannot create gRPC server:", err)
 	}
-
 	grpcServer := grpc.NewServer(
-		grpc.UnaryInterceptor(server.AuthorizationInterceptor),
+		grpc.ChainUnaryInterceptor(
+			gapi.GrpcLogger,
+			server.AuthorizationInterceptor,
+		),
 	)
 	pb.RegisterVaultguardAPIServer(grpcServer, server)
 	reflection.Register(grpcServer)
