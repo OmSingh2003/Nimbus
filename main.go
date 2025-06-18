@@ -6,14 +6,17 @@ import (
 	"net"
 	"net/http"
 
+	"github.com/hibiken/asynq"
 	"github.com/rs/zerolog/log"
 
 	"github.com/OmSingh2003/vaultguard-api/api"
 	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
 	_ "github.com/OmSingh2003/vaultguard-api/doc/statik"
 	"github.com/OmSingh2003/vaultguard-api/gapi"
+	"github.com/OmSingh2003/vaultguard-api/mail"
 	"github.com/OmSingh2003/vaultguard-api/pb"
 	"github.com/OmSingh2003/vaultguard-api/util"
+	"github.com/OmSingh2003/vaultguard-api/worker"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	_ "github.com/lib/pq"
 	"github.com/rakyll/statik/fs"
@@ -34,13 +37,20 @@ func main() {
 
 	store := db.NewStore(conn)
 
+	redisOpt := asynq.RedisClientOpt{
+		Addr: config.RedisAddress,
+	}
+
+	taskDistributor := worker.NewRedisTaskDistributor(redisOpt)
+
+	go runTaskProcessor(config, redisOpt, store)
 	// Run both HTTP Gateway and gRPC servers concurrently
-	go runGatewayServer(config, store)
-	runGrpcServer(config, store)
+	go runGatewayServer(config, store, taskDistributor)
+	runGrpcServer(config, store, taskDistributor)
 }
 
-func runGatewayServer(config util.Config, store db.Store) {
-	server, err := gapi.NewServer(config, store)
+func runGatewayServer(config util.Config, store db.Store, taskDistributor worker.TaskDistributor) {
+	server, err := gapi.NewServer(config, store, taskDistributor)
 	if err != nil {
 		log.Fatal().Err(err).Msg("Cannot create gRPC server")
 	}
@@ -74,8 +84,8 @@ func runGatewayServer(config util.Config, store db.Store) {
 	}
 }
 
-func runGrpcServer(config util.Config, store db.Store) {
-	server, err := gapi.NewServer(config, store)
+func runGrpcServer(config util.Config, store db.Store, taskDistributor worker.TaskDistributor) {
+	server, err := gapi.NewServer(config, store, taskDistributor)
 	if err != nil {
 		log.Fatal().Err(err).Msg("Cannot create gRPC server")
 	}
@@ -93,7 +103,7 @@ func runGrpcServer(config util.Config, store db.Store) {
 		log.Fatal().Err(err).Msg("Cannot create gRPC listener")
 	}
 
-	log.Info().Msgf("Start gRPC server at %s", listener.Addr().String())
+	log.Info().Msgf("start gRPC server at [%s]", listener.Addr().String())
 	err = grpcServer.Serve(listener)
 	if err != nil {
 		log.Fatal().Err(err).Msg("Cannot start gRPC server")
@@ -110,5 +120,15 @@ func runGinServer(config util.Config, store db.Store) {
 	err = server.Start(config.HTTPServerAddress)
 	if err != nil {
 		log.Fatal().Err(err).Msg("Cannot start HTTP server")
+	}
+}
+
+func runTaskProcessor(config util.Config, redisOpt asynq.RedisClientOpt, store db.Store) {
+	mailer := mail.NewGmailSender(config.EmailSenderName, config.EmailSenderAddress, config.EmailSenderPassword)
+	taskProcessor := worker.NewRedisTaskProcessor(redisOpt, store, mailer)
+	log.Info().Msg("start task processor")
+	err := taskProcessor.Start()
+	if err != nil {
+		log.Fatal().Err(err).Msg("failed to start task processor")
 	}
 }

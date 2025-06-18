@@ -2,10 +2,7 @@ package worker
 
 import (
 	"context"
-	stdlog "log"
-	"os"
 
-	"github.com/go-redis/redis/v8"
 	"github.com/hibiken/asynq"
 	"github.com/rs/zerolog/log"
 	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
@@ -30,8 +27,6 @@ type RedisTaskProcessor struct {
 }
 
 func NewRedisTaskProcessor(redisOpt asynq.RedisClientOpt, store db.Store, mailer mail.EmailSender) TaskProcessor {
-	logger := NewLogger()
-	redis.SetLogger(logger)
 
 	server := asynq.NewServer(
 		redisOpt,
@@ -44,7 +39,6 @@ func NewRedisTaskProcessor(redisOpt asynq.RedisClientOpt, store db.Store, mailer
 				log.Error().Err(err).Str("type", task.Type()).
 					Bytes("payload", task.Payload()).Msg("process task failed")
 			}),
-			Logger: logger,
 		},
 	)
 

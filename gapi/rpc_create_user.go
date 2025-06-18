@@ -6,6 +6,8 @@ import (
 	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
 	"github.com/OmSingh2003/vaultguard-api/pb"
 	"github.com/OmSingh2003/vaultguard-api/util"
+	"github.com/OmSingh2003/vaultguard-api/worker"
+	"github.com/hibiken/asynq"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/timestamppb"
@@ -27,6 +29,20 @@ func (server *Server) CreateUser(ctx context.Context, req *pb.CreateUserRequest)
 	user, err := server.store.CreateUser(ctx, arg)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "failed to create user: %s", err)
+	}
+
+	// NOTE: TODO - use DB transaction
+	taskPayload := &worker.PayloadSendVerifyEmail{
+		Username: user.Username,
+	}
+	opts := []async.Option{
+		async.MaxRetry(10),
+		asynq.ProcessIn(10 * time.Second),
+		asynq.Queue("critical"),
+	}
+	err = server.taskDistributor.DistributeTaskSendVerifyEmail(ctx, taskPayload)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, "failed to distribute task: %s", err)
 	}
 
 	rsp := &pb.CreateUserResponse{

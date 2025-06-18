@@ -41,7 +41,7 @@ proto:
 	protoc --proto_path=proto --go_out=pb --go_opt=paths=source_relative --go-grpc_out=pb --go-grpc_opt=paths=source_relative  --grpc-gateway_out=pb --grpc-gateway_opt paths=source_relative   --openapiv2_out=doc/swagger --openapiv2_opt=allow_merge=true,merge_file_name=vaultguard-api,disable_default_errors=true,simple_operation_ids=true  proto/*.proto
 	statik -src=./doc/swagger -dest=./doc
 
-.PHONY: postgres createdb dropdb migrateup migrateup1 migratedown migratedown1 db_docs db_schema sqlc test mock server proto clean_proto rebuild_proto evan evans
+.PHONY: postgres createdb dropdb migrateup migrateup1 migratedown migratedown1 db_docs db_schema sqlc test mock server proto clean_proto rebuild_proto evan evans redis
 
 clean_proto:
 	rm -f pb/*.pb.go
@@ -53,3 +53,6 @@ evan:
 
 evans :
 	evans --path proto --proto service_vaultguard_api.proto --host localhost --port 9090
+
+redis:
+	docker run --name redis -p 6379:6379 -d redis:8.0.2-alpine

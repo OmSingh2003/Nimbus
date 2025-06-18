@@ -7,8 +7,6 @@ import (
 
 	"github.com/hibiken/asynq"
 	"github.com/rs/zerolog/log"
-	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
-	"github.com/OmSingh2003/vaultguard-api/util"
 )
 
 const TaskSendVerifyEmail = "task:send_verify_email"
@@ -49,23 +47,13 @@ func (processor *RedisTaskProcessor) ProcessTaskSendVerifyEmail(ctx context.Cont
 		return fmt.Errorf("failed to get user: %w", err)
 	}
 
-	verifyEmail, err := processor.store.CreateVerifyEmail(ctx, db.CreateVerifyEmailParams{
-		Username:   user.Username,
-		Email:      user.Email,
-		SecretCode: util.RandomString(32),
-	})
-	if err != nil {
-		return fmt.Errorf("failed to create verify email: %w", err)
-	}
-
+	// TODO: Implement verify email functionality when database schema is ready
+	// For now, just send a welcome email without verification
 	subject := "Welcome to Simple Bank"
-	// TODO: replace this URL with an environment variable that points to a front-end page
-	verifyUrl := fmt.Sprintf("http://localhost:8080/v1/verify_email?email_id=%d&secret_code=%s",
-		verifyEmail.ID, verifyEmail.SecretCode)
 	content := fmt.Sprintf(`Hello %s,<br/>
 	Thank you for registering with us!<br/>
-	Please <a href="%s">click here</a> to verify your email address.<br/>
-	`, user.FullName, verifyUrl)
+	Your account has been created successfully.<br/>
+	`, user.FullName)
 	to := []string{user.Email}
 
 	err = processor.mailer.SendEmail(subject, content, to, nil, nil, nil)
