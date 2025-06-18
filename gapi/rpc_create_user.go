@@ -2,6 +2,7 @@ package gapi
 
 import (
 	"context"
+	"time"
 
 	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
 	"github.com/OmSingh2003/vaultguard-api/pb"
@@ -35,12 +36,12 @@ func (server *Server) CreateUser(ctx context.Context, req *pb.CreateUserRequest)
 	taskPayload := &worker.PayloadSendVerifyEmail{
 		Username: user.Username,
 	}
-	opts := []async.Option{
-		async.MaxRetry(10),
+	opts := []asynq.Option{
+		asynq.MaxRetry(10),
 		asynq.ProcessIn(10 * time.Second),
 		asynq.Queue("critical"),
 	}
-	err = server.taskDistributor.DistributeTaskSendVerifyEmail(ctx, taskPayload)
+	err = server.taskDistributor.DistributeTaskSendVerifyEmail(ctx, taskPayload, opts...)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "failed to distribute task: %s", err)
 	}
@@ -60,3 +61,4 @@ func convertUser(user db.User) *pb.User {
 		CreatedAt:         timestamppb.New(user.CreatedAt),
 	}
 }
+
