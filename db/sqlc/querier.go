@@ -17,17 +17,23 @@ type Querier interface {
 	CreateSession(ctx context.Context, arg CreateSessionParams) (Session, error)
 	CreateTransfer(ctx context.Context, arg CreateTransferParams) (Transfer, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
+	CreateVerifyEmail(ctx context.Context, arg CreateVerifyEmailParams) (VerifyEmail, error)
 	DeleteAccount(ctx context.Context, id int64) error
+	DeleteExpiredVerifyEmails(ctx context.Context) error
 	GetAccount(ctx context.Context, id int64) (Account, error)
 	GetEntry(ctx context.Context, id int64) (Entry, error)
 	GetSession(ctx context.Context, id uuid.UUID) (Session, error)
 	GetTransfer(ctx context.Context, id int64) (Transfer, error)
 	GetUser(ctx context.Context, username string) (User, error)
+	GetVerifyEmail(ctx context.Context, id int64) (VerifyEmail, error)
 	ListAccounts(ctx context.Context, arg ListAccountsParams) ([]Account, error)
 	ListEntries(ctx context.Context, arg ListEntriesParams) ([]Entry, error)
 	ListTransfers(ctx context.Context, arg ListTransfersParams) ([]Transfer, error)
+	ListVerifyEmails(ctx context.Context, username string) ([]VerifyEmail, error)
 	UpdateAccount(ctx context.Context, arg UpdateAccountParams) error
 	UpdateUser(ctx context.Context, arg UpdateUserParams) (User, error)
+	UpdateUserEmailVerified(ctx context.Context, arg UpdateUserEmailVerifiedParams) error
+	VerifyEmail(ctx context.Context, arg VerifyEmailParams) error
 }
 
 var _ Querier = (*Queries)(nil)

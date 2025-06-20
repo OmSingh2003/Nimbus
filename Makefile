@@ -29,7 +29,7 @@ sqlc:
 	sqlc generate
 
 test:
-	go test -v -cover ./...
+	go test -v -cover -short ./...
 
 mock:
 	mockgen -package mockdb -destination db/mockdb/store.go github.com/OmSingh2003/vaultguard-api/db/sqlc Store

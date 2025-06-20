@@ -7,7 +7,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type Logger struct {}
+type Logger struct{}
 
 func NewLogger() *Logger {
 	return &Logger{}
