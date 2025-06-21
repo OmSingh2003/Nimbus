@@ -59,9 +59,9 @@ func (processor *RedisTaskProcessor) ProcessTaskSendVerifyEmail(ctx context.Cont
 	}
 
 	subject := "Welcome to vaultguard-api"
-	// TODO: Replace with your actual domain
-	verifyUrl := fmt.Sprintf("http://localhost:8080/v1/verify_email?email_id=%d&secret_code=%s", 
-		verifyEmail.ID, verifyEmail.SecretCode)
+	// Use configurable URL from config
+	verifyUrl := fmt.Sprintf("%s/v1/verify_email?email_id=%d&secret_code=%s", 
+		processor.config.EmailVerificationURL, verifyEmail.ID, verifyEmail.SecretCode)
 	content := fmt.Sprintf(`Hello %s,<br/>
 	Thank you for registering with us!<br/>
 	Please <a href="%s">click here to verify your email address</a><br/>

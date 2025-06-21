@@ -11,11 +11,11 @@ import (
 
 const createVerifyEmail = `-- name: CreateVerifyEmail :one
 INSERT INTO verify_emails (
-  username,
-  email,
-  secret_code
+    username,
+    email,
+    secret_code
 ) VALUES (
-  $1, $2, $3
+    $1, $2, $3
 ) RETURNING id, username, email, secret_code, is_used, created_at, expired_at
 `
 
@@ -40,23 +40,25 @@ func (q *Queries) CreateVerifyEmail(ctx context.Context, arg CreateVerifyEmailPa
 	return i, err
 }
 
-const deleteExpiredVerifyEmails = `-- name: DeleteExpiredVerifyEmails :exec
-DELETE FROM verify_emails
-WHERE expired_at < now()
+const updateVerifyEmail = `-- name: UpdateVerifyEmail :one
+UPDATE verify_emails
+SET
+    is_used = TRUE
+WHERE
+    id = $1
+    AND secret_code = $2
+    AND is_used = FALSE
+    AND expired_at > now()
+RETURNING id, username, email, secret_code, is_used, created_at, expired_at
 `
 
-func (q *Queries) DeleteExpiredVerifyEmails(ctx context.Context) error {
-	_, err := q.db.ExecContext(ctx, deleteExpiredVerifyEmails)
-	return err
+type UpdateVerifyEmailParams struct {
+	ID         int64  `json:"id"`
+	SecretCode string `json:"secret_code"`
 }
 
-const getVerifyEmail = `-- name: GetVerifyEmail :one
-SELECT id, username, email, secret_code, is_used, created_at, expired_at FROM verify_emails
-WHERE id = $1 LIMIT 1
-`
-
-func (q *Queries) GetVerifyEmail(ctx context.Context, id int64) (VerifyEmail, error) {
-	row := q.db.QueryRowContext(ctx, getVerifyEmail, id)
+func (q *Queries) UpdateVerifyEmail(ctx context.Context, arg UpdateVerifyEmailParams) (VerifyEmail, error) {
+	row := q.db.QueryRowContext(ctx, updateVerifyEmail, arg.ID, arg.SecretCode)
 	var i VerifyEmail
 	err := row.Scan(
 		&i.ID,
@@ -68,76 +70,4 @@ func (q *Queries) GetVerifyEmail(ctx context.Context, id int64) (VerifyEmail, er
 		&i.ExpiredAt,
 	)
 	return i, err
-}
-
-const listVerifyEmails = `-- name: ListVerifyEmails :many
-SELECT id, username, email, secret_code, is_used, created_at, expired_at FROM verify_emails
-WHERE username = $1
-ORDER BY created_at DESC
-`
-
-func (q *Queries) ListVerifyEmails(ctx context.Context, username string) ([]VerifyEmail, error) {
-	rows, err := q.db.QueryContext(ctx, listVerifyEmails, username)
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-	var items []VerifyEmail
-	for rows.Next() {
-		var i VerifyEmail
-		if err := rows.Scan(
-			&i.ID,
-			&i.Username,
-			&i.Email,
-			&i.SecretCode,
-			&i.IsUsed,
-			&i.CreatedAt,
-			&i.ExpiredAt,
-		); err != nil {
-			return nil, err
-		}
-		items = append(items, i)
-	}
-	if err := rows.Close(); err != nil {
-		return nil, err
-	}
-	if err := rows.Err(); err != nil {
-		return nil, err
-	}
-	return items, nil
-}
-
-const updateUserEmailVerified = `-- name: UpdateUserEmailVerified :exec
-UPDATE users 
-SET is_email_verified = $2 
-WHERE username = $1
-`
-
-type UpdateUserEmailVerifiedParams struct {
-	Username        string `json:"username"`
-	IsEmailVerified bool   `json:"is_email_verified"`
-}
-
-func (q *Queries) UpdateUserEmailVerified(ctx context.Context, arg UpdateUserEmailVerifiedParams) error {
-	_, err := q.db.ExecContext(ctx, updateUserEmailVerified, arg.Username, arg.IsEmailVerified)
-	return err
-}
-
-const verifyEmail = `-- name: VerifyEmail :exec
-UPDATE verify_emails 
-SET is_used = true 
-WHERE id = $1 
-  AND secret_code = $2 
-  AND is_used = false 
-  AND expired_at > now()
-`
-
-type VerifyEmailParams struct {
-	ID         int64  `json:"id"`
-	SecretCode string `json:"secret_code"`
-}
-
-func (q *Queries) VerifyEmail(ctx context.Context, arg VerifyEmailParams) error {
-	_, err := q.db.ExecContext(ctx, verifyEmail, arg.ID, arg.SecretCode)
-	return err
 }

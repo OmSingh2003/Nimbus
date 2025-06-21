@@ -114,3 +114,17 @@ func ValidateID(value int64) error {
 func ValidateAccountOwner(value string) error {
 	return ValidateUsername(value)
 }
+
+func ValidateEmailId(value int64) error {
+	if value <= 0 {
+		return fmt.Errorf("must be a positive integer")
+	}
+	return nil
+}
+
+func ValidateSecretCode(value string) error {
+	if err := validateString(value, 32, 128); err != nil {
+		return err
+	}
+	return nil
+}
