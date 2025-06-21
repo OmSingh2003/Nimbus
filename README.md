@@ -1,11 +1,13 @@
 # VaultGuard API
 
-[![Go Version](https://img.shields.io/badge/Go-1.24+-blue.svg)](https://golang.org/)
-[![CI Test Status](https://github.com/OmSingh2003/vaultguard-api/actions/workflows/ci-test.yml/badge.svg)](https://github.com/OmSingh2003/vaultguard-api/actions/workflows/ci-test.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Go Version](https://img.shields.io/badge/Go-1.23+-blue.svg)](https://golang.org/)
+[![CI Test Status](https://github.com/OmSingh2003/vaultguard-api/actions/workflows/ci-test.yml/badge.svg)](https://github.com/OmSingh2003/vaultguard-api/actions/workflows/ci-test.yml)
+[![Test Coverage](https://img.shields.io/codecov/c/github/OmSingh2003/vaultguard-api)](https://codecov.io/gh/OmSingh2003/vaultguard-api)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Full-featured backend system for VaultGuard API built with Go. Implements REST/gRPC APIs (Gin/gRPC Gateway), PostgreSQL DB access (SQLC & migrations), JWT/PASETO authentication, asynchronous task processing (Redis/Asynq), Docker deployment strategies, and CI/CD pipelines.
+A robust, full-featured banking backend system built with Go. This project demonstrates modern microservices architecture with REST/gRPC APIs, secure authentication, asynchronous task processing, and comprehensive testing.
 
-**Status:** Currently under active development.
+> **Status:** 🚧 Currently under active development
 
 ## ✨ Features
 
@@ -24,7 +26,7 @@ Full-featured backend system for VaultGuard API built with Go. Implements REST/g
 
 ## 🛠️ Tech Stack
 
-* **Language:** [Go](https://golang.org/) (version 1.24+)
+* **Language:** [Go](https://golang.org/) (version 1.23+)
 * **API Frameworks:** [Gin](https://github.com/gin-gonic/gin), [gRPC](https://grpc.io/), [gRPC Gateway](https://github.com/grpc-ecosystem/grpc-gateway)
 * **Database:** [PostgreSQL](https://www.postgresql.org/)
 * **ORM/SQL Builder:** [SQLC](https://github.com/sqlc-dev/sqlc)
@@ -42,7 +44,7 @@ Full-featured backend system for VaultGuard API built with Go. Implements REST/g
 
 Ensure you have the following core tools installed:
 
-* [Go](https://golang.org/doc/install) (version 1.19 or higher)
+* [Go](https://golang.org/doc/install) (version 1.23 or higher)
 * [Docker Desktop](https://docs.docker.com/get-docker/) (includes Docker & Docker Compose)
 * [Make](https://www.gnu.org/software/make/)
 * Optional DB GUI: [TablePlus](https://tableplus.com/) or similar
@@ -70,7 +72,7 @@ Install project-specific CLI tools:
     ```
 * **Gomock:** Generates mock code for testing.
     ```bash
-    go install [github.com/golang/mock/mockgen@v1.6.0](https://github.com/golang/mock/mockgen@v1.6.0)
+    go install go.uber.org/mock/mockgen@latest
     ```
 * **DBML CLI:** Converts DBML to SQL (for schema generation).
     ```bash
@@ -91,7 +93,7 @@ Follow these steps to set up the project for local development:
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/OmSingh2003/vaultguard-api.git](https://github.com/OmSingh2003/vaultguard-api.git)
+    git clone https://github.com/OmSingh2003/vaultguard-api.git
     cd vaultguard-api
     ```
 
@@ -156,37 +158,158 @@ This starts all services (PostgreSQL, Redis, API server, gRPC server, async work
 
 ```bash
 docker-compose up --build
-(The --build flag ensures images are rebuilt if code changes)Using Make (Requires Manual Service Management):If you prefer not to use Docker Compose for the Go services (but still use make postgres for the DB):# Start the main API server (REST & gRPC Gateway)
+```
+
+> The `--build` flag ensures images are rebuilt if code changes
+
+**Using Make (Requires Manual Service Management):**
+
+If you prefer not to use Docker Compose for the Go services (but still use `make postgres` for the DB):
+
+```bash
+# Start the main API server (REST & gRPC Gateway)
 make server
 
 # (In another terminal) Start the asynchronous task worker
 make worker
-The REST API server typically runs on :8080.The gRPC server typically runs on :9090.The Asynq web UI (if enabled) runs on :8081.🧪 Running TestsTo run the test suite:make test
-(This usually runs go test -v -cover ./...)🔄 Migrations ManagementUse Make commands to manage database schema migrations:Apply all pending migrations:make migrateup
-Apply the next pending migration:make migrateup1
-Roll back all migrations:make migratedown
-Roll back the last applied migration:make migratedown1
-Create a new migration file:Replace <migration_name> with a descriptive name (e.g., add_users_table).make new_migration name=<migration_name>
-📄 Database DocumentationGenerate and view database documentation using DBML and dbdocs:Generate DBML schema file (if needed):(This might be manual or part of another process depending on your setup)Generate schema SQL file from DBML:(Useful for visualizing or comparing)make db_schema
-Generate and publish documentation website:(Requires prior dbdocs login)make db_docs
-    Access the DB documentation at the URL provided by the command output. (Password: secret - as noted in your input, consider if this should be documented or secured differently)📄 API Documentation (Swagger)API documentation is automatically generated from the Protobuf definitions and served via Swagger UI.Once the server is running (using docker-compose up or make server), access the Swagger UI at:http://localhost:8080/swagger/☁️ Deployment (Kubernetes Example)These are example steps for setting up prerequisites in a Kubernetes cluster for deployment:Install Nginx Ingress Controller:(Example for AWS, check provider docs for others)kubectl apply -f [https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.48.1/deploy/static/provider/aws/deploy.yaml](https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.48.1/deploy/static/provider/aws/deploy.yaml)
-Install Cert-Manager:(For automatic TLS certificate management)kubectl apply -f [https://github.com/jetstack/cert-manager/releases/download/v1.4.0/cert-manager.yaml](https://github.com/jetstack/cert-manager/releases/download/v1.4.0/cert-manager.yaml)
-(Note: Ensure you use versions compatible with your cluster. These are examples.)(Add specific deployment steps for the VaultGuard API application itself here, e.g., applying Kubernetes manifests for Deployments, Services, Ingress, Secrets, etc.)🏗️ Project Structure (Overview).
-├── api         # Gin handlers, middleware, server setup
-├── cmd         # Main application entry points (server, worker)
-├── db          # Database migrations and SQLC queries/schema
-├── gapi        # gRPC handlers, interceptors, server setup
-├── internal    # Core business logic, domain types (shared internal code)
-├── mail        # Mail sending logic
-├── pb          # Generated Protobuf Go code
-├── proto       # Protobuf definition files
-├── token       # JWT/PASETO token generation and verification logic
-├── util        # Utility functions (config, logging, etc.)
-├── worker      # Asynq task definitions and processor setup
-├── .env.example # Example environment variables
-├── Dockerfile  # Docker build instructions
-├── docker-compose.yml # Docker Compose service definitions
-├── go.mod      # Go module dependencies
-├── Makefile    # Make targets for common tasks
-└── main.go     # Main application entry point (often calls cmd)
-(Adjust this structure based on your actual project layout)🔄 CI/CDThis project uses GitHub Actions for continuous integration. The workflow includes:Running linters (golangci-lint).Running unit tests.Building the application.(Describe your specific CI/CD setup here)🤝 ContributingContributions are welcome! Please follow standard Go practices and ensure tests pass before submitting a pull request.(Add more detailed contribution guidelines if needed)📜 LicenseThis project is licensed under the MIT License - see the LICENSE file for details.
+```
+
+**Default Ports:**
+- REST API server: `:8080`
+- gRPC server: `:9090`
+- Asynq web UI (if enabled): `:8081`
+
+## 🧪 Running Tests
+
+To run the test suite:
+
+```bash
+make test
+```
+
+This runs `go test -v -cover -short ./...` which includes coverage reporting.
+
+## 🔄 Migrations Management
+
+Use Make commands to manage database schema migrations:
+
+**Apply all pending migrations:**
+```bash
+make migrateup
+```
+
+**Apply the next pending migration:**
+```bash
+make migrateup1
+```
+
+**Roll back all migrations:**
+```bash
+make migratedown
+```
+
+**Roll back the last applied migration:**
+```bash
+make migratedown1
+```
+
+**Create a new migration file:**
+```bash
+make new_migration name=<migration_name>
+```
+
+> Replace `<migration_name>` with a descriptive name (e.g., `add_users_table`)
+
+## 📄 Database Documentation
+
+Generate and view database documentation using DBML and dbdocs:
+
+**Generate schema SQL file from DBML:**
+```bash
+make db_schema
+```
+
+**Generate and publish documentation website:**
+```bash
+make db_docs
+```
+
+> Requires prior `dbdocs login`. Access the DB documentation at the URL provided by the command output.
+
+## 📄 API Documentation (Swagger)
+
+API documentation is automatically generated from the Protobuf definitions and served via Swagger UI.
+
+Once the server is running (using `docker-compose up` or `make server`), access the Swagger UI at:
+
+**http://localhost:8080/swagger/**
+
+## ☁️ Deployment (Kubernetes Example)
+
+These are example steps for setting up prerequisites in a Kubernetes cluster:
+
+**Install Nginx Ingress Controller:**
+```bash
+# Example for AWS, check provider docs for others
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.48.1/deploy/static/provider/aws/deploy.yaml
+```
+
+**Install Cert-Manager:**
+```bash
+# For automatic TLS certificate management
+kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.4.0/cert-manager.yaml
+```
+
+> **Note:** Ensure you use versions compatible with your cluster. These are examples.
+
+## 🏗️ Project Structure
+
+```
+.
+├── api/                 # Gin handlers, middleware, server setup
+├── db/                  # Database migrations and SQLC queries/schema
+├── doc/                 # Documentation files (DBML, Swagger)
+├── gapi/                # gRPC handlers, interceptors, server setup
+├── mail/                # Mail sending logic
+├── pb/                  # Generated Protobuf Go code
+├── proto/               # Protobuf definition files
+├── token/               # JWT/PASETO token generation and verification
+├── util/                # Utility functions (config, logging, etc.)
+├── val/                 # Validation logic
+├── worker/              # Asynq task definitions and processor setup
+├── .env                 # Environment variables (not in repo)
+├── .env.example         # Example environment variables
+├── Dockerfile           # Docker build instructions
+├── docker-compose.yml   # Docker Compose service definitions
+├── go.mod               # Go module dependencies
+├── Makefile             # Make targets for common tasks
+└── main.go              # Main application entry point
+```
+
+## 🔄 CI/CD
+
+This project uses GitHub Actions for continuous integration. The workflow includes:
+
+- Running linters (`golangci-lint`)
+- Running unit tests with coverage
+- Building the application
+- Security scanning
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these guidelines:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Make your changes
+4. Add tests for new functionality
+5. Ensure all tests pass (`make test`)
+6. Commit your changes (`git commit -m 'Add amazing feature'`)
+7. Push to the branch (`git push origin feature/amazing-feature`)
+8. Open a Pull Request
+
+Please follow standard Go practices and ensure code coverage is maintained.
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
