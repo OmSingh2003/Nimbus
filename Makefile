@@ -33,6 +33,7 @@ test:
 
 mock:
 	mockgen -package mockdb -destination db/mockdb/store.go github.com/OmSingh2003/vaultguard-api/db/sqlc Store
+	mockgen -package mockwk -destination worker/mock/distributor.go github.com/OmSingh2003/vaultguard-api/worker TaskDistributor
 
 server:
 	go run main.go
