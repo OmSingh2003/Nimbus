@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: vaultguard-api
+    name: nimbus-api
     runtime: go
     plan: free
     buildCommand: go build -o main main.go
@@ -17,4 +17,4 @@ services:
       - key: REFRESH_TOKEN_DURATION
         value: 24h
       - key: EMAIL_SENDER_NAME
-        value: Simple bank
+        value: Nimbus
