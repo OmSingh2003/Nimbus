@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import apiClient, { API_CONFIG } from '../config/api';
 import { Alert, Button, Card, Form, Container, Row, Col, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
@@ -66,7 +66,7 @@ const LoginUser = ({ onLogin }) => {
     setLoading(true);
     
     try {
-      const response = await axios.post('/v1/login_user', {
+      const response = await apiClient.post(API_CONFIG.ENDPOINTS.LOGIN_USER, {
         username,
         password,
       });

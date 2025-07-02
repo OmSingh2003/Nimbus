@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import apiClient, { API_CONFIG } from '../config/api';
 import { Alert, Button, Card, Form, Container, Row, Col, Spinner, InputGroup } from 'react-bootstrap';
 
 const CreateTransfer = () => {
@@ -26,9 +26,7 @@ const CreateTransfer = () => {
 
   const fetchAccounts = async () => {
     try {
-      const response = await axios.get('/v1/accounts?page_id=1&page_size=10', {
-        headers: getAuthHeaders(),
-      });
+      const response = await apiClient.get('/v1/accounts?page_id=1&page_size=10');
       setAccounts(response.data.accounts || []);
     } catch (error) {
       console.error('Error fetching accounts:', error);
@@ -94,16 +92,12 @@ const CreateTransfer = () => {
     
     setLoading(true);
     try {
-      const response = await axios.post(
-        '/v1/transfers',
-        {
-          from_account_id: parseInt(fromAccountID),
-          to_account_id: parseInt(toAccountID),
-          amount: parseInt(amount * 100), // Convert to cents
-          currency: currency,
-        },
-        { headers: getAuthHeaders() }
-      );
+      const response = await apiClient.post('/v1/transfers', {
+        from_account_id: parseInt(fromAccountID),
+        to_account_id: parseInt(toAccountID),
+        amount: parseInt(amount * 100), // Convert to cents
+        currency: currency,
+      });
       
       showMessage(`Transfer successful! Transfer ID: ${response.data.transfer?.id}`, 'success');
       

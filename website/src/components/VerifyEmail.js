@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Card, Alert, Button, Spinner } from 'react-bootstrap';
-import axios from 'axios';
+import apiClient, { API_CONFIG } from '../config/api';
 
 const VerifyEmail = () => {
   const [searchParams] = useSearchParams();
@@ -23,7 +23,7 @@ const VerifyEmail = () => {
 
     const verifyEmail = async () => {
       try {
-        const response = await axios.post('/v1/verify_email', {
+        const response = await apiClient.post('/v1/verify_email', {
           email_id: parseInt(emailId),
           secret_code: secretCode,
         });

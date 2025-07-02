@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import apiClient, { API_CONFIG } from '../config/api';
 import { Alert, Button, Card, Form, ListGroup, Container, Row, Col } from 'react-bootstrap';
 
 const AccountManager = () => {
@@ -71,9 +71,7 @@ const AccountManager = () => {
   const fetchAccounts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/v1/accounts?page_id=1&page_size=10', {
-        headers: getAuthHeaders(),
-      });
+      const response = await apiClient.get('/v1/accounts?page_id=1&page_size=10');
       setAccounts(response.data.accounts || []);
       showMessage('Accounts loaded successfully', 'success');
     } catch (error) {
@@ -100,11 +98,7 @@ const AccountManager = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const response = await axios.post(
-        '/v1/accounts',
-        { currency },
-        { headers: getAuthHeaders() }
-      );
+      const response = await apiClient.post('/v1/accounts', { currency });
       
       showMessage(`Account created successfully! Account ID: ${response.data.id}`, 'success');
       setShowCreateForm(false);
