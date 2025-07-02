@@ -29,6 +29,7 @@ type Account struct {
 	Balance       int64                  `protobuf:"varint,3,opt,name=balance,proto3" json:"balance,omitempty"`
 	Currency      string                 `protobuf:"bytes,4,opt,name=currency,proto3" json:"currency,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	AccountNumber string                 `protobuf:"bytes,6,opt,name=account_number,json=accountNumber,proto3" json:"account_number,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -96,6 +97,13 @@ func (x *Account) GetCreatedAt() *timestamppb.Timestamp {
 		return x.CreatedAt
 	}
 	return nil
+}
+
+func (x *Account) GetAccountNumber() string {
+	if x != nil {
+		return x.AccountNumber
+	}
+	return ""
 }
 
 type CreateAccountRequest struct {
@@ -374,14 +382,15 @@ var File_account_proto protoreflect.FileDescriptor
 
 const file_account_proto_rawDesc = "" +
 	"\n" +
-	"\raccount.proto\x12\x02pb\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa0\x01\n" +
+	"\raccount.proto\x12\x02pb\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc7\x01\n" +
 	"\aAccount\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
 	"\x05owner\x18\x02 \x01(\tR\x05owner\x12\x18\n" +
 	"\abalance\x18\x03 \x01(\x03R\abalance\x12\x1a\n" +
 	"\bcurrency\x18\x04 \x01(\tR\bcurrency\x129\n" +
 	"\n" +
-	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"2\n" +
+	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12%\n" +
+	"\x0eaccount_number\x18\x06 \x01(\tR\raccountNumber\"2\n" +
 	"\x14CreateAccountRequest\x12\x1a\n" +
 	"\bcurrency\x18\x01 \x01(\tR\bcurrency\">\n" +
 	"\x15CreateAccountResponse\x12%\n" +

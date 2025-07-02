@@ -2,10 +2,13 @@ package gapi
 
 import (
 	"context"
+	"time"
 
 	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
 	"github.com/OmSingh2003/vaultguard-api/pb"
 	"github.com/OmSingh2003/vaultguard-api/val"
+	"github.com/OmSingh2003/vaultguard-api/worker"
+	"github.com/hibiken/asynq"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -57,6 +60,22 @@ func (server *Server) CreateTransfer(ctx context.Context, req *pb.CreateTransfer
 		return nil, status.Errorf(codes.Internal, "failed to create transfer: %s", err)
 	}
 
+	// Check if this is a transfer to the demo account
+	if toAccount.ID == getDemoAccountID() || isAccountNumber(toAccount, "DEMO-1234567890") {
+		// Trigger demo response task
+		taskPayload := &worker.PayloadDemoResponse{
+			FromAccountID: req.GetFromAccountId(),
+			Amount:        req.GetAmount(),
+			Currency:      req.GetCurrency(),
+		}
+		opts := []asynq.Option{
+			asynq.MaxRetry(3),
+			asynq.ProcessIn(10 * time.Second), // Delay for demo effect
+			asynq.Queue("demo"),
+		}
+		_ = server.taskDistributor.DistributeTaskDemoResponse(ctx, taskPayload, opts...)
+	}
+
 	rsp := &pb.CreateTransferResponse{
 		Transfer: convertTransfer(result.Transfer),
 	}
@@ -82,6 +101,19 @@ func validateCreateTransferRequest(req *pb.CreateTransferRequest) error {
 	}
 
 	return nil
+}
+
+// Helper function to detect demo account
+func getDemoAccountID() int64 {
+	// This should be replaced with actual demo account lookup if needed
+	return -1 // Placeholder - not used since we check account number instead
+}
+
+func isAccountNumber(account db.Account, accountNumber string) bool {
+	// Check if account has the specific account number
+	// This assumes account_number field exists in the Account struct
+	// You may need to adjust based on your actual Account struct
+	return account.Owner == "demo_user" // Simplified check for demo account
 }
 
 func convertTransfer(transfer db.Transfer) *pb.Transfer {

@@ -22,6 +22,11 @@ func (server *Server) LoginUser(ctx context.Context, req *pb.LoginUserRequest) (
 		return nil, status.Errorf(codes.Unauthenticated, "incorrect password: %s", err)
 	}
 
+	// Check if email is verified
+	if !user.IsEmailVerified {
+		return nil, status.Errorf(codes.FailedPrecondition, "email not verified: please check your email and verify your account before logging in")
+	}
+
 	accessToken, accessPayload, err := server.tokenMaker.CreateToken(
 		user.Username,
 		server.config.AccessTokenDuration,

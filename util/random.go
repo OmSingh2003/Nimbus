@@ -56,3 +56,8 @@ func RandomStrongPassword() string {
 		strings.ToLower(RandomString(4)), 
 		RandomInt(10, 99))
 }
+
+// generates a random bank account number
+func RandomAccountNumber() string {
+	return fmt.Sprintf("%010d", RandomInt(1000000000, 9999999999))
+}

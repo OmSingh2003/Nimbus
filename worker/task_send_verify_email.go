@@ -58,16 +58,16 @@ func (processor *RedisTaskProcessor) ProcessTaskSendVerifyEmail(ctx context.Cont
 		return fmt.Errorf("failed to create verify email: %w", err)
 	}
 
-	subject := "Welcome to vaultguard-api"
+	subject := "Welcome to Nimbus"
 	// Use configurable URL from config
 	verifyUrl := fmt.Sprintf("%s/v1/verify_email?email_id=%d&secret_code=%s", 
 		processor.config.EmailVerificationURL, verifyEmail.ID, verifyEmail.SecretCode)
 	content := fmt.Sprintf(`Hello %s,<br/>
-	Thank you for registering with us!<br/>
-	Please <a href="%s">click here to verify your email address</a><br/>
-	Or copy and paste this link in your browser: %s<br/>
-	This link will expire in 15 minutes.<br/>
-	`, user.FullName, verifyUrl, verifyUrl)
+Thank you for choosing Nimbus!<br/>
+Please <a href="%s">click here to verify your email address</a><br/>
+Or copy and paste this link in your browser: %s<br/>
+This link will expire in 24 hours.<br/>
+`, user.FullName, verifyUrl, verifyUrl)
 	to := []string{user.Email}
 
 	err = processor.mailer.SendEmail(subject, content, to, nil, nil, nil)

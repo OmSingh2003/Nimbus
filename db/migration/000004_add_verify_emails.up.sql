@@ -9,7 +9,7 @@ CREATE TABLE "verify_emails" (
   "secret_code" varchar NOT NULL,
   "is_used" bool NOT NULL DEFAULT false,
   "created_at" timestamptz NOT NULL DEFAULT (now()),
-  "expired_at" timestamptz NOT NULL DEFAULT (now() + interval '15 minutes')
+  "expired_at" timestamptz NOT NULL DEFAULT (now() + interval '24 hours')
 );
 
 -- Add foreign key constraint

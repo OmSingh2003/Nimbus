@@ -11,8 +11,9 @@ type VerifyEmailTxParams struct {
 }
 
 type VerifyEmailTxResult struct {
-	User        User
-	VerifyEmail VerifyEmail
+	User           User
+	VerifyEmail    VerifyEmail
+	WelcomeAccount Account
 }
 
 func (store *SQLStore) VerifyEmailTx(ctx context.Context, arg VerifyEmailTxParams) (VerifyEmailTxResult, error) {
@@ -35,6 +36,16 @@ func (store *SQLStore) VerifyEmailTx(ctx context.Context, arg VerifyEmailTxParam
 				Bool:  true,
 				Valid: true,
 			},
+		})
+		if err != nil {
+			return err
+		}
+
+		// Create welcome account with $100 USD
+		result.WelcomeAccount, err = q.CreateAccount(ctx, CreateAccountParams{
+			Owner:    result.VerifyEmail.Username,
+			Balance:  10000, // $100.00 in cents
+			Currency: "USD",
 		})
 		return err
 	})

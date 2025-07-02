@@ -8,6 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
 	"github.com/OmSingh2003/vaultguard-api/token"
+	"github.com/OmSingh2003/vaultguard-api/util"
 )
 
 type createAccountRequest struct {
@@ -30,9 +31,10 @@ func (server *Server) createAccount(ctx *gin.Context) {
 	}
   authPayload := ctx.MustGet(authorizationPayloadKey).(*token.Payload)
 	arg := db.CreateAccountParams{
-		Owner:    authPayload.Username,
-		Currency: req.Currency,
-		Balance:  0,
+		Owner:         authPayload.Username,
+		Currency:      req.Currency,
+		Balance:       10000, // $100 free credit for testing
+		AccountNumber: sql.NullString{String: util.RandomAccountNumber(), Valid: true},
 	}
 
 	account, err := server.store.CreateAccount(ctx, arg)

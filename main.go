@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"net"
 	"net/http"
+	"os"
 
 	"github.com/hibiken/asynq"
 	"github.com/rs/zerolog/log"
@@ -28,6 +29,11 @@ func main() {
 	config, err := util.LoadConfig(".")
 	if err != nil {
 		log.Fatal().Err(err).Msg("Cannot load configurations")
+	}
+
+	// Use PORT environment variable for Render deployment
+	if port := os.Getenv("PORT"); port != "" {
+		config.HTTPServerAddress = "0.0.0.0:" + port
 	}
 
 	conn, err := sql.Open(config.DBDriver, config.DBSource)
@@ -122,8 +128,8 @@ func runGrpcServer(config util.Config, store db.Store, taskDistributor worker.Ta
 	}
 }
 
-func runGinServer(config util.Config, store db.Store) {
-	server, err := api.NewServer(config, store)
+func runGinServer(config util.Config, store db.Store, taskDistributor worker.TaskDistributor) {
+	server, err := api.NewServer(config, store, taskDistributor)
 	if err != nil {
 		log.Fatal().Err(err).Msg("Cannot create HTTP server")
 	}

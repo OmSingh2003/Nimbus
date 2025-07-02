@@ -7,6 +7,7 @@ import (
 	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
 	"github.com/OmSingh2003/vaultguard-api/token"
 	"github.com/OmSingh2003/vaultguard-api/util"
+	"github.com/OmSingh2003/vaultguard-api/worker"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/go-playground/validator/v10"
@@ -14,22 +15,24 @@ import (
 
 // Server serves HTTP requests for our banking service
 type Server struct {
-	config     util.Config
-	store      db.Store
-	tokenMaker token.Maker
-	router     *gin.Engine
+	config          util.Config
+	store           db.Store
+	tokenMaker      token.Maker
+	taskDistributor worker.TaskDistributor
+	router          *gin.Engine
 }
 
 // NewServer creates a new HTTP server and setup routing
-func NewServer(config util.Config, store db.Store) (*Server, error) {
+func NewServer(config util.Config, store db.Store, taskDistributor worker.TaskDistributor) (*Server, error) {
 	tokenMaker, err := token.NewPasetoMaker(config.TokenSymmetricKey)
 	if err != nil {
 		return nil, fmt.Errorf("cannot create token master: %w", err)
 	}
 	server := &Server{
-		config:     config,
-		store:      store,
-		tokenMaker: tokenMaker,
+		config:          config,
+		store:           store,
+		tokenMaker:      tokenMaker,
+		taskDistributor: taskDistributor,
 	}
 
 	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
@@ -48,6 +51,8 @@ func (server *Server) setUpRouter() {
 	router.POST("/users", server.createUser)
 	router.POST("/users/login", server.loginUser)
 	router.POST("/token.renew_access", server.renewAccessToken)
+	router.GET("/verify_email", server.verifyEmail)
+	router.POST("/resend_verification", server.resendVerificationEmail)
 	authRoutes := router.Group("/").Use(authMiddleware(server.tokenMaker))
 	// Account routes
 	authRoutes.POST("/accounts", server.createAccount)

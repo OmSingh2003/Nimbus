@@ -2,14 +2,15 @@ package gapi
 
 import (
 	"context"
+	"database/sql"
 
 	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
 	"github.com/OmSingh2003/vaultguard-api/pb"
+	"github.com/OmSingh2003/vaultguard-api/util"
 	"github.com/OmSingh2003/vaultguard-api/val"
 	"google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 func (server *Server) CreateAccount(ctx context.Context, req *pb.CreateAccountRequest) (*pb.CreateAccountResponse, error) {
@@ -24,9 +25,10 @@ func (server *Server) CreateAccount(ctx context.Context, req *pb.CreateAccountRe
 	}
 
 	arg := db.CreateAccountParams{
-		Owner:    authPayload.Username,
-		Currency: req.GetCurrency(),
-		Balance:  0,
+		Owner:         authPayload.Username,
+		Currency:      req.GetCurrency(),
+		Balance:       10000, // $100 free credit for testing
+		AccountNumber: sql.NullString{String: util.RandomAccountNumber(), Valid: true},
 	}
 
 	account, err := server.store.CreateAccount(ctx, arg)
@@ -48,12 +50,3 @@ func validateCreateAccountRequest(req *pb.CreateAccountRequest) (violations []*e
 	return violations
 }
 
-func convertAccount(account db.Account) *pb.Account {
-	return &pb.Account{
-		Id:        account.ID,
-		Owner:     account.Owner,
-		Balance:   account.Balance,
-		Currency:  account.Currency,
-		CreatedAt: timestamppb.New(account.CreatedAt),
-	}
-}

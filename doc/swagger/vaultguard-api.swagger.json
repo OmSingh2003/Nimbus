@@ -280,6 +280,9 @@
         "createdAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "accountNumber": {
+          "type": "string"
         }
       }
     },
