@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 // API Configuration
 const API_CONFIG = {
   // Use environment variable or fallback to development URL
@@ -5,19 +7,19 @@ const API_CONFIG = {
   
   // API endpoints
   ENDPOINTS: {
-    CREATE_USER: '/v1/create_user',
-    LOGIN_USER: '/v1/login_user', 
-    VERIFY_EMAIL: '/v1/verify_email',
-    RESEND_VERIFICATION: '/v1/resend_verification',
-    CREATE_ACCOUNT: '/v1/create_account',
-    GET_ACCOUNT: '/v1/get_account',
-    LIST_ACCOUNTS: '/v1/list_accounts',
-    CREATE_TRANSFER: '/v1/create_transfer',
+    CREATE_USER: '/users',
+    LOGIN_USER: '/users/login', 
+    VERIFY_EMAIL: '/verify_email',
+    RESEND_VERIFICATION: '/resend_verification',
+    CREATE_ACCOUNT: '/accounts',
+    GET_ACCOUNT: '/accounts',
+    LIST_ACCOUNTS: '/accounts',
+    CREATE_TRANSFER: '/transfers',
+    RENEW_TOKEN: '/token.renew_access',
   }
 };
 
 // Create axios instance with base configuration
-import axios from 'axios';
 
 const apiClient = axios.create({
   baseURL: API_CONFIG.BASE_URL,
