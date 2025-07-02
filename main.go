@@ -31,6 +31,10 @@ func main() {
 		log.Fatal().Err(err).Msg("Cannot load configurations")
 	}
 
+	// Debug: Print token key info
+	log.Info().Msgf("TOKEN_SYMMETRIC_KEY length: %d", len(config.TokenSymmetricKey))
+	log.Info().Msgf("TOKEN_SYMMETRIC_KEY value: '%s'", config.TokenSymmetricKey)
+
 	// Use PORT environment variable for Render deployment
 	if port := os.Getenv("PORT"); port != "" {
 		config.HTTPServerAddress = "0.0.0.0:" + port
