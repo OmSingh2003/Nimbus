@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
-	"github.com/OmSingh2003/vaultguard-api/util"
-	mockwk "github.com/OmSingh2003/vaultguard-api/worker/mock"
+	db "github.com/OmSingh2003/nimbus/db/sqlc"
+	"github.com/OmSingh2003/nimbus/util"
+	mockwk "github.com/OmSingh2003/nimbus/worker/mock"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/mock/gomock"
 )

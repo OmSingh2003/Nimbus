@@ -236,7 +236,7 @@ const file_transfer_proto_rawDesc = "" +
 	"\x06amount\x18\x03 \x01(\x03R\x06amount\x12\x1a\n" +
 	"\bcurrency\x18\x04 \x01(\tR\bcurrency\"B\n" +
 	"\x16CreateTransferResponse\x12(\n" +
-	"\btransfer\x18\x01 \x01(\v2\f.pb.TransferR\btransferB*Z(github.com/OmSingh2003/vaultguard-api/pbb\x06proto3"
+	"\btransfer\x18\x01 \x01(\v2\f.pb.TransferR\btransferB*Z(github.com/OmSingh2003/nimbus/pbb\x06proto3"
 
 var (
 	file_transfer_proto_rawDescOnce sync.Once

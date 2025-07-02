@@ -1,4 +1,4 @@
-// simpleBank/gapi/rpc_create_user_test.go
+// nimbus/gapi/rpc_create_user_test.go
 
 package gapi
 
@@ -10,12 +10,12 @@ import (
 	"testing"
 	"time"
 
-	mockdb "github.com/OmSingh2003/vaultguard-api/db/mockdb"
-	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
-	"github.com/OmSingh2003/vaultguard-api/pb"
-	"github.com/OmSingh2003/vaultguard-api/util"
-	"github.com/OmSingh2003/vaultguard-api/worker"
-	mockwk "github.com/OmSingh2003/vaultguard-api/worker/mock"
+	mockdb "github.com/OmSingh2003/nimbus/db/mockdb"
+	db "github.com/OmSingh2003/nimbus/db/sqlc"
+	"github.com/OmSingh2003/nimbus/pb"
+	"github.com/OmSingh2003/nimbus/util"
+	"github.com/OmSingh2003/nimbus/worker"
+	mockwk "github.com/OmSingh2003/nimbus/worker/mock"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/mock/gomock"
 	"google.golang.org/grpc/codes"

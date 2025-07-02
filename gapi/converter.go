@@ -1,8 +1,8 @@
 package gapi
 
 import (
-	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
-	"github.com/OmSingh2003/vaultguard-api/pb"
+	db "github.com/OmSingh2003/nimbus/db/sqlc"
+	"github.com/OmSingh2003/nimbus/pb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 

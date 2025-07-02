@@ -4,8 +4,8 @@ import (
 	"context"
 	"errors"
 
-	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
-	"github.com/OmSingh2003/vaultguard-api/pb"
+	db "github.com/OmSingh2003/nimbus/db/sqlc"
+	"github.com/OmSingh2003/nimbus/pb"
 	"google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

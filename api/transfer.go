@@ -7,8 +7,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
-	"github.com/OmSingh2003/vaultguard-api/token"
+	db "github.com/OmSingh2003/nimbus/db/sqlc"
+	"github.com/OmSingh2003/nimbus/token"
 )
 
 

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/OmSingh2003/vaultguard-api/token"
+	"github.com/OmSingh2003/nimbus/token"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"

@@ -3,9 +3,9 @@ package gapi
 import (
 	"context"
 
-	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
-	"github.com/OmSingh2003/vaultguard-api/pb"
-	"github.com/OmSingh2003/vaultguard-api/val"
+	db "github.com/OmSingh2003/nimbus/db/sqlc"
+	"github.com/OmSingh2003/nimbus/pb"
+	"github.com/OmSingh2003/nimbus/val"
 	"google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

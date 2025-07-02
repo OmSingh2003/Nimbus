@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
+	db "github.com/OmSingh2003/nimbus/db/sqlc"
 	"github.com/hibiken/asynq"
 	"github.com/rs/zerolog/log"
 )

@@ -3,9 +3,9 @@ package worker
 import (
 	"context"
 
-	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
-	"github.com/OmSingh2003/vaultguard-api/mail"
-	"github.com/OmSingh2003/vaultguard-api/util"
+	db "github.com/OmSingh2003/nimbus/db/sqlc"
+	"github.com/OmSingh2003/nimbus/mail"
+	"github.com/OmSingh2003/nimbus/util"
 	"github.com/hibiken/asynq"
 	"github.com/rs/zerolog/log"
 )

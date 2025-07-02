@@ -9,7 +9,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/require"
-	"github.com/OmSingh2003/vaultguard-api/token"
+	"github.com/OmSingh2003/nimbus/token"
 )
 
 func addAuthorization(

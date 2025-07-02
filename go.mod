@@ -1,4 +1,4 @@
-module github.com/OmSingh2003/vaultguard-api
+module github.com/OmSingh2003/nimbus
 
 go 1.23.0
 

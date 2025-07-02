@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/OmSingh2003/vaultguard-api/util"
+	"github.com/OmSingh2003/nimbus/util"
 	_ "github.com/lib/pq"
 )
 

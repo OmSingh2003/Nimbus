@@ -1,11 +1,11 @@
 package gapi
 
 import (
-	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
-	"github.com/OmSingh2003/vaultguard-api/pb"
-	"github.com/OmSingh2003/vaultguard-api/token"
-	"github.com/OmSingh2003/vaultguard-api/util"
-	"github.com/OmSingh2003/vaultguard-api/worker"
+	db "github.com/OmSingh2003/nimbus/db/sqlc"
+	"github.com/OmSingh2003/nimbus/pb"
+	"github.com/OmSingh2003/nimbus/token"
+	"github.com/OmSingh2003/nimbus/util"
+	"github.com/OmSingh2003/nimbus/worker"
 )
 
 // Server serves gRPC requests for our banking service

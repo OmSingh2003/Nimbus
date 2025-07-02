@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/require"
-	"github.com/OmSingh2003/vaultguard-api/util"
+	"github.com/OmSingh2003/nimbus/util"
 )
 
 func createRandomTransfer(t *testing.T, account1, account2 Account) Transfer {

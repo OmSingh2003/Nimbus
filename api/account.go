@@ -6,9 +6,9 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
-	"github.com/OmSingh2003/vaultguard-api/token"
-	"github.com/OmSingh2003/vaultguard-api/util"
+	db "github.com/OmSingh2003/nimbus/db/sqlc"
+	"github.com/OmSingh2003/nimbus/token"
+	"github.com/OmSingh2003/nimbus/util"
 )
 
 type createAccountRequest struct {

@@ -41,7 +41,7 @@ const file_service_vaultguard_api_proto_rawDesc = "" +
 	"GetAccount\x12\x15.pb.GetAccountRequest\x1a\x16.pb.GetAccountResponse\"\x8d\x01\x92Aq\x12\x11Get account by ID\x1a\\Retrieves a specific account by ID. Only the account owner can access their account details.\x82\xd3\xe4\x93\x02\x13\x12\x11/v1/accounts/{id}\x12\xbb\x01\n" +
 	"\fListAccounts\x12\x17.pb.ListAccountsRequest\x1a\x18.pb.ListAccountsResponse\"x\x92Aa\x12\x12List user accounts\x1aKLists all accounts owned by the authenticated user with pagination support.\x82\xd3\xe4\x93\x02\x0e\x12\f/v1/accountsB\xe3\x01\x92A\xb5\x01\x12\x8a\x01\n" +
 	"\x0eVaultGuard API\x12\x1dA secure vault management API\"T\n" +
-	"\bOm Singh\x12-https://github.com/OmSingh2003/VaultGuard-API\x1a\x19omsingh.ailearn@gmail.com2\x031.2*\x02\x02\x012\x10application/json:\x10application/jsonZ(github.com/OmSingh2003/vaultguard-api/pbb\x06proto3"
+	"\bOm Singh\x12-https://github.com/OmSingh2003/VaultGuard-API\x1a\x19omsingh.ailearn@gmail.com2\x031.2*\x02\x02\x012\x10application/json:\x10application/jsonZ(github.com/OmSingh2003/nimbus/pbb\x06proto3"
 
 var file_service_vaultguard_api_proto_goTypes = []any{
 	(*CreateUserRequest)(nil),      // 0: pb.CreateUserRequest

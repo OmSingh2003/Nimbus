@@ -1,8 +1,8 @@
-# VaultGuard API
+# Nimbus API
 
 [![Go Version](https://img.shields.io/badge/Go-1.23+-blue.svg)](https://golang.org/)
-[![CI Test Status](https://github.com/OmSingh2003/vaultguard-api/actions/workflows/ci-test.yml/badge.svg)](https://github.com/OmSingh2003/vaultguard-api/actions/workflows/ci-test.yml)
-[![Test Coverage](https://img.shields.io/codecov/c/github/OmSingh2003/vaultguard-api)](https://codecov.io/gh/OmSingh2003/vaultguard-api)
+[![CI Test Status](https://github.com/OmSingh2003/nimbus/actions/workflows/ci-test.yml/badge.svg)](https://github.com/OmSingh2003/nimbus/actions/workflows/ci-test.yml)
+[![Test Coverage](https://img.shields.io/codecov/c/github/OmSingh2003/nimbus)](https://codecov.io/gh/OmSingh2003/nimbus)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A robust, full-featured banking backend system built with Go. This project demonstrates modern microservices architecture with REST/gRPC APIs, secure authentication, asynchronous task processing, and comprehensive testing.
@@ -93,8 +93,8 @@ Follow these steps to set up the project for local development:
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/OmSingh2003/vaultguard-api.git
-    cd vaultguard-api
+    git clone https://github.com/OmSingh2003/nimbus.git
+    cd nimbus
     ```
 
 2.  **Set up Environment Variables:**

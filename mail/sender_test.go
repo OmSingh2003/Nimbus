@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"github.com/OmSingh2003/vaultguard-api/util"
+	"github.com/OmSingh2003/nimbus/util"
 )
 
 func TestSendEmailWithGmail(t *testing.T) {

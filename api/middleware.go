@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/OmSingh2003/vaultguard-api/token"
+	"github.com/OmSingh2003/nimbus/token"
 	"github.com/gin-gonic/gin"
 )
 

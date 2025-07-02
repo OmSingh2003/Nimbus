@@ -7,10 +7,10 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/require"
-	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
-	"github.com/OmSingh2003/vaultguard-api/token"
-	"github.com/OmSingh2003/vaultguard-api/util"
-	"github.com/OmSingh2003/vaultguard-api/worker"
+	db "github.com/OmSingh2003/nimbus/db/sqlc"
+	"github.com/OmSingh2003/nimbus/token"
+	"github.com/OmSingh2003/nimbus/util"
+	"github.com/OmSingh2003/nimbus/worker"
 	"google.golang.org/grpc/metadata"
 )
 

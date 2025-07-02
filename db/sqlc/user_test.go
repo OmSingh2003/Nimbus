@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"testing"
 
-	"github.com/OmSingh2003/vaultguard-api/util"
+	"github.com/OmSingh2003/nimbus/util"
 	"github.com/stretchr/testify/require"
 )
 

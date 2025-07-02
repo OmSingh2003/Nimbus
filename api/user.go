@@ -6,9 +6,9 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/hibiken/asynq"
-	db "github.com/OmSingh2003/vaultguard-api/db/sqlc"
-	"github.com/OmSingh2003/vaultguard-api/util"
-	"github.com/OmSingh2003/vaultguard-api/worker"
+	db "github.com/OmSingh2003/nimbus/db/sqlc"
+	"github.com/OmSingh2003/nimbus/util"
+	"github.com/OmSingh2003/nimbus/worker"
 	"github.com/gin-gonic/gin"
 )
 
