@@ -31,9 +31,21 @@ func LoadConfig(path string) (config Config, err error) {
 
 	viper.AutomaticEnv()
 
+	// Set defaults first
+	viper.SetDefault("DB_DRIVER", "postgres")
+	viper.SetDefault("HTTP_SERVER_ADDRESS", "0.0.0.0:8080")
+	viper.SetDefault("GRPC_SERVER_ADDRESS", "0.0.0.0:9090")
+	viper.SetDefault("ACCESS_TOKEN_DURATION", "15m")
+	viper.SetDefault("REFRESH_TOKEN_DURATION", "24h")
+	viper.SetDefault("EMAIL_SENDER_NAME", "Simple bank")
+
+	// Try to read config file, but don't fail if it doesn't exist (for production)
 	err = viper.ReadInConfig()
 	if err != nil {
-		return
+		// If config file doesn't exist, we'll use environment variables only
+		// This is expected in production environments like Render
+		// Clear the error since we can work without the config file
+		err = nil
 	}
 
 	err = viper.Unmarshal(&config)
