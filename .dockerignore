@@ -1,0 +1,32 @@
+# Ignore all environment files to prevent local configs from overriding production
+*.env
+.env*
+app.env
+render.env
+
+# Ignore local development files
+.git
+.gitignore
+README.md
+.DS_Store
+.vscode
+.idea
+
+# Ignore test files
+*_test.go
+test/
+tests/
+
+# Ignore documentation
+doc/
+docs/
+*.md
+
+# Ignore website files (frontend)
+website/
+
+# Ignore local build artifacts
+main
+bin/
+dist/
+build/
