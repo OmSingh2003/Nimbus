@@ -56,9 +56,9 @@ body {
 
 .form-control:focus {
   background-color: #ffffff !important;
-  border-color: #387bed !important;
+  border-color: #00adf6 !important;
   color: #424242 !important;
-  box-shadow: 0 0 0 3px rgba(56, 123, 237, 0.1) !important;
+  box-shadow: 0 0 0 3px rgba(0, 173, 246, 0.1) !important;
 }
 
 .form-control::placeholder {
@@ -76,9 +76,9 @@ body {
 
 .form-select:focus {
   background-color: #ffffff !important;
-  border-color: #387bed !important;
+  border-color: #00adf6 !important;
   color: #424242 !important;
-  box-shadow: 0 0 0 3px rgba(56, 123, 237, 0.1) !important;
+  box-shadow: 0 0 0 3px rgba(0, 173, 246, 0.1) !important;
 }
 
 .form-label {
@@ -102,14 +102,14 @@ body {
 }
 
 .navbar-brand {
-  color: #387bed !important;
+  color: #00adf6 !important;
   font-weight: 700 !important;
   font-size: 1.5rem !important;
   text-decoration: none !important;
 }
 
 .navbar-brand:hover {
-  color: #2563eb !important;
+  color: #0096d9 !important;
 }
 
 .nav-link {
@@ -121,7 +121,7 @@ body {
 }
 
 .nav-link:hover {
-  color: #387bed !important;
+  color: #00adf6 !important;
 }
 
 .navbar-text {
@@ -141,14 +141,14 @@ body {
 }
 
 .btn-primary {
-  background-color: #387bed !important;
-  border-color: #387bed !important;
+  background-color: #00adf6 !important;
+  border-color: #00adf6 !important;
   color: #ffffff !important;
 }
 
 .btn-primary:hover {
-  background-color: #2563eb !important;
-  border-color: #2563eb !important;
+  background-color: #0096d9 !important;
+  border-color: #0096d9 !important;
   color: #ffffff !important;
 }
 
@@ -216,8 +216,8 @@ body {
 
 .alert-info {
   background-color: #f0f8ff !important;
-  border-color: #387bed !important;
-  color: #387bed !important;
+  border-color: #00adf6 !important;
+  color: #00adf6 !important;
 }
 
 /* List groups */
@@ -266,7 +266,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .text-primary {
-  color: #387bed !important;
+  color: #00adf6 !important;
 }
 
 .text-success {
@@ -282,7 +282,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .text-info {
-  color: #387bed !important;
+  color: #00adf6 !important;
 }
 
 /* Container styling */
@@ -303,7 +303,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Borders */
 .border-primary {
-  border-color: #387bed !important;
+  border-color: #00adf6 !important;
 }
 
 .border-success {
@@ -311,12 +311,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .border-info {
-  border-color: #387bed !important;
+  border-color: #00adf6 !important;
 }
 
 /* Spinner */
 .spinner-border {
-  color: #387bed !important;
+  color: #00adf6 !important;
 }
 
 /* App background */
@@ -369,7 +369,7 @@ svg {
 }
 
 .nav-link svg:hover {
-  color: #387bed !important;
+  color: #00adf6 !important;
 }
 
 /* Form select options */
@@ -399,9 +399,39 @@ body, html {
 
 /* Small improvements for better UX */
 .card-title {
-  font-size: 1.1rem !important;
+  font-size: 1rem !important;
   font-weight: 600 !important;
   margin-bottom: 0.75rem !important;
+}
+
+/* Technology section styling */
+.tech-item {
+  text-align: center !important;
+  padding: 1rem !important;
+}
+
+.tech-icon {
+  margin-bottom: 0.75rem !important;
+  opacity: 0.8 !important;
+  transition: all 0.3s ease !important;
+}
+
+.tech-item:hover .tech-icon {
+  opacity: 1 !important;
+  transform: scale(1.1) !important;
+}
+
+.tech-item h6 {
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.5rem !important;
+  color: #424242 !important;
+}
+
+.tech-item small {
+  font-size: 0.75rem !important;
+  color: #8c959f !important;
+  line-height: 1.4 !important;
 }
 
 .btn:disabled {
@@ -443,7 +473,7 @@ body, html {
 }
 
 .footer a:hover {
-  color: #387bed !important;
+  color: #00adf6 !important;
 }
 
 .footer .text-center {
@@ -477,12 +507,21 @@ body, html {
 }
 
 .feature-icon {
-  font-size: 3rem !important;
-  margin-bottom: 1rem !important;
+  width: 60px !important;
+  height: 60px !important;
+  margin: 0 auto 1rem auto !important;
+  display: block !important;
+  opacity: 0.8 !important;
+  transition: all 0.3s ease !important;
+}
+
+.feature-card:hover .feature-icon {
+  opacity: 1 !important;
+  transform: scale(1.1) !important;
 }
 
 .stats-section {
-  background: linear-gradient(135deg, #387bed, #2563eb) !important;
+  background: linear-gradient(135deg, #00adf6, #0096d9) !important;
   border-radius: 8px !important;
   color: #ffffff !important;
   margin: 2rem 0 !important;

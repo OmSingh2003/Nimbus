@@ -63,7 +63,19 @@ func runGatewayServer(config util.Config, store db.Store, taskDistributor worker
 		log.Fatal().Err(err).Msg("cannot register handle server")
 	}
 	mux := http.NewServeMux()
-	mux.Handle("/", grpcMux)
+	// Add CORS middleware
+	corsHandler := func(h http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("Access-Control-Allow-Origin", "*")
+			w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+			w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, Authorization")
+			if r.Method == "OPTIONS" {
+				return
+			}
+			h.ServeHTTP(w, r)
+		})
+	}
+	mux.Handle("/", corsHandler(grpcMux))
 
 	statikFS, err := fs.New()
 	if err != nil {

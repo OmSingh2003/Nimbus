@@ -7,14 +7,14 @@ const Footer = () => {
       <Container>
         <Row>
           <Col md={4}>
-            <h5>VaultGuard</h5>
+            <h5>Nimbus</h5>
             <p>
               Secure banking made simple. Experience modern financial services 
               with enterprise-grade security and user-friendly design.
             </p>
             <div className="d-flex">
               <a 
-                href="https://github.com/OmSingh2003/VaultGuard-API" 
+                href="https://github.com/OmSingh2003/Nimbus-API"
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="me-3"
@@ -61,7 +61,7 @@ const Footer = () => {
         
         <div className="text-center">
           <p className="mb-0">
-            © 2025 VaultGuard. All rights reserved. Built with ❤️ for secure banking.
+            © 2025 Nimbus. All rights reserved. Built with ❤️ for secure banking.
           </p>
         </div>
       </Container>

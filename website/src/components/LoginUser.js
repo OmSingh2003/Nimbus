@@ -107,7 +107,7 @@ const LoginUser = ({ onLogin }) => {
         <Col md={6}>
           <Card>
             <Card.Header>
-              <h3 className="text-center">Login to VaultGuard</h3>
+              <h3 className="text-center">Login to Nimbus</h3>
             </Card.Header>
             <Card.Body>
               {message && (

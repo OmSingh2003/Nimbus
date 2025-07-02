@@ -18,12 +18,12 @@ function Navigation({ isLoggedIn, username, onLogout }) {
         <Navbar.Brand as={Link} to="/" className="fw-bold d-flex align-items-center">
           <img 
             src="/icon.png" 
-            alt="VaultGuard" 
+            alt="Nimbus"
             width="32" 
             height="32" 
             className="me-2"
           />
-          <span className="text-primary">VaultGuard</span>
+          <span className="text-primary">Nimbus</span>
         </Navbar.Brand>
         
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -51,7 +51,7 @@ function Navigation({ isLoggedIn, username, onLogout }) {
           <Nav className="align-items-center">
             {/* GitHub link */}
             <Nav.Link 
-              href="https://github.com/OmSingh2003/VaultGuard-API" 
+              href="https://github.com/OmSingh2003/Nimbus-API"
               target="_blank" 
               rel="noopener noreferrer"
               className="me-3"

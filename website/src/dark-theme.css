@@ -1,4 +1,4 @@
-/* Zerodha-inspired Clean UI Theme for VaultGuard */
+/* Zerodha-inspired Clean UI Theme for Nimbus */
 
 /* Import Inter font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -47,9 +47,9 @@ body {
 
 .form-control:focus {
   background-color: #2a2a2a !important;
-  border-color: #8b5cf6 !important;
+  border-color: #00adf6 !important;
   color: #ffffff !important;
-  box-shadow: 0 0 0 0.2rem rgba(139, 92, 246, 0.25) !important;
+  box-shadow: 0 0 0 0.2rem rgba(0, 173, 246, 0.25) !important;
 }
 
 .form-control::placeholder {
@@ -64,9 +64,9 @@ body {
 
 .form-select:focus {
   background-color: #2a2a2a !important;
-  border-color: #8b5cf6 !important;
+  border-color: #00adf6 !important;
   color: #ffffff !important;
-  box-shadow: 0 0 0 0.2rem rgba(139, 92, 246, 0.25) !important;
+  box-shadow: 0 0 0 0.2rem rgba(0, 173, 246, 0.25) !important;
 }
 
 .form-label {
@@ -115,15 +115,15 @@ body {
 
 /* Dark theme for buttons */
 .btn-primary {
-  background: linear-gradient(135deg, #8b5cf6, #7c3aed) !important;
-  border-color: #8b5cf6 !important;
-  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2) !important;
+  background: linear-gradient(135deg, #00adf6, #0096d9) !important;
+  border-color: #00adf6 !important;
+  box-shadow: 0 4px 15px rgba(0, 173, 246, 0.2) !important;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #7c3aed, #6d28d9) !important;
-  border-color: #6d28d9 !important;
-  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3) !important;
+  background: linear-gradient(135deg, #0096d9, #007bb8) !important;
+  border-color: #0096d9 !important;
+  box-shadow: 0 6px 20px rgba(0, 173, 246, 0.3) !important;
   transform: translateY(-1px) !important;
 }
 
@@ -159,7 +159,7 @@ body {
 }
 
 .text-primary {
-  color: #a78bfa !important;
+  color: #00adf6 !important;
 }
 
 .text-success {
@@ -180,7 +180,7 @@ body {
 
 /* Custom dark theme for feature cards */
 .border-primary {
-  border-color: #8b5cf6 !important;
+  border-color: #00adf6 !important;
 }
 
 .border-success {
@@ -198,7 +198,7 @@ body {
 
 /* Spinner dark theme */
 .spinner-border {
-  color: #8b5cf6 !important;
+  color: #00adf6 !important;
 }
 
 /* Ensure proper contrast for disabled buttons */
@@ -208,7 +208,7 @@ body {
 
 /* Custom styles for hero section */
 .display-4, .display-3 {
-  color: #a78bfa !important;
+  color: #00adf6 !important;
 }
 
 .lead {

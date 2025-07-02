@@ -6,6 +6,8 @@ import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 import "user.proto";
 import "rpc_verify_email.proto";
+import "transfer.proto";
+import "account.proto";
 
 option go_package = "github.com/OmSingh2003/vaultguard-api/pb";
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
@@ -64,6 +66,48 @@ service VaultguardAPI {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       description: "Use this API to verify email address";
       summary: "Verify Email"
+    };
+  }
+
+  rpc CreateTransfer(CreateTransferRequest) returns (CreateTransferResponse) {
+    option (google.api.http) = {
+      post: "/v1/transfers"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Creates a new transfer between accounts. This endpoint validates account ownership, checks balances, and executes secure money transfers between accounts."
+      summary: "Create a new transfer"
+    };
+  }
+
+  rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse) {
+    option (google.api.http) = {
+      post: "/v1/accounts"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Creates a new account for the authenticated user. This endpoint validates the currency and creates an account with zero balance."
+      summary: "Create a new account"
+    };
+  }
+
+  rpc GetAccount(GetAccountRequest) returns (GetAccountResponse) {
+    option (google.api.http) = {
+      get: "/v1/accounts/{id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Retrieves a specific account by ID. Only the account owner can access their account details."
+      summary: "Get account by ID"
+    };
+  }
+
+  rpc ListAccounts(ListAccountsRequest) returns (ListAccountsResponse) {
+    option (google.api.http) = {
+      get: "/v1/accounts"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Lists all accounts owned by the authenticated user with pagination support."
+      summary: "List user accounts"
     };
   }
 }

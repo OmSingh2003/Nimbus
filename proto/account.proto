@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/OmSingh2003/vaultguard-api/pb";
+
+message Account {
+  int64 id = 1;
+  string owner = 2;
+  int64 balance = 3;
+  string currency = 4;
+  google.protobuf.Timestamp created_at = 5;
+}
+
+message CreateAccountRequest {
+  string currency = 1;
+}
+
+message CreateAccountResponse {
+  Account account = 1;
+}
+
+message GetAccountRequest {
+  int64 id = 1;
+}
+
+message GetAccountResponse {
+  Account account = 1;
+}
+
+message ListAccountsRequest {
+  int32 page_id = 1;
+  int32 page_size = 2;
+}
+
+message ListAccountsResponse {
+  repeated Account accounts = 1;
+}

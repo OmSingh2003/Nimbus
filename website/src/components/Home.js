@@ -21,8 +21,8 @@ const Home = () => {
       <Row>
         <Col>
           <div className="hero-section text-center mb-5">
-            <h1 className="display-3 mb-3">Invest in everything</h1>
-            <p className="lead fs-4">Online platform to invest in stocks, derivatives, mutual funds, ETFs, bonds, and more.</p>
+            <h1 className="display-3 mb-3">Banking made simple</h1>
+            <p className="lead fs-4">Secure digital banking platform for personal and business accounts with multi-currency support.</p>
             <p className="text-muted">Experience modern banking with enterprise-grade security and zero-fee account opening</p>
             
             {isLoggedIn ? (
@@ -52,26 +52,26 @@ const Home = () => {
               <Row>
                 <Col md={3}>
                   <div className="stat-item">
-                    <span className="stat-number">1M+</span>
-                    <div className="stat-label">Active clients</div>
+                    <span className="stat-number">500K+</span>
+                    <div className="stat-label">Active accounts</div>
                   </div>
                 </Col>
                 <Col md={3}>
                   <div className="stat-item">
-                    <span className="stat-number">₹6+ lakh cr</span>
-                    <div className="stat-label">Client assets</div>
+                    <span className="stat-number">₹2+ lakh cr</span>
+                    <div className="stat-label">Deposits managed</div>
                   </div>
                 </Col>
                 <Col md={3}>
                   <div className="stat-item">
                     <span className="stat-number">Zero</span>
-                    <div className="stat-label">Account opening charges</div>
+                    <div className="stat-label">Account opening fees</div>
                   </div>
                 </Col>
                 <Col md={3}>
                   <div className="stat-item">
-                    <span className="stat-number">₹20</span>
-                    <div className="stat-label">Maximum brokerage</div>
+                    <span className="stat-number">24/7</span>
+                    <div className="stat-label">Customer support</div>
                   </div>
                 </Col>
               </Row>
@@ -132,46 +132,46 @@ const Home = () => {
       <Row className="mb-5">
         <Col>
           <div className="features-section">
-            <h2 className="text-center mb-4">Why choose VaultGuard?</h2>
+            <h2 className="text-center mb-4">Why choose Nimbus?</h2>
             <Row className="g-4">
               <Col md={4}>
                 <div className="feature-card">
-                  <div className="feature-icon">🏦</div>
+                  <img src="/bank.png" alt="Multi-Currency Support" width="60" height="60" className="feature-icon" />
                   <h5>Multi-Currency Support</h5>
                   <p>Create accounts in USD, EUR, GBP, CAD, JPY, and INR. Manage global finances from one platform.</p>
                 </div>
               </Col>
               <Col md={4}>
                 <div className="feature-card">
-                  <div className="feature-icon">⚡</div>
+                  <img src="/thunder.png" alt="Instant Transfers" width="60" height="60" className="feature-icon" />
                   <h5>Instant Transfers</h5>
                   <p>Send money instantly between accounts with real-time balance updates and zero processing delays.</p>
                 </div>
               </Col>
               <Col md={4}>
                 <div className="feature-card">
-                  <div className="feature-icon">🔒</div>
+                  <img src="/padlock.png" alt="Bank-Level Security" width="60" height="60" className="feature-icon" />
                   <h5>Bank-Level Security</h5>
                   <p>Your data is encrypted and protected with industry-standard security protocols and 2FA.</p>
                 </div>
               </Col>
               <Col md={4}>
                 <div className="feature-card">
-                  <div className="feature-icon">📱</div>
+                  <img src="/tablet.png" alt="Mobile Ready" width="60" height="60" className="feature-icon" />
                   <h5>Mobile Ready</h5>
                   <p>Access your accounts anywhere, anytime with our responsive web platform optimized for all devices.</p>
                 </div>
               </Col>
               <Col md={4}>
                 <div className="feature-card">
-                  <div className="feature-icon">💹</div>
+                  <img src="/graph.png" alt="Real-time Analytics" width="60" height="60" className="feature-icon" />
                   <h5>Real-time Analytics</h5>
                   <p>Track your spending patterns, account balances, and transaction history with detailed insights.</p>
                 </div>
               </Col>
               <Col md={4}>
                 <div className="feature-card">
-                  <div className="feature-icon">🌍</div>
+                  <img src="/planet-earth.png" alt="Global Reach" width="60" height="60" className="feature-icon" />
                   <h5>Global Reach</h5>
                   <p>Bank globally with support for international transfers and multi-currency account management.</p>
                 </div>
@@ -189,20 +189,32 @@ const Home = () => {
               <h2 className="mb-4">Built with modern technology</h2>
               <Row>
                 <Col md={3}>
-                  <h5>🚀 Go Backend</h5>
-                  <p>High-performance server built with Go for speed and reliability</p>
+                  <div className="tech-item">
+                    <img src="/golang.png" alt="Go Backend" width="40" height="40" className="tech-icon" />
+                    <h6>Go Backend</h6>
+                    <small>High-performance server built with Go for speed and reliability</small>
+                  </div>
                 </Col>
                 <Col md={3}>
-                  <h5>⚛️ React Frontend</h5>
-                  <p>Modern, responsive user interface built with React and Bootstrap</p>
+                  <div className="tech-item">
+                    <img src="/javaScipt.png" alt="React Frontend" width="40" height="40" className="tech-icon" />
+                    <h6>React Frontend</h6>
+                    <small>Modern, responsive user interface built with React and Bootstrap</small>
+                  </div>
                 </Col>
                 <Col md={3}>
-                  <h5>🗄️ PostgreSQL</h5>
-                  <p>Robust database solution for secure and scalable data management</p>
+                  <div className="tech-item">
+                    <img src="/postgres.png" alt="PostgreSQL" width="40" height="40" className="tech-icon" />
+                    <h6>PostgreSQL</h6>
+                    <small>Robust database solution for secure and scalable data management</small>
+                  </div>
                 </Col>
                 <Col md={3}>
-                  <h5>🔐 JWT Security</h5>
-                  <p>Secure authentication with JSON Web Tokens and session management</p>
+                  <div className="tech-item">
+                    <img src="/jwt.png" alt="JWT Security" width="40" height="40" className="tech-icon" />
+                    <h6>JWT Security</h6>
+                    <small>Secure authentication with JSON Web Tokens and session management</small>
+                  </div>
                 </Col>
               </Row>
             </Card.Body>
@@ -218,7 +230,7 @@ const Home = () => {
               <Card.Body className="text-center p-5">
                 <h2 className="mb-4">Ready to get started?</h2>
                 <p className="lead mb-4">
-                  Join thousands of users who trust VaultGuard for their banking needs. 
+                  Join thousands of users who trust Nimbus for their banking needs.
                   Open your account today and experience the future of banking.
                 </p>
                 <div>
