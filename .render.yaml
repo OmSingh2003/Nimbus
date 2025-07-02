@@ -1,8 +1,7 @@
 services:
-  # Backend API Service
   - type: web
     name: vaultguard-api
-    env: go
+    runtime: go
     plan: free
     buildCommand: go build -o main main.go
     startCommand: ./main
@@ -13,22 +12,9 @@ services:
         value: 0.0.0.0:10000
       - key: GRPC_SERVER_ADDRESS
         value: 0.0.0.0:9090
-      - key: TOKEN_SYMMETRIC_KEY
-        generateValue: true
       - key: ACCESS_TOKEN_DURATION
         value: 15m
       - key: REFRESH_TOKEN_DURATION
         value: 24h
       - key: EMAIL_SENDER_NAME
         value: Simple bank
-      # Add these via Render dashboard for security:
-      # DB_SOURCE, REDIS_ADDRESS, EMAIL_SENDER_ADDRESS, EMAIL_SENDER_PASSWORD, EMAIL_VERIFICATION_URL
-
-databases:
-  # PostgreSQL Database
-  - name: vaultguard-db
-    plan: free
-    
-  # Redis Database  
-  - name: vaultguard-redis
-    plan: free
