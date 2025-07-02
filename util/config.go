@@ -40,14 +40,6 @@ func LoadConfig(path string) (config Config, err error) {
 	viper.SetDefault("EMAIL_SENDER_NAME", "Nimbus")
 	// Note: DB_SOURCE, REDIS_ADDRESS, TOKEN_SYMMETRIC_KEY, EMAIL credentials should come from env vars
 
-	// Try to read config file, but don't fail if it doesn't exist (for production)
-	err = viper.ReadInConfig()
-	if err != nil {
-		// If config file doesn't exist, we'll use environment variables only
-		// This is expected in production environments like Render
-		// Clear the error since we can work without the config file
-		err = nil
-	}
 
 	err = viper.Unmarshal(&config)
 	return
