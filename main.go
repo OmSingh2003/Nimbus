@@ -34,6 +34,9 @@ func main() {
 	// Debug: Print token key info
 	log.Info().Msgf("TOKEN_SYMMETRIC_KEY length: %d", len(config.TokenSymmetricKey))
 	log.Info().Msgf("TOKEN_SYMMETRIC_KEY value: '%s'", config.TokenSymmetricKey)
+	
+	// Debug: Print Redis address info
+	log.Info().Msgf("REDIS_ADDRESS: '%s'", config.RedisAddress)
 
 	// Use PORT environment variable for Render deployment
 	if port := os.Getenv("PORT"); port != "" {
