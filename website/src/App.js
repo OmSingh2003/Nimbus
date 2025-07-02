@@ -8,6 +8,8 @@ import CreateUser from './components/CreateUser';
 import LoginUser from './components/LoginUser';
 import CreateTransfer from './components/CreateTransfer';
 import AccountManager from './components/AccountManager';
+import VerifyEmail from './components/VerifyEmail';
+import Documentation from './components/Documentation';
 import Footer from './components/Footer';
 
 // Navigation component with authentication state
@@ -36,6 +38,7 @@ function Navigation({ isLoggedIn, username, onLogout }) {
               <>
                 <Nav.Link as={Link} to="/create-user">Create Account</Nav.Link>
                 <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                <Nav.Link as={Link} to="/docs">Documentation</Nav.Link>
               </>
             )}
             
@@ -44,6 +47,7 @@ function Navigation({ isLoggedIn, username, onLogout }) {
               <>
                 <Nav.Link as={Link} to="/accounts">My Accounts</Nav.Link>
                 <Nav.Link as={Link} to="/transfer">Transfer</Nav.Link>
+                <Nav.Link as={Link} to="/docs">Documentation</Nav.Link>
               </>
             )}
           </Nav>
@@ -127,6 +131,8 @@ function App() {
             />
             <Route path="/accounts" element={<AccountManager />} />
             <Route path="/transfer" element={<CreateTransfer />} />
+            <Route path="/verify-email" element={<VerifyEmail />} />
+            <Route path="/docs" element={<Documentation />} />
           </Routes>
         </Container>
         

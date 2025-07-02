@@ -82,7 +82,7 @@ const CreateUser = () => {
         email,
       });
       
-      showMessage(`User created successfully! Welcome, ${response.data.user?.username || username}!`, 'success');
+      showMessage(`Account created successfully! Please check your email to verify your account before logging in. A verification link has been sent to ${email}.`, 'success');
       
       // Clear form
       setUsername('');

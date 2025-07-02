@@ -39,6 +39,11 @@ const LoginUser = ({ onLogin }) => {
       return 'Session expired. Please login again.';
     }
     
+    // Email verification errors
+    if (message.includes('email not verified') || message.includes('email verification')) {
+      return 'Please verify your email address before logging in. Check your email for the verification link.';
+    }
+    
     // Account status errors
     if (message.includes('account') && message.includes('disabled')) {
       return 'Account is disabled. Please contact support.';
