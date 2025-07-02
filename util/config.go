@@ -1,6 +1,7 @@
 package util
 
 import (
+	"os"
 	"time"
 
 	"github.com/spf13/viper"
@@ -25,22 +26,38 @@ type Config struct {
 
 // LoadConfig reads configuration from file or environment variables
 func LoadConfig(path string) (config Config, err error) {
-	viper.AddConfigPath(path)
-	viper.SetConfigName("app")
-	viper.SetConfigType("env")
+	// Read environment variables directly using os.Getenv for critical values
+	config.DBDriver = getEnvOrDefault("DB_DRIVER", "postgres")
+	config.DBSource = getEnvOrDefault("DB_SOURCE", "")
+	config.RedisAddress = getEnvOrDefault("REDIS_ADDRESS", "")
+	config.HTTPServerAddress = getEnvOrDefault("HTTP_SERVER_ADDRESS", "0.0.0.0:8080")
+	config.GRPCServerAddress = getEnvOrDefault("GRPC_SERVER_ADDRESS", "0.0.0.0:9090")
+	config.TokenSymmetricKey = getEnvOrDefault("TOKEN_SYMMETRIC_KEY", "")
+	config.EmailSenderName = getEnvOrDefault("EMAIL_SENDER_NAME", "Nimbus")
+	config.EmailSenderAddress = getEnvOrDefault("EMAIL_SENDER_ADDRESS", "")
+	config.EmailSenderPassword = getEnvOrDefault("EMAIL_SENDER_PASSWORD", "")
+	config.EmailVerificationURL = getEnvOrDefault("EMAIL_VERIFICATION_URL", "")
 
-	viper.AutomaticEnv()
+	// Parse duration values
+	accessTokenDuration := getEnvOrDefault("ACCESS_TOKEN_DURATION", "15m")
+	config.AccessTokenDuration, err = time.ParseDuration(accessTokenDuration)
+	if err != nil {
+		return config, err
+	}
 
-	// Set defaults first
-	viper.SetDefault("DB_DRIVER", "postgres")
-	viper.SetDefault("HTTP_SERVER_ADDRESS", "0.0.0.0:8080")
-	viper.SetDefault("GRPC_SERVER_ADDRESS", "0.0.0.0:9090")
-	viper.SetDefault("ACCESS_TOKEN_DURATION", "15m")
-	viper.SetDefault("REFRESH_TOKEN_DURATION", "24h")
-	viper.SetDefault("EMAIL_SENDER_NAME", "Nimbus")
-	// Note: DB_SOURCE, REDIS_ADDRESS, TOKEN_SYMMETRIC_KEY, EMAIL credentials should come from env vars
+	refreshTokenDuration := getEnvOrDefault("REFRESH_TOKEN_DURATION", "24h")
+	config.RefreshTokenDuration, err = time.ParseDuration(refreshTokenDuration)
+	if err != nil {
+		return config, err
+	}
 
+	return config, nil
+}
 
-	err = viper.Unmarshal(&config)
-	return
+// getEnvOrDefault gets an environment variable or returns a default value
+func getEnvOrDefault(key, defaultValue string) string {
+	if value := os.Getenv(key); value != "" {
+		return value
+	}
+	return defaultValue
 }
