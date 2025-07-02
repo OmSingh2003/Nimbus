@@ -11,7 +11,7 @@ FROM alpine:latest
 RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 COPY --from=builder /app/main .
-COPY app.env .
+# Note: app.env is not copied in production - we use environment variables instead
 
 # Use PORT environment variable from Render
 EXPOSE $PORT

@@ -21,7 +21,7 @@ services:
       - key: REFRESH_TOKEN_DURATION
         value: 24h
       - key: EMAIL_SENDER_NAME
-        value: Nimbus
+        value: "Nimbus"
       - key: EMAIL_SENDER_ADDRESS
         sync: false  # Set manually with your email
       - key: EMAIL_SENDER_PASSWORD

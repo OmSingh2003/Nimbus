@@ -35,11 +35,10 @@ func LoadConfig(path string) (config Config, err error) {
 	viper.SetDefault("DB_DRIVER", "postgres")
 	viper.SetDefault("HTTP_SERVER_ADDRESS", "0.0.0.0:8080")
 	viper.SetDefault("GRPC_SERVER_ADDRESS", "0.0.0.0:9090")
-	viper.SetDefault("REDIS_ADDRESS", "redis://default:QyjsX69AHhN7RXTcdAMXv2G2Ow4CqOFp@redis-12951.c44.us-east-1-2.ec2.redns.redis-cloud.com:12951")
-	viper.SetDefault("TOKEN_SYMMETRIC_KEY", "12345678901234567890123456789012")
 	viper.SetDefault("ACCESS_TOKEN_DURATION", "15m")
 	viper.SetDefault("REFRESH_TOKEN_DURATION", "24h")
-	viper.SetDefault("EMAIL_SENDER_NAME", "Simple bank")
+	viper.SetDefault("EMAIL_SENDER_NAME", "Nimbus")
+	// Note: DB_SOURCE, REDIS_ADDRESS, TOKEN_SYMMETRIC_KEY, EMAIL credentials should come from env vars
 
 	// Try to read config file, but don't fail if it doesn't exist (for production)
 	err = viper.ReadInConfig()
