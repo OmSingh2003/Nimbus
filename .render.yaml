@@ -15,7 +15,7 @@ services:
       - key: GRPC_SERVER_ADDRESS
         value: 0.0.0.0:9090
       - key: TOKEN_SYMMETRIC_KEY
-        generateValue: true
+        value: 12345678901234567890123456789012
       - key: ACCESS_TOKEN_DURATION
         value: 15m
       - key: REFRESH_TOKEN_DURATION
@@ -27,4 +27,4 @@ services:
       - key: EMAIL_SENDER_PASSWORD
         sync: false  # Set manually with your app password
       - key: REDIS_ADDRESS
-        value: redis-12951.c44.us-east-1-2.ec2.redns.redis-cloud.com:12951
+        value: redis://default:QyjsX69AHhN7RXTcdAMXv2G2Ow4CqOFp@redis-12951.c44.us-east-1-2.ec2.redns.redis-cloud.com:12951
