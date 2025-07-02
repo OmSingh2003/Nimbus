@@ -9,9 +9,7 @@ services:
       - key: DB_DRIVER
         value: postgres
       - key: DB_SOURCE
-        fromDatabase:
-          name: nimbus-db
-          property: connectionString
+        sync: false  # This should be set manually in Render dashboard with your Neon connection string
       - key: HTTP_SERVER_ADDRESS
         value: 0.0.0.0:10000
       - key: GRPC_SERVER_ADDRESS
@@ -25,14 +23,8 @@ services:
       - key: EMAIL_SENDER_NAME
         value: Nimbus
       - key: EMAIL_SENDER_ADDRESS
-        value: noreply@nimbus.com
+        sync: false  # Set manually with your email
       - key: EMAIL_SENDER_PASSWORD
-        value: app-password-here
+        sync: false  # Set manually with your app password
       - key: REDIS_ADDRESS
         value: redis-12951.c44.us-east-1-2.ec2.redns.redis-cloud.com:12951
-
-databases:
-  - name: nimbus-db
-    plan: free
-    databaseName: nimbus_db
-    user: nimbus_user

@@ -2,22 +2,25 @@ postgres:
 	docker run --name postgres17 -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:latest
 
 createdb:
-	docker exec -it  postgres17 createdb --username=root --owner=root vaultguard_api
+	docker exec -it  postgres17 createdb --username=root --owner=root nimbus_db
 
 dropdb:
-	docker exec -it postgres17 dropdb vaultguard_api
+	docker exec -it postgres17 dropdb nimbus_db
 
 migrateup:
-	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/vaultguard_api?sslmode=disable" -verbose up
+	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/nimbus_db?sslmode=disable" -verbose up
 
 migrateup1:
-	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/vaultguard_api?sslmode=disable" -verbose up 1
+	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/nimbus_db?sslmode=disable" -verbose up 1
 
 migratedown:
-	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/vaultguard_api?sslmode=disable" -verbose down
+	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/nimbus_db?sslmode=disable" -verbose down
 
 migratedown1:
-	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/vaultguard_api?sslmode=disable" -verbose down 1
+	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/nimbus_db?sslmode=disable" -verbose down 1
+
+migrateneon:
+	migrate -path db/migration -database "$$DB_SOURCE" -verbose up
 
 db_docs:
 	dbdocs build doc/db.dbml
@@ -32,8 +35,8 @@ test:
 	go test -v -cover -short ./...
 
 mock:
-	mockgen -package mockdb -destination db/mockdb/store.go github.com/OmSingh2003/vaultguard-api/db/sqlc Store
-	mockgen -package mockwk -destination worker/mock/distributor.go github.com/OmSingh2003/vaultguard-api/worker TaskDistributor
+	mockgen -package mockdb -destination db/mockdb/store.go github.com/OmSingh2003/nimbus/db/sqlc Store
+	mockgen -package mockwk -destination worker/mock/distributor.go github.com/OmSingh2003/nimbus/worker TaskDistributor
 
 server:
 	go run main.go
