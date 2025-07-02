@@ -1,0 +1,16 @@
+services:
+  # Frontend Static Site
+  - type: web
+    name: vaultguard-website
+    env: static
+    plan: free
+    repo: https://github.com/OmSingh2003/vaultguard-api.git # Replace with your repo
+    rootDir: website
+    buildCommand: npm install && npm run build
+    publishDir: build
+    envVars:
+      - key: REACT_APP_API_URL
+        fromService:
+          type: web
+          name: vaultguard-api
+          envVarKey: RENDER_EXTERNAL_URL

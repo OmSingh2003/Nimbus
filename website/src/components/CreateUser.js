@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import apiClient, { API_CONFIG } from '../config/api';
 import { Alert, Button, Card, Form, Container, Row, Col, Spinner } from 'react-bootstrap';
 
 const CreateUser = () => {
@@ -75,7 +75,7 @@ const CreateUser = () => {
     setLoading(true);
     
     try {
-      const response = await axios.post('/v1/create_user', {
+      const response = await apiClient.post(API_CONFIG.ENDPOINTS.CREATE_USER, {
         username,
         password,
         full_name: fullName,

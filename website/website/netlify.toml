@@ -1,0 +1,20 @@
+[build]
+  base = ""
+  publish = "build"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Redirect all requests to index.html for single-page app
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Handle API calls - redirect to your backend
+[[redirects]]
+  from = "/v1/*"
+  to = "https://your-production-api-url.com/v1/:splat"
+  status = 200
+  force = true
