@@ -118,7 +118,7 @@ const Home = () => {
               <Row>
                 <Col md={4}>
                   <h5>🏦 Multi-Currency Support</h5>
-                  <p>Create accounts in USD, EUR, GBP, CAD, and JPY.</p>
+                  <p>Create accounts in USD, EUR, GBP, CAD, JPY, and INR.</p>
                 </Col>
                 <Col md={4}>
                   <h5>⚡ Instant Transfers</h5>

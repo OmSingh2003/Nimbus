@@ -135,7 +135,8 @@ const AccountManager = () => {
   }, []);
 
   const formatBalance = (balance, currency) => {
-    return new Intl.NumberFormat('en-US', {
+    const locale = currency === 'INR' ? 'en-IN' : 'en-US';
+    return new Intl.NumberFormat(locale, {
       style: 'currency',
       currency: currency,
     }).format(balance / 100); // Assuming balance is in cents
@@ -192,6 +193,7 @@ const AccountManager = () => {
                       <option value="GBP">GBP - British Pound</option>
                       <option value="CAD">CAD - Canadian Dollar</option>
                       <option value="JPY">JPY - Japanese Yen</option>
+                      <option value="INR">INR - Indian Rupee</option>
                     </Form.Select>
                   </Form.Group>
                   <Button type="submit" variant="success" disabled={loading}>

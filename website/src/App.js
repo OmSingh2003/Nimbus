@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import { Navbar, Nav, Button, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './dark-theme.css';
 import Home from './components/Home';
 import CreateUser from './components/CreateUser';
 import LoginUser from './components/LoginUser';
@@ -101,7 +102,7 @@ function App() {
 
   return (
     <Router>
-      <div className="min-vh-100" style={{ backgroundColor: '#f8f9fa' }}>
+    <div className="min-vh-100" style={{ backgroundColor: '#121212', color: '#ffffff' }}>
         <Navigation 
           isLoggedIn={isLoggedIn} 
           username={username} 

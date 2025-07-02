@@ -1,0 +1,225 @@
+/* Dark Mode Theme for VaultGuard */
+
+/* Global dark mode styles */
+body {
+  background-color: #121212 !important;
+  color: #ffffff !important;
+}
+
+/* Dark theme for cards */
+.card {
+  background-color: #1e1e1e !important;
+  border-color: #2e2e2e !important;
+  color: #ffffff !important;
+}
+
+.card-header {
+  background-color: #2a2a2a !important;
+  border-color: #2e2e2e !important;
+  color: #ffffff !important;
+}
+
+.card-body {
+  background-color: #1e1e1e !important;
+  color: #ffffff !important;
+}
+
+/* Dark theme for forms */
+.form-control {
+  background-color: #2a2a2a !important;
+  border-color: #404040 !important;
+  color: #ffffff !important;
+}
+
+.form-control:focus {
+  background-color: #2a2a2a !important;
+  border-color: #007bff !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+}
+
+.form-control::placeholder {
+  color: #aaaaaa !important;
+}
+
+.form-select {
+  background-color: #2a2a2a !important;
+  border-color: #404040 !important;
+  color: #ffffff !important;
+}
+
+.form-select:focus {
+  background-color: #2a2a2a !important;
+  border-color: #007bff !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+}
+
+.form-label {
+  color: #ffffff !important;
+}
+
+.form-text {
+  color: #aaaaaa !important;
+}
+
+/* Dark theme for list groups */
+.list-group-item {
+  background-color: #2a2a2a !important;
+  border-color: #404040 !important;
+  color: #ffffff !important;
+}
+
+.list-group-item:hover {
+  background-color: #333333 !important;
+}
+
+/* Dark theme for alerts */
+.alert-success {
+  background-color: #1e4d3e !important;
+  border-color: #28a745 !important;
+  color: #b8e6c8 !important;
+}
+
+.alert-danger {
+  background-color: #4d1e1e !important;
+  border-color: #dc3545 !important;
+  color: #f5c6cb !important;
+}
+
+.alert-warning {
+  background-color: #4d3e1e !important;
+  border-color: #ffc107 !important;
+  color: #fff3cd !important;
+}
+
+.alert-info {
+  background-color: #1e3a4d !important;
+  border-color: #17a2b8 !important;
+  color: #bee5eb !important;
+}
+
+/* Dark theme for buttons */
+.btn-primary {
+  background-color: #007bff !important;
+  border-color: #007bff !important;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3 !important;
+  border-color: #004085 !important;
+}
+
+.btn-success {
+  background-color: #28a745 !important;
+  border-color: #28a745 !important;
+}
+
+.btn-success:hover {
+  background-color: #1e7e34 !important;
+  border-color: #1c7430 !important;
+}
+
+.btn-outline-secondary {
+  color: #ffffff !important;
+  border-color: #6c757d !important;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: #ffffff !important;
+}
+
+/* Dark theme for containers and sections */
+.container {
+  color: #ffffff !important;
+}
+
+/* Dark theme for text colors */
+.text-muted {
+  color: #aaaaaa !important;
+}
+
+.text-primary {
+  color: #66b3ff !important;
+}
+
+.text-success {
+  color: #66d9a6 !important;
+}
+
+.text-danger {
+  color: #ff6b6b !important;
+}
+
+.text-warning {
+  color: #ffd93d !important;
+}
+
+.text-info {
+  color: #66d4ff !important;
+}
+
+/* Custom dark theme for feature cards */
+.border-primary {
+  border-color: #007bff !important;
+}
+
+.border-success {
+  border-color: #28a745 !important;
+}
+
+.border-info {
+  border-color: #17a2b8 !important;
+}
+
+/* Dark theme for navbar text */
+.navbar-text {
+  color: #ffffff !important;
+}
+
+/* Spinner dark theme */
+.spinner-border {
+  color: #007bff !important;
+}
+
+/* Ensure proper contrast for disabled buttons */
+.btn:disabled {
+  opacity: 0.65 !important;
+}
+
+/* Custom styles for hero section */
+.display-4 {
+  color: #66b3ff !important;
+}
+
+.lead {
+  color: #cccccc !important;
+}
+
+/* Dark theme for close buttons in alerts */
+.btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%) !important;
+}
+
+/* Dark theme for table elements if used */
+.table-dark {
+  --bs-table-bg: #2a2a2a !important;
+}
+
+/* Custom background for better contrast */
+.bg-light {
+  background-color: #2a2a2a !important;
+}
+
+/* Ensure proper styling for GitHub icon */
+svg {
+  color: #ffffff !important;
+}
+
+/* Dark theme for select options */
+.form-select option {
+  background-color: #2a2a2a !important;
+  color: #ffffff !important;
+}
