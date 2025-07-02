@@ -50,8 +50,11 @@ func main() {
 
 	store := db.NewStore(conn)
 
+	// Parse Redis URL for asynq
 	redisOpt := asynq.RedisClientOpt{
-		Addr: config.RedisAddress,
+		Addr:     "redis-12951.c44.us-east-1-2.ec2.redns.redis-cloud.com:12951",
+		Password: "QyjsX69AHhN7RXTcdAMXv2G2Ow4CqOFp",
+		Username: "default",
 	}
 
 	taskDistributor := worker.NewRedisTaskDistributor(redisOpt)
