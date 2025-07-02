@@ -15,12 +15,6 @@ const Home = () => {
     }
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('username');
-    setIsLoggedIn(false);
-    setUsername('');
-  };
 
   return (
     <Container className="mt-4">
@@ -32,9 +26,7 @@ const Home = () => {
             {isLoggedIn && (
               <Alert variant="success" className="mt-3">
                 Welcome back, <strong>{username}</strong>! 
-                <Button variant="outline-danger" size="sm" className="ms-3" onClick={handleLogout}>
-                  Logout
-                </Button>
+                You're all set to manage your accounts.
               </Alert>
             )}
           </div>

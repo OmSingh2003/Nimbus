@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Alert, Button, Card, Form, Container, Row, Col, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-const LoginUser = () => {
+const LoginUser = ({ onLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -68,6 +68,11 @@ const LoginUser = () => {
       
       localStorage.setItem('token', response.data.accessToken);
       localStorage.setItem('username', username);
+      
+      // Call the onLogin prop to update App state
+      if (onLogin) {
+        onLogin(username);
+      }
       
       showMessage(`Welcome back, ${username}!`, 'success');
       
