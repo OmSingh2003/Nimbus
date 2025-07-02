@@ -6,6 +6,7 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/hibiken/asynq"
 	"github.com/rs/zerolog/log"
@@ -26,6 +27,15 @@ import (
 )
 
 func main() {
+	// Debug: Print ALL environment variables before loading config
+	log.Info().Msg("=== ALL ENVIRONMENT VARIABLES ===")
+	for _, env := range os.Environ() {
+		if strings.Contains(env, "TOKEN") || strings.Contains(env, "REDIS") || strings.Contains(env, "DB_") {
+			log.Info().Msgf("ENV: %s", env)
+		}
+	}
+	log.Info().Msg("=== END ENVIRONMENT VARIABLES ===")
+
 	config, err := util.LoadConfig(".")
 	if err != nil {
 		log.Fatal().Err(err).Msg("Cannot load configurations")
