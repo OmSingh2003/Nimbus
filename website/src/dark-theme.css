@@ -1,9 +1,23 @@
-/* Dark Mode Theme for VaultGuard */
+/* Zerodha-inspired Clean UI Theme for VaultGuard */
 
-/* Global dark mode styles */
+/* Import Inter font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Clean, minimal font stack like Zerodha */
+* {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Clean light background like Zerodha */
 body {
-  background-color: #121212 !important;
-  color: #ffffff !important;
+  background-color: #fafafa !important;
+  color: #424242 !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* Dark theme for cards */
@@ -33,9 +47,9 @@ body {
 
 .form-control:focus {
   background-color: #2a2a2a !important;
-  border-color: #007bff !important;
+  border-color: #8b5cf6 !important;
   color: #ffffff !important;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+  box-shadow: 0 0 0 0.2rem rgba(139, 92, 246, 0.25) !important;
 }
 
 .form-control::placeholder {
@@ -50,9 +64,9 @@ body {
 
 .form-select:focus {
   background-color: #2a2a2a !important;
-  border-color: #007bff !important;
+  border-color: #8b5cf6 !important;
   color: #ffffff !important;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+  box-shadow: 0 0 0 0.2rem rgba(139, 92, 246, 0.25) !important;
 }
 
 .form-label {
@@ -101,13 +115,16 @@ body {
 
 /* Dark theme for buttons */
 .btn-primary {
-  background-color: #007bff !important;
-  border-color: #007bff !important;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed) !important;
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2) !important;
 }
 
 .btn-primary:hover {
-  background-color: #0056b3 !important;
-  border-color: #004085 !important;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9) !important;
+  border-color: #6d28d9 !important;
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3) !important;
+  transform: translateY(-1px) !important;
 }
 
 .btn-success {
@@ -142,7 +159,7 @@ body {
 }
 
 .text-primary {
-  color: #66b3ff !important;
+  color: #a78bfa !important;
 }
 
 .text-success {
@@ -163,7 +180,7 @@ body {
 
 /* Custom dark theme for feature cards */
 .border-primary {
-  border-color: #007bff !important;
+  border-color: #8b5cf6 !important;
 }
 
 .border-success {
@@ -181,7 +198,7 @@ body {
 
 /* Spinner dark theme */
 .spinner-border {
-  color: #007bff !important;
+  color: #8b5cf6 !important;
 }
 
 /* Ensure proper contrast for disabled buttons */
@@ -190,8 +207,8 @@ body {
 }
 
 /* Custom styles for hero section */
-.display-4 {
-  color: #66b3ff !important;
+.display-4, .display-3 {
+  color: #a78bfa !important;
 }
 
 .lead {
@@ -222,4 +239,124 @@ svg {
 .form-select option {
   background-color: #2a2a2a !important;
   color: #ffffff !important;
+}
+
+/* Enhanced Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+  font-weight: 700 !important;
+  letter-spacing: -0.035em !important;
+}
+
+/* Navbar brand styling */
+.navbar-brand {
+  font-weight: 700 !important;
+  font-size: 1.4rem !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* Card titles */
+.card-title {
+  font-weight: 600 !important;
+  letter-spacing: -0.015em !important;
+}
+
+/* Form labels */
+.form-label {
+  font-weight: 500 !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Button text */
+.btn {
+  font-weight: 500 !important;
+  letter-spacing: -0.005em !important;
+}
+
+/* Lead text */
+.lead {
+  font-weight: 400 !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Small text improvements */
+small, .small {
+  font-weight: 400 !important;
+}
+
+/* List group items */
+.list-group-item {
+  font-weight: 400 !important;
+}
+
+.list-group-item .fw-bold {
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Alert text */
+.alert {
+  font-weight: 400 !important;
+}
+
+/* Improve text rendering on all browsers */
+body, html {
+  text-rendering: optimizeLegibility !important;
+  -webkit-text-size-adjust: 100% !important;
+  -ms-text-size-adjust: 100% !important;
+}
+
+/* Smooth transitions and animations */
+.btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out !important;
+}
+
+.card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.15) !important;
+}
+
+.form-control, .form-select {
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+}
+
+.list-group-item {
+  transition: background-color 0.15s ease-in-out !important;
+}
+
+/* Hero section improvements */
+.hero-section {
+  background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.1) 0%, transparent 70%) !important;
+  padding: 3rem 0 !important;
+}
+
+/* Subtle glow effects for primary elements */
+.text-primary {
+  text-shadow: 0 0 20px rgba(167, 139, 250, 0.3) !important;
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2a2a2a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8b5cf6;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7c3aed;
 }

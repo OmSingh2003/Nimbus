@@ -1,0 +1,510 @@
+/* Zerodha-inspired Clean UI Theme for VaultGuard */
+
+/* Import Mulish font - same as Zerodha */
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800&display=swap');
+
+/* Clean, minimal font stack exactly like Zerodha */
+* {
+  font-family: 'Mulish', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  box-sizing: border-box !important;
+}
+
+/* Clean light background like Zerodha */
+body {
+  background-color: #fafafa !important;
+  color: #424242 !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Clean white cards with subtle shadows */
+.card {
+  background-color: #ffffff !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 4px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  color: #424242 !important;
+}
+
+.card-header {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+  color: #424242 !important;
+  font-weight: 600 !important;
+  padding: 1rem 1.5rem !important;
+}
+
+.card-body {
+  background-color: #ffffff !important;
+  color: #424242 !important;
+  padding: 1.5rem !important;
+}
+
+/* Clean forms with minimal styling */
+.form-control {
+  background-color: #ffffff !important;
+  border: 1px solid #d0d7de !important;
+  border-radius: 4px !important;
+  color: #424242 !important;
+  font-size: 14px !important;
+  padding: 0.75rem !important;
+}
+
+.form-control:focus {
+  background-color: #ffffff !important;
+  border-color: #387bed !important;
+  color: #424242 !important;
+  box-shadow: 0 0 0 3px rgba(56, 123, 237, 0.1) !important;
+}
+
+.form-control::placeholder {
+  color: #8c959f !important;
+}
+
+.form-select {
+  background-color: #ffffff !important;
+  border: 1px solid #d0d7de !important;
+  border-radius: 4px !important;
+  color: #424242 !important;
+  font-size: 14px !important;
+  padding: 0.75rem !important;
+}
+
+.form-select:focus {
+  background-color: #ffffff !important;
+  border-color: #387bed !important;
+  color: #424242 !important;
+  box-shadow: 0 0 0 3px rgba(56, 123, 237, 0.1) !important;
+}
+
+.form-label {
+  color: #424242 !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.form-text {
+  color: #8c959f !important;
+  font-size: 12px !important;
+}
+
+/* Zerodha-style navbar */
+.navbar {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  padding: 1rem 0 !important;
+}
+
+.navbar-brand {
+  color: #387bed !important;
+  font-weight: 700 !important;
+  font-size: 1.5rem !important;
+  text-decoration: none !important;
+}
+
+.navbar-brand:hover {
+  color: #2563eb !important;
+}
+
+.nav-link {
+  color: #424242 !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  padding: 0.5rem 1rem !important;
+  text-decoration: none !important;
+}
+
+.nav-link:hover {
+  color: #387bed !important;
+}
+
+.navbar-text {
+  color: #424242 !important;
+  font-size: 14px !important;
+}
+
+/* Clean button styles like Zerodha */
+.btn {
+  border-radius: 4px !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  padding: 0.75rem 1.5rem !important;
+  transition: all 0.2s ease !important;
+  border-width: 1px !important;
+  text-decoration: none !important;
+}
+
+.btn-primary {
+  background-color: #387bed !important;
+  border-color: #387bed !important;
+  color: #ffffff !important;
+}
+
+.btn-primary:hover {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+  color: #ffffff !important;
+}
+
+.btn-success {
+  background-color: #00c851 !important;
+  border-color: #00c851 !important;
+  color: #ffffff !important;
+}
+
+.btn-success:hover {
+  background-color: #00a63f !important;
+  border-color: #00a63f !important;
+  color: #ffffff !important;
+}
+
+.btn-outline-light {
+  background-color: transparent !important;
+  border-color: #e0e0e0 !important;
+  color: #424242 !important;
+}
+
+.btn-outline-light:hover {
+  background-color: #f5f5f5 !important;
+  border-color: #d0d7de !important;
+  color: #424242 !important;
+}
+
+.btn-outline-secondary {
+  background-color: transparent !important;
+  border-color: #d0d7de !important;
+  color: #424242 !important;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #f5f5f5 !important;
+  border-color: #8c959f !important;
+  color: #424242 !important;
+}
+
+/* Clean alerts */
+.alert {
+  border-radius: 4px !important;
+  border-width: 1px !important;
+  font-size: 14px !important;
+  padding: 1rem !important;
+}
+
+.alert-success {
+  background-color: #f0f9f0 !important;
+  border-color: #00c851 !important;
+  color: #00c851 !important;
+}
+
+.alert-danger {
+  background-color: #fdf2f2 !important;
+  border-color: #e74c3c !important;
+  color: #e74c3c !important;
+}
+
+.alert-warning {
+  background-color: #fffbf0 !important;
+  border-color: #f39c12 !important;
+  color: #f39c12 !important;
+}
+
+.alert-info {
+  background-color: #f0f8ff !important;
+  border-color: #387bed !important;
+  color: #387bed !important;
+}
+
+/* List groups */
+.list-group-item {
+  background-color: #ffffff !important;
+  border: 1px solid #e0e0e0 !important;
+  color: #424242 !important;
+  padding: 1rem 1.5rem !important;
+}
+
+.list-group-item:hover {
+  background-color: #f8f9fa !important;
+}
+
+.list-group-item:first-child {
+  border-top-left-radius: 4px !important;
+  border-top-right-radius: 4px !important;
+}
+
+.list-group-item:last-child {
+  border-bottom-left-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+}
+
+/* Typography improvements */
+h1, h2, h3, h4, h5, h6 {
+  color: #424242 !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+  color: #424242 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.035em !important;
+}
+
+.lead {
+  color: #8c959f !important;
+  font-size: 1.1rem !important;
+  font-weight: 400 !important;
+}
+
+.text-muted {
+  color: #8c959f !important;
+}
+
+.text-primary {
+  color: #387bed !important;
+}
+
+.text-success {
+  color: #00c851 !important;
+}
+
+.text-danger {
+  color: #e74c3c !important;
+}
+
+.text-warning {
+  color: #f39c12 !important;
+}
+
+.text-info {
+  color: #387bed !important;
+}
+
+/* Container styling */
+.container {
+  color: #424242 !important;
+  max-width: 1200px !important;
+}
+
+/* Hero section */
+.hero-section {
+  background-color: #ffffff !important;
+  border-radius: 8px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  margin-bottom: 2rem !important;
+  padding: 3rem 2rem !important;
+  text-align: center !important;
+}
+
+/* Borders */
+.border-primary {
+  border-color: #387bed !important;
+}
+
+.border-success {
+  border-color: #00c851 !important;
+}
+
+.border-info {
+  border-color: #387bed !important;
+}
+
+/* Spinner */
+.spinner-border {
+  color: #387bed !important;
+}
+
+/* App background */
+.min-vh-100 {
+  background-color: #fafafa !important;
+}
+
+/* Clean scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d0d7de;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8c959f;
+}
+
+/* Card hover effects */
+.card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-1px) !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Remove any dark theme overrides */
+.bg-dark {
+  background-color: #ffffff !important;
+}
+
+.navbar-dark {
+  background-color: #ffffff !important;
+}
+
+.navbar-dark .navbar-brand,
+.navbar-dark .nav-link {
+  color: #424242 !important;
+}
+
+/* GitHub icon styling */
+svg {
+  color: #424242 !important;
+}
+
+.nav-link svg:hover {
+  color: #387bed !important;
+}
+
+/* Form select options */
+.form-select option {
+  background-color: #ffffff !important;
+  color: #424242 !important;
+}
+
+/* Close button for alerts */
+.btn-close {
+  background: none !important;
+  border: none !important;
+  font-size: 1.2rem !important;
+  opacity: 0.6 !important;
+}
+
+.btn-close:hover {
+  opacity: 1 !important;
+}
+
+/* Ensure proper text rendering */
+body, html {
+  text-rendering: optimizeLegibility !important;
+  -webkit-text-size-adjust: 100% !important;
+  -ms-text-size-adjust: 100% !important;
+}
+
+/* Small improvements for better UX */
+.card-title {
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.btn:disabled {
+  opacity: 0.6 !important;
+}
+
+/* Clean spacing */
+.mb-4 {
+  margin-bottom: 2rem !important;
+}
+
+.mt-4 {
+  margin-top: 2rem !important;
+}
+
+.g-4 > * {
+  padding: 1rem !important;
+}
+
+/* Footer styling */
+.footer {
+  background-color: #ffffff !important;
+  border-top: 1px solid #e0e0e0 !important;
+  color: #424242 !important;
+  padding: 3rem 0 2rem 0 !important;
+  margin-top: 4rem !important;
+}
+
+.footer h5 {
+  color: #424242 !important;
+  font-weight: 600 !important;
+  margin-bottom: 1rem !important;
+}
+
+.footer p, .footer a {
+  color: #8c959f !important;
+  font-size: 14px !important;
+  text-decoration: none !important;
+}
+
+.footer a:hover {
+  color: #387bed !important;
+}
+
+.footer .text-center {
+  border-top: 1px solid #e0e0e0 !important;
+  margin-top: 2rem !important;
+  padding-top: 1.5rem !important;
+}
+
+/* Features section styling */
+.features-section {
+  background-color: #ffffff !important;
+  border-radius: 8px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  margin: 2rem 0 !important;
+  padding: 2rem !important;
+}
+
+.feature-card {
+  background-color: #f8f9fa !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 6px !important;
+  padding: 1.5rem !important;
+  text-align: center !important;
+  transition: all 0.2s ease !important;
+}
+
+.feature-card:hover {
+  background-color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  transform: translateY(-2px) !important;
+}
+
+.feature-icon {
+  font-size: 3rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.stats-section {
+  background: linear-gradient(135deg, #387bed, #2563eb) !important;
+  border-radius: 8px !important;
+  color: #ffffff !important;
+  margin: 2rem 0 !important;
+  padding: 3rem 2rem !important;
+  text-align: center !important;
+}
+
+.stats-section h2, .stats-section p {
+  color: #ffffff !important;
+}
+
+.stat-item {
+  margin-bottom: 1.5rem !important;
+}
+
+.stat-number {
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  display: block !important;
+}
+
+.stat-label {
+  font-size: 0.9rem !important;
+  opacity: 0.9 !important;
+}

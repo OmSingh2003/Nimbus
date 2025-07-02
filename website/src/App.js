@@ -2,20 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import { Navbar, Nav, Button, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './dark-theme.css';
+import './zerodha-theme.css';
 import Home from './components/Home';
 import CreateUser from './components/CreateUser';
 import LoginUser from './components/LoginUser';
 import CreateTransfer from './components/CreateTransfer';
 import AccountManager from './components/AccountManager';
+import Footer from './components/Footer';
 
 // Navigation component with authentication state
 function Navigation({ isLoggedIn, username, onLogout }) {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" className="mb-4">
+    <Navbar bg="light" variant="light" expand="lg" className="mb-4">
       <Container>
-        <Navbar.Brand as={Link} to="/" className="fw-bold">
-          <span className="text-primary">🛡️</span> VaultGuard
+        <Navbar.Brand as={Link} to="/" className="fw-bold d-flex align-items-center">
+          <img 
+            src="/icon.png" 
+            alt="VaultGuard" 
+            width="32" 
+            height="32" 
+            className="me-2"
+          />
+          <span className="text-primary">VaultGuard</span>
         </Navbar.Brand>
         
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -56,10 +64,10 @@ function Navigation({ isLoggedIn, username, onLogout }) {
             {/* User info and logout */}
             {isLoggedIn && (
               <>
-                <span className="navbar-text me-3 text-light">
+                <span className="navbar-text me-3">
                   Welcome, <strong>{username}</strong>
                 </span>
-                <Button variant="outline-light" size="sm" onClick={onLogout}>
+                <Button variant="outline-secondary" size="sm" onClick={onLogout}>
                   Logout
                 </Button>
               </>
@@ -102,7 +110,7 @@ function App() {
 
   return (
     <Router>
-    <div className="min-vh-100" style={{ backgroundColor: '#121212', color: '#ffffff' }}>
+    <div className="min-vh-100">
         <Navigation 
           isLoggedIn={isLoggedIn} 
           username={username} 
@@ -121,6 +129,8 @@ function App() {
             <Route path="/transfer" element={<CreateTransfer />} />
           </Routes>
         </Container>
+        
+        <Footer />
       </div>
     </Router>
   );
