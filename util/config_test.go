@@ -44,7 +44,17 @@ HTTP_SERVER_ADDRESS=127.0.0.1:9090
 	})
 
 	t.Run("InvalidPath", func(t *testing.T) {
+		// Clear any environment variables from previous tests
+		os.Unsetenv("DB_DRIVER")
+		os.Unsetenv("DB_SOURCE")
+		os.Unsetenv("HTTP_SERVER_ADDRESS")
+		
+		// Viper is a global state, so we need to test in a subprocess or accept the behavior
+		// For now, let's test that LoadConfig doesn't return an error with invalid path
+		// which is the main improvement we made
 		_, err := LoadConfig("/invalid/path")
-		require.Error(t, err)
+		require.NoError(t, err, "LoadConfig should not error when config file is missing")
+		// Note: The actual values may vary due to viper's global state from previous tests
+		// The important thing is that it doesn't crash the application
 	})
 }
