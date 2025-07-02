@@ -5,17 +5,17 @@ const API_CONFIG = {
   // Use environment variable or fallback to development URL
   BASE_URL: process.env.REACT_APP_API_URL || 'http://localhost:8080',
   
-  // API endpoints
+  // API endpoints (gRPC Gateway paths)
   ENDPOINTS: {
-    CREATE_USER: '/users',
-    LOGIN_USER: '/users/login', 
-    VERIFY_EMAIL: '/verify_email',
-    RESEND_VERIFICATION: '/resend_verification',
-    CREATE_ACCOUNT: '/accounts',
-    GET_ACCOUNT: '/accounts',
-    LIST_ACCOUNTS: '/accounts',
-    CREATE_TRANSFER: '/transfers',
-    RENEW_TOKEN: '/token.renew_access',
+    CREATE_USER: '/v1/create_user',
+    LOGIN_USER: '/v1/login_user', 
+    VERIFY_EMAIL: '/v1/verify_email',
+    RESEND_VERIFICATION: '/v1/resend_verification',
+    CREATE_ACCOUNT: '/v1/accounts',
+    GET_ACCOUNT: '/v1/accounts',
+    LIST_ACCOUNTS: '/v1/accounts',
+    CREATE_TRANSFER: '/v1/transfers',
+    RENEW_TOKEN: '/v1/renew_access_token',
   }
 };
 

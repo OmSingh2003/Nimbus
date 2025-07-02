@@ -8,13 +8,31 @@ services:
     envVars:
       - key: DB_DRIVER
         value: postgres
+      - key: DB_SOURCE
+        fromDatabase:
+          name: nimbus-db
+          property: connectionString
       - key: HTTP_SERVER_ADDRESS
         value: 0.0.0.0:10000
       - key: GRPC_SERVER_ADDRESS
         value: 0.0.0.0:9090
+      - key: TOKEN_SYMMETRIC_KEY
+        generateValue: true
       - key: ACCESS_TOKEN_DURATION
         value: 15m
       - key: REFRESH_TOKEN_DURATION
         value: 24h
       - key: EMAIL_SENDER_NAME
         value: Nimbus
+      - key: EMAIL_SENDER_ADDRESS
+        value: noreply@nimbus.com
+      - key: EMAIL_SENDER_PASSWORD
+        value: app-password-here
+      - key: REDIS_ADDRESS
+        value: redis-12951.c44.us-east-1-2.ec2.redns.redis-cloud.com:12951
+
+databases:
+  - name: nimbus-db
+    plan: free
+    databaseName: nimbus_db
+    user: nimbus_user
