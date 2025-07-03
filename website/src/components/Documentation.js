@@ -52,43 +52,31 @@ const Documentation = () => {
         {/* Technical Stack Tab */}
         <Tab eventKey="tech-stack" title="Technical Stack">
           <Row>
-            <Col md={6}>
-              <Card className="mb-4">
-                <Card.Header><h4>🔧 Backend Technologies</h4></Card.Header>
-                <Card.Body>
-                  <Table striped>
-                    <tbody>
-                      <tr><td><strong>Language:</strong></td><td>Go (Golang)</td></tr>
-                      <tr><td><strong>Framework:</strong></td><td>Gin HTTP Framework</td></tr>
-                      <tr><td><strong>Database:</strong></td><td>PostgreSQL</td></tr>
-                      <tr><td><strong>ORM:</strong></td><td>SQLC (SQL Compiler)</td></tr>
-                      <tr><td><strong>Authentication:</strong></td><td>JWT Tokens</td></tr>
-                      <tr><td><strong>API:</strong></td><td>RESTful + gRPC</td></tr>
-                      <tr><td><strong>Email Service:</strong></td><td>SMTP Integration</td></tr>
-                      <tr><td><strong>Queue System:</strong></td><td>Redis + Asynq</td></tr>
-                    </tbody>
-                  </Table>
-                </Card.Body>
-              </Card>
+<Col md={6}>
+              <h4>🔧 Backend Technologies</h4>
+              <ul>
+                <li><strong>Language:</strong> Go (Golang)</li>
+                <li><strong>Framework:</strong> Gin HTTP Framework</li>
+                <li><strong>Database:</strong> PostgreSQL</li>
+                <li><strong>ORM:</strong> SQLC (SQL Compiler)</li>
+                <li><strong>Authentication:</strong> JWT Tokens</li>
+                <li><strong>API:</strong> RESTful + gRPC</li>
+                <li><strong>Email Service:</strong> SMTP Integration</li>
+                <li><strong>Queue System:</strong> Redis + Asynq</li>
+              </ul>
             </Col>
             <Col md={6}>
-              <Card className="mb-4">
-                <Card.Header><h4>⚛️ Frontend Technologies</h4></Card.Header>
-                <Card.Body>
-                  <Table striped>
-                    <tbody>
-                      <tr><td><strong>Framework:</strong></td><td>React 18</td></tr>
-                      <tr><td><strong>Routing:</strong></td><td>React Router v6</td></tr>
-                      <tr><td><strong>UI Library:</strong></td><td>React Bootstrap</td></tr>
-                      <tr><td><strong>HTTP Client:</strong></td><td>Axios</td></tr>
-                      <tr><td><strong>State Management:</strong></td><td>React Hooks</td></tr>
-                      <tr><td><strong>Styling:</strong></td><td>Custom CSS + Bootstrap</td></tr>
-                      <tr><td><strong>Build Tool:</strong></td><td>Create React App</td></tr>
-                      <tr><td><strong>Icons:</strong></td><td>Bootstrap Icons</td></tr>
-                    </tbody>
-                  </Table>
-                </Card.Body>
-              </Card>
+              <h4>⚛️ Frontend Technologies</h4>
+              <ul>
+                <li><strong>Framework:</strong> React 18</li>
+                <li><strong>Routing:</strong> React Router v6</li>
+                <li><strong>UI Library:</strong> React Bootstrap</li>
+                <li><strong>HTTP Client:</strong> Axios</li>
+                <li><strong>State Management:</strong> React Hooks</li>
+                <li><strong>Styling:</strong> Custom CSS + Bootstrap</li>
+                <li><strong>Build Tool:</strong> Create React App</li>
+                <li><strong>Icons:</strong> Bootstrap Icons</li>
+              </ul>
             </Col>
           </Row>
 

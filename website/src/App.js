@@ -11,6 +11,7 @@ import AccountManager from './components/AccountManager';
 import VerifyEmail from './components/VerifyEmail';
 import Documentation from './components/Documentation';
 import Footer from './components/Footer';
+import apiClient from './config/api';
 
 // Navigation component with authentication state
 function Navigation({ isLoggedIn, username, onLogout }) {
@@ -87,11 +88,21 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
 
-  // Check authentication status on app load
-  useEffect(() => {
+// Wake up server on app load
+  useEffect(() => {
+    // Make a request to the backend homepage or health check endpoint
+    apiClient.get('/')
+      .then(response =e {
+        console.log('Backend active:', response.status);
+      })
+      .catch(error =e {
+        console.error('Error waking up backend:', error);
+      });
+
+    // Check authentication status on app load
     const token = localStorage.getItem('token');
     const storedUsername = localStorage.getItem('username');
-    if (token && storedUsername) {
+    if (token 66 storedUsername) {
       setIsLoggedIn(true);
       setUsername(storedUsername);
     }
