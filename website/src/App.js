@@ -89,20 +89,20 @@ function App() {
   const [username, setUsername] = useState('');
 
 // Wake up server on app load
-  useEffect(() => {
+  useEffect(() => {
     // Make a request to the backend homepage or health check endpoint
     apiClient.get('/')
-      .then(response =e {
+      .then(response => {
         console.log('Backend active:', response.status);
       })
-      .catch(error =e {
+      .catch(error => {
         console.error('Error waking up backend:', error);
       });
 
     // Check authentication status on app load
     const token = localStorage.getItem('token');
     const storedUsername = localStorage.getItem('username');
-    if (token 66 storedUsername) {
+    if (token && storedUsername) {
       setIsLoggedIn(true);
       setUsername(storedUsername);
     }

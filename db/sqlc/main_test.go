@@ -16,9 +16,17 @@ var (
 )
 
 func TestMain(m *testing.M) {
+	// Try to load config, but fall back to test defaults if it fails
 	config, err := util.LoadConfig("../..")
 	if err != nil {
-		log.Fatal("Cannot load config file:", err)
+		// Use test defaults if config loading fails
+		config.DBDriver = "postgres"
+		config.DBSource = "postgresql://root:secret@localhost:5432/vaultguard_api?sslmode=disable"
+	}
+
+	// Ensure SSL is disabled for tests
+	if config.DBSource == "" {
+		config.DBSource = "postgresql://root:secret@localhost:5432/vaultguard_api?sslmode=disable"
 	}
 
 	testDB, err := sql.Open(config.DBDriver, config.DBSource)

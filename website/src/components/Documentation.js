@@ -52,8 +52,8 @@ const Documentation = () => {
         {/* Technical Stack Tab */}
         <Tab eventKey="tech-stack" title="Technical Stack">
           <Row>
-<Col md={6}>
-              <h4>🔧 Backend Technologies</h4>
+            <Col md={6}>
+              <h4><img src="/images/golang.png" alt="Golang" width="24" height="24" className="me-2" /> Backend Technologies</h4>
               <ul>
                 <li><strong>Language:</strong> Go (Golang)</li>
                 <li><strong>Framework:</strong> Gin HTTP Framework</li>
@@ -66,7 +66,7 @@ const Documentation = () => {
               </ul>
             </Col>
             <Col md={6}>
-              <h4>⚛️ Frontend Technologies</h4>
+              <h4><img src="/images/javaScript.png" alt="JavaScript" width="24" height="24" className="me-2" /> Frontend Technologies</h4>
               <ul>
                 <li><strong>Framework:</strong> React 18</li>
                 <li><strong>Routing:</strong> React Router v6</li>
@@ -83,7 +83,7 @@ const Documentation = () => {
           <Row>
             <Col>
               <Card>
-                <Card.Header><h4>🏗️ Architecture</h4></Card.Header>
+                <Card.Header><h4><img src="/images/microservices.png" alt="Microservices" width="24" height="24" className="me-2" /> Microservices Architecture</h4></Card.Header>
                 <Card.Body>
                   <p><strong>Microservices Architecture:</strong></p>
                   <ul>
