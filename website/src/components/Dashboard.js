@@ -13,28 +13,28 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if user is logged in
-    const token = localStorage.getItem('token');
     const storedUsername = localStorage.getItem('username');
-    
-    if (!token) {
-      // Redirect to login if no token
-      navigate('/login');
-      return;
-    }
-    
     if (storedUsername) {
       setUsername(storedUsername);
     }
     fetchDashboardData();
-  }, [navigate]);
+  }, []);
 
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
+      setError('');
+      
+      // Check if user has a token
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setError('Please log in to view your dashboard');
+        setLoading(false);
+        return;
+      }
       
       // Fetch accounts
-      const accountsResponse = await apiClient.get('/accounts');
+      const accountsResponse = await apiClient.get('/v1/accounts');
       setAccounts(accountsResponse.data || []);
 
       // Calculate total balance by currency
@@ -51,7 +51,7 @@ const Dashboard = () => {
       // Fetch recent transfers for the first account (if exists)
       if (accountsResponse.data && accountsResponse.data.length > 0) {
         try {
-          const transfersResponse = await apiClient.get('/transfers', {
+          const transfersResponse = await apiClient.get('/v1/transfers', {
             params: {
               account_id: accountsResponse.data[0].id,
               page_id: 1,

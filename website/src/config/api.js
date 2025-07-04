@@ -44,15 +44,15 @@ apiClient.interceptors.response.use(
   (error) => {
     // Check if the error is related to authentication
     if (error.response?.status === 401 || 
-        error.response?.status === 500 && 
-        error.response?.data?.message?.includes('authorization')) {
+        (error.response?.status === 500 && 
+         error.response?.data?.message?.includes('missing authorization header'))) {
       
       // Clear invalid token and redirect to login
       localStorage.removeItem('token');
       localStorage.removeItem('username');
       
       // Redirect to login page if not already there
-      if (window.location.pathname !== '/login') {
+      if (window.location.pathname !== '/login' && window.location.pathname !== '/create-user') {
         window.location.href = '/login';
       }
     }

@@ -16,17 +16,8 @@ const Transactions = () => {
 
   // Fetch user accounts on component mount
   useEffect(() => {
-    // Check if user is logged in
-    const token = localStorage.getItem('token');
-    
-    if (!token) {
-      // Redirect to login if no token
-      navigate('/login');
-      return;
-    }
-    
     fetchAccounts();
-  }, [navigate]);
+  }, []);
 
   // Fetch transfers when account is selected
   useEffect(() => {
@@ -37,7 +28,7 @@ const Transactions = () => {
 
   const fetchAccounts = async () => {
     try {
-      const response = await apiClient.get('/accounts');
+      const response = await apiClient.get('/v1/accounts');
       setAccounts(response.data);
       if (response.data.length > 0) {
         setSelectedAccount(response.data[0].id.toString());
@@ -54,7 +45,7 @@ const Transactions = () => {
     setError('');
     
     try {
-      const response = await apiClient.get('/transfers', {
+      const response = await apiClient.get('/v1/transfers', {
         params: {
           account_id: selectedAccount,
           page_id: currentPage,
