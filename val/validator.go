@@ -128,3 +128,20 @@ func ValidateSecretCode(value string) error {
 	}
 	return nil
 }
+
+func ValidatePageNumber(value int32) error {
+	if value <= 0 {
+		return fmt.Errorf("must be positive")
+	}
+	return nil
+}
+
+func ValidatePageSize(value int32) error {
+	if value <= 0 {
+		return fmt.Errorf("must be positive")
+	}
+	if value > 100 {
+		return fmt.Errorf("must not exceed 100")
+	}
+	return nil
+}

@@ -403,7 +403,7 @@ const file_account_proto_rawDesc = "" +
 	"\apage_id\x18\x01 \x01(\x05R\x06pageId\x12\x1b\n" +
 	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\"?\n" +
 	"\x14ListAccountsResponse\x12'\n" +
-	"\baccounts\x18\x01 \x03(\v2\v.pb.AccountR\baccountsB*Z(github.com/OmSingh2003/nimbus/pbb\x06proto3"
+	"\baccounts\x18\x01 \x03(\v2\v.pb.AccountR\baccountsB*Z(github.com/OmSingh2003/vaultguard-api/pbb\x06proto3"
 
 var (
 	file_account_proto_rawDescOnce sync.Once

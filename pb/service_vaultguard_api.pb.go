@@ -27,7 +27,7 @@ var File_service_vaultguard_api_proto protoreflect.FileDescriptor
 const file_service_vaultguard_api_proto_rawDesc = "" +
 	"\n" +
 	"\x1cservice_vaultguard_api.proto\x12\x02pb\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\n" +
-	"user.proto\x1a\x16rpc_verify_email.proto\x1a\x0etransfer.proto\x1a\raccount.proto2\xc0\x10\n" +
+	"user.proto\x1a\x16rpc_verify_email.proto\x1a\x0etransfer.proto\x1a\raccount.proto2\x91\x12\n" +
 	"\rVaultguardAPI\x12\xc9\x02\n" +
 	"\n" +
 	"CreateUser\x12\x15.pb.CreateUserRequest\x1a\x16.pb.CreateUserResponse\"\x8b\x02\x92A\xed\x01\x12\x19Create a new user account\x1a\xcf\x01Creates a new user account in the VaultGuard system. This endpoint validates user input, securely hashes passwords, and stores user credentials in the database. Returns user details upon successful creation.\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v1/create_user\x12\xd7\x02\n" +
@@ -39,9 +39,10 @@ const file_service_vaultguard_api_proto_rawDesc = "" +
 	"\rCreateAccount\x12\x18.pb.CreateAccountRequest\x1a\x19.pb.CreateAccountResponse\"\xb4\x01\x92A\x99\x01\x12\x14Create a new account\x1a\x80\x01Creates a new account for the authenticated user. This endpoint validates the currency and creates an account with zero balance.\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/v1/accounts\x12\xcb\x01\n" +
 	"\n" +
 	"GetAccount\x12\x15.pb.GetAccountRequest\x1a\x16.pb.GetAccountResponse\"\x8d\x01\x92Aq\x12\x11Get account by ID\x1a\\Retrieves a specific account by ID. Only the account owner can access their account details.\x82\xd3\xe4\x93\x02\x13\x12\x11/v1/accounts/{id}\x12\xbb\x01\n" +
-	"\fListAccounts\x12\x17.pb.ListAccountsRequest\x1a\x18.pb.ListAccountsResponse\"x\x92Aa\x12\x12List user accounts\x1aKLists all accounts owned by the authenticated user with pagination support.\x82\xd3\xe4\x93\x02\x0e\x12\f/v1/accountsB\xe3\x01\x92A\xb5\x01\x12\x8a\x01\n" +
+	"\fListAccounts\x12\x17.pb.ListAccountsRequest\x1a\x18.pb.ListAccountsResponse\"x\x92Aa\x12\x12List user accounts\x1aKLists all accounts owned by the authenticated user with pagination support.\x82\xd3\xe4\x93\x02\x0e\x12\f/v1/accounts\x12\xce\x01\n" +
+	"\rListTransfers\x12\x18.pb.ListTransfersRequest\x1a\x19.pb.ListTransfersResponse\"\x87\x01\x92Ao\x12\x13List user transfers\x1aXLists all transfers involving the authenticated user's accounts with pagination support.\x82\xd3\xe4\x93\x02\x0f\x12\r/v1/transfersB\xe3\x01\x92A\xb5\x01\x12\x8a\x01\n" +
 	"\x0eVaultGuard API\x12\x1dA secure vault management API\"T\n" +
-	"\bOm Singh\x12-https://github.com/OmSingh2003/VaultGuard-API\x1a\x19omsingh.ailearn@gmail.com2\x031.2*\x02\x02\x012\x10application/json:\x10application/jsonZ(github.com/OmSingh2003/nimbus/pbb\x06proto3"
+	"\bOm Singh\x12-https://github.com/OmSingh2003/VaultGuard-API\x1a\x19omsingh.ailearn@gmail.com2\x031.2*\x02\x02\x012\x10application/json:\x10application/jsonZ(github.com/OmSingh2003/vaultguard-api/pbb\x06proto3"
 
 var file_service_vaultguard_api_proto_goTypes = []any{
 	(*CreateUserRequest)(nil),      // 0: pb.CreateUserRequest
@@ -52,14 +53,16 @@ var file_service_vaultguard_api_proto_goTypes = []any{
 	(*CreateAccountRequest)(nil),   // 5: pb.CreateAccountRequest
 	(*GetAccountRequest)(nil),      // 6: pb.GetAccountRequest
 	(*ListAccountsRequest)(nil),    // 7: pb.ListAccountsRequest
-	(*CreateUserResponse)(nil),     // 8: pb.CreateUserResponse
-	(*UpdateUserResponse)(nil),     // 9: pb.UpdateUserResponse
-	(*LoginUserResponse)(nil),      // 10: pb.LoginUserResponse
-	(*VerifyEmailResponse)(nil),    // 11: pb.VerifyEmailResponse
-	(*CreateTransferResponse)(nil), // 12: pb.CreateTransferResponse
-	(*CreateAccountResponse)(nil),  // 13: pb.CreateAccountResponse
-	(*GetAccountResponse)(nil),     // 14: pb.GetAccountResponse
-	(*ListAccountsResponse)(nil),   // 15: pb.ListAccountsResponse
+	(*ListTransfersRequest)(nil),   // 8: pb.ListTransfersRequest
+	(*CreateUserResponse)(nil),     // 9: pb.CreateUserResponse
+	(*UpdateUserResponse)(nil),     // 10: pb.UpdateUserResponse
+	(*LoginUserResponse)(nil),      // 11: pb.LoginUserResponse
+	(*VerifyEmailResponse)(nil),    // 12: pb.VerifyEmailResponse
+	(*CreateTransferResponse)(nil), // 13: pb.CreateTransferResponse
+	(*CreateAccountResponse)(nil),  // 14: pb.CreateAccountResponse
+	(*GetAccountResponse)(nil),     // 15: pb.GetAccountResponse
+	(*ListAccountsResponse)(nil),   // 16: pb.ListAccountsResponse
+	(*ListTransfersResponse)(nil),  // 17: pb.ListTransfersResponse
 }
 var file_service_vaultguard_api_proto_depIdxs = []int32{
 	0,  // 0: pb.VaultguardAPI.CreateUser:input_type -> pb.CreateUserRequest
@@ -70,16 +73,18 @@ var file_service_vaultguard_api_proto_depIdxs = []int32{
 	5,  // 5: pb.VaultguardAPI.CreateAccount:input_type -> pb.CreateAccountRequest
 	6,  // 6: pb.VaultguardAPI.GetAccount:input_type -> pb.GetAccountRequest
 	7,  // 7: pb.VaultguardAPI.ListAccounts:input_type -> pb.ListAccountsRequest
-	8,  // 8: pb.VaultguardAPI.CreateUser:output_type -> pb.CreateUserResponse
-	9,  // 9: pb.VaultguardAPI.UpdateUser:output_type -> pb.UpdateUserResponse
-	10, // 10: pb.VaultguardAPI.LoginUser:output_type -> pb.LoginUserResponse
-	11, // 11: pb.VaultguardAPI.VerifyEmail:output_type -> pb.VerifyEmailResponse
-	12, // 12: pb.VaultguardAPI.CreateTransfer:output_type -> pb.CreateTransferResponse
-	13, // 13: pb.VaultguardAPI.CreateAccount:output_type -> pb.CreateAccountResponse
-	14, // 14: pb.VaultguardAPI.GetAccount:output_type -> pb.GetAccountResponse
-	15, // 15: pb.VaultguardAPI.ListAccounts:output_type -> pb.ListAccountsResponse
-	8,  // [8:16] is the sub-list for method output_type
-	0,  // [0:8] is the sub-list for method input_type
+	8,  // 8: pb.VaultguardAPI.ListTransfers:input_type -> pb.ListTransfersRequest
+	9,  // 9: pb.VaultguardAPI.CreateUser:output_type -> pb.CreateUserResponse
+	10, // 10: pb.VaultguardAPI.UpdateUser:output_type -> pb.UpdateUserResponse
+	11, // 11: pb.VaultguardAPI.LoginUser:output_type -> pb.LoginUserResponse
+	12, // 12: pb.VaultguardAPI.VerifyEmail:output_type -> pb.VerifyEmailResponse
+	13, // 13: pb.VaultguardAPI.CreateTransfer:output_type -> pb.CreateTransferResponse
+	14, // 14: pb.VaultguardAPI.CreateAccount:output_type -> pb.CreateAccountResponse
+	15, // 15: pb.VaultguardAPI.GetAccount:output_type -> pb.GetAccountResponse
+	16, // 16: pb.VaultguardAPI.ListAccounts:output_type -> pb.ListAccountsResponse
+	17, // 17: pb.VaultguardAPI.ListTransfers:output_type -> pb.ListTransfersResponse
+	9,  // [9:18] is the sub-list for method output_type
+	0,  // [0:9] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name

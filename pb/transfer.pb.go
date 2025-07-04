@@ -21,6 +21,102 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type ListTransfersRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PageNumber    int32                  `protobuf:"varint,1,opt,name=page_number,json=pageNumber,proto3" json:"page_number,omitempty"`
+	PageSize      int32                  `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListTransfersRequest) Reset() {
+	*x = ListTransfersRequest{}
+	mi := &file_transfer_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListTransfersRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListTransfersRequest) ProtoMessage() {}
+
+func (x *ListTransfersRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_transfer_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListTransfersRequest.ProtoReflect.Descriptor instead.
+func (*ListTransfersRequest) Descriptor() ([]byte, []int) {
+	return file_transfer_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *ListTransfersRequest) GetPageNumber() int32 {
+	if x != nil {
+		return x.PageNumber
+	}
+	return 0
+}
+
+func (x *ListTransfersRequest) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+type ListTransfersResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Transfers     []*Transfer            `protobuf:"bytes,1,rep,name=transfers,proto3" json:"transfers,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListTransfersResponse) Reset() {
+	*x = ListTransfersResponse{}
+	mi := &file_transfer_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListTransfersResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListTransfersResponse) ProtoMessage() {}
+
+func (x *ListTransfersResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_transfer_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListTransfersResponse.ProtoReflect.Descriptor instead.
+func (*ListTransfersResponse) Descriptor() ([]byte, []int) {
+	return file_transfer_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *ListTransfersResponse) GetTransfers() []*Transfer {
+	if x != nil {
+		return x.Transfers
+	}
+	return nil
+}
+
 type Transfer struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -35,7 +131,7 @@ type Transfer struct {
 
 func (x *Transfer) Reset() {
 	*x = Transfer{}
-	mi := &file_transfer_proto_msgTypes[0]
+	mi := &file_transfer_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -47,7 +143,7 @@ func (x *Transfer) String() string {
 func (*Transfer) ProtoMessage() {}
 
 func (x *Transfer) ProtoReflect() protoreflect.Message {
-	mi := &file_transfer_proto_msgTypes[0]
+	mi := &file_transfer_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -60,7 +156,7 @@ func (x *Transfer) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transfer.ProtoReflect.Descriptor instead.
 func (*Transfer) Descriptor() ([]byte, []int) {
-	return file_transfer_proto_rawDescGZIP(), []int{0}
+	return file_transfer_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *Transfer) GetId() int64 {
@@ -117,7 +213,7 @@ type CreateTransferRequest struct {
 
 func (x *CreateTransferRequest) Reset() {
 	*x = CreateTransferRequest{}
-	mi := &file_transfer_proto_msgTypes[1]
+	mi := &file_transfer_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -129,7 +225,7 @@ func (x *CreateTransferRequest) String() string {
 func (*CreateTransferRequest) ProtoMessage() {}
 
 func (x *CreateTransferRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_transfer_proto_msgTypes[1]
+	mi := &file_transfer_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -142,7 +238,7 @@ func (x *CreateTransferRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateTransferRequest.ProtoReflect.Descriptor instead.
 func (*CreateTransferRequest) Descriptor() ([]byte, []int) {
-	return file_transfer_proto_rawDescGZIP(), []int{1}
+	return file_transfer_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *CreateTransferRequest) GetFromAccountId() int64 {
@@ -182,7 +278,7 @@ type CreateTransferResponse struct {
 
 func (x *CreateTransferResponse) Reset() {
 	*x = CreateTransferResponse{}
-	mi := &file_transfer_proto_msgTypes[2]
+	mi := &file_transfer_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -194,7 +290,7 @@ func (x *CreateTransferResponse) String() string {
 func (*CreateTransferResponse) ProtoMessage() {}
 
 func (x *CreateTransferResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_transfer_proto_msgTypes[2]
+	mi := &file_transfer_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -207,7 +303,7 @@ func (x *CreateTransferResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateTransferResponse.ProtoReflect.Descriptor instead.
 func (*CreateTransferResponse) Descriptor() ([]byte, []int) {
-	return file_transfer_proto_rawDescGZIP(), []int{2}
+	return file_transfer_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *CreateTransferResponse) GetTransfer() *Transfer {
@@ -221,7 +317,13 @@ var File_transfer_proto protoreflect.FileDescriptor
 
 const file_transfer_proto_rawDesc = "" +
 	"\n" +
-	"\x0etransfer.proto\x12\x02pb\"\xb9\x01\n" +
+	"\x0etransfer.proto\x12\x02pb\"T\n" +
+	"\x14ListTransfersRequest\x12\x1f\n" +
+	"\vpage_number\x18\x01 \x01(\x05R\n" +
+	"pageNumber\x12\x1b\n" +
+	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\"C\n" +
+	"\x15ListTransfersResponse\x12*\n" +
+	"\ttransfers\x18\x01 \x03(\v2\f.pb.TransferR\ttransfers\"\xb9\x01\n" +
 	"\bTransfer\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12&\n" +
 	"\x0ffrom_account_id\x18\x02 \x01(\x03R\rfromAccountId\x12\"\n" +
@@ -236,7 +338,7 @@ const file_transfer_proto_rawDesc = "" +
 	"\x06amount\x18\x03 \x01(\x03R\x06amount\x12\x1a\n" +
 	"\bcurrency\x18\x04 \x01(\tR\bcurrency\"B\n" +
 	"\x16CreateTransferResponse\x12(\n" +
-	"\btransfer\x18\x01 \x01(\v2\f.pb.TransferR\btransferB*Z(github.com/OmSingh2003/nimbus/pbb\x06proto3"
+	"\btransfer\x18\x01 \x01(\v2\f.pb.TransferR\btransferB*Z(github.com/OmSingh2003/vaultguard-api/pbb\x06proto3"
 
 var (
 	file_transfer_proto_rawDescOnce sync.Once
@@ -250,19 +352,22 @@ func file_transfer_proto_rawDescGZIP() []byte {
 	return file_transfer_proto_rawDescData
 }
 
-var file_transfer_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_transfer_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_transfer_proto_goTypes = []any{
-	(*Transfer)(nil),               // 0: pb.Transfer
-	(*CreateTransferRequest)(nil),  // 1: pb.CreateTransferRequest
-	(*CreateTransferResponse)(nil), // 2: pb.CreateTransferResponse
+	(*ListTransfersRequest)(nil),   // 0: pb.ListTransfersRequest
+	(*ListTransfersResponse)(nil),  // 1: pb.ListTransfersResponse
+	(*Transfer)(nil),               // 2: pb.Transfer
+	(*CreateTransferRequest)(nil),  // 3: pb.CreateTransferRequest
+	(*CreateTransferResponse)(nil), // 4: pb.CreateTransferResponse
 }
 var file_transfer_proto_depIdxs = []int32{
-	0, // 0: pb.CreateTransferResponse.transfer:type_name -> pb.Transfer
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	2, // 0: pb.ListTransfersResponse.transfers:type_name -> pb.Transfer
+	2, // 1: pb.CreateTransferResponse.transfer:type_name -> pb.Transfer
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_transfer_proto_init() }
@@ -276,7 +381,7 @@ func file_transfer_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_transfer_proto_rawDesc), len(file_transfer_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -27,6 +27,7 @@ const (
 	VaultguardAPI_CreateAccount_FullMethodName  = "/pb.VaultguardAPI/CreateAccount"
 	VaultguardAPI_GetAccount_FullMethodName     = "/pb.VaultguardAPI/GetAccount"
 	VaultguardAPI_ListAccounts_FullMethodName   = "/pb.VaultguardAPI/ListAccounts"
+	VaultguardAPI_ListTransfers_FullMethodName  = "/pb.VaultguardAPI/ListTransfers"
 )
 
 // VaultguardAPIClient is the client API for VaultguardAPI service.
@@ -41,6 +42,7 @@ type VaultguardAPIClient interface {
 	CreateAccount(ctx context.Context, in *CreateAccountRequest, opts ...grpc.CallOption) (*CreateAccountResponse, error)
 	GetAccount(ctx context.Context, in *GetAccountRequest, opts ...grpc.CallOption) (*GetAccountResponse, error)
 	ListAccounts(ctx context.Context, in *ListAccountsRequest, opts ...grpc.CallOption) (*ListAccountsResponse, error)
+	ListTransfers(ctx context.Context, in *ListTransfersRequest, opts ...grpc.CallOption) (*ListTransfersResponse, error)
 }
 
 type vaultguardAPIClient struct {
@@ -131,6 +133,16 @@ func (c *vaultguardAPIClient) ListAccounts(ctx context.Context, in *ListAccounts
 	return out, nil
 }
 
+func (c *vaultguardAPIClient) ListTransfers(ctx context.Context, in *ListTransfersRequest, opts ...grpc.CallOption) (*ListTransfersResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListTransfersResponse)
+	err := c.cc.Invoke(ctx, VaultguardAPI_ListTransfers_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // VaultguardAPIServer is the server API for VaultguardAPI service.
 // All implementations must embed UnimplementedVaultguardAPIServer
 // for forward compatibility.
@@ -143,6 +155,7 @@ type VaultguardAPIServer interface {
 	CreateAccount(context.Context, *CreateAccountRequest) (*CreateAccountResponse, error)
 	GetAccount(context.Context, *GetAccountRequest) (*GetAccountResponse, error)
 	ListAccounts(context.Context, *ListAccountsRequest) (*ListAccountsResponse, error)
+	ListTransfers(context.Context, *ListTransfersRequest) (*ListTransfersResponse, error)
 	mustEmbedUnimplementedVaultguardAPIServer()
 }
 
@@ -176,6 +189,9 @@ func (UnimplementedVaultguardAPIServer) GetAccount(context.Context, *GetAccountR
 }
 func (UnimplementedVaultguardAPIServer) ListAccounts(context.Context, *ListAccountsRequest) (*ListAccountsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAccounts not implemented")
+}
+func (UnimplementedVaultguardAPIServer) ListTransfers(context.Context, *ListTransfersRequest) (*ListTransfersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTransfers not implemented")
 }
 func (UnimplementedVaultguardAPIServer) mustEmbedUnimplementedVaultguardAPIServer() {}
 func (UnimplementedVaultguardAPIServer) testEmbeddedByValue()                       {}
@@ -342,6 +358,24 @@ func _VaultguardAPI_ListAccounts_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _VaultguardAPI_ListTransfers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTransfersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VaultguardAPIServer).ListTransfers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: VaultguardAPI_ListTransfers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VaultguardAPIServer).ListTransfers(ctx, req.(*ListTransfersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // VaultguardAPI_ServiceDesc is the grpc.ServiceDesc for VaultguardAPI service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -380,6 +414,10 @@ var VaultguardAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListAccounts",
 			Handler:    _VaultguardAPI_ListAccounts_Handler,
+		},
+		{
+			MethodName: "ListTransfers",
+			Handler:    _VaultguardAPI_ListTransfers_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

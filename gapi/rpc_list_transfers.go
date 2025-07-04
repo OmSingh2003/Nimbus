@@ -45,7 +45,7 @@ func (server *Server) ListTransfers(ctx context.Context, req *pb.ListTransfersRe
 		FromAccountID: accountId,
 		ToAccountID:   accountId,
 		Limit:         req.GetPageSize(),
-		Offset:        (req.GetPageId() - 1) * req.GetPageSize(),
+		Offset:        (req.GetPageNumber() - 1) * req.GetPageSize(),
 	}
 
 	transfers, err := server.store.ListTransfers(ctx, arg)
@@ -80,8 +80,8 @@ func (server *Server) ListTransfers(ctx context.Context, req *pb.ListTransfersRe
 }
 
 func validateListTransfersRequest(req *pb.ListTransfersRequest) (violations []*errdetails.BadRequest_FieldViolation) {
-	if err := val.ValidatePageId(req.GetPageId()); err != nil {
-		violations = append(violations, fieldViolation("page_id", err))
+	if err := val.ValidatePageNumber(req.GetPageNumber()); err != nil {
+		violations = append(violations, fieldViolation("page_number", err))
 	}
 
 	if err := val.ValidatePageSize(req.GetPageSize()); err != nil {

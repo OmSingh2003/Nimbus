@@ -128,7 +128,7 @@ const file_rpc_verify_email_proto_rawDesc = "" +
 	"secretCode\"6\n" +
 	"\x13VerifyEmailResponse\x12\x1f\n" +
 	"\vis_verified\x18\x01 \x01(\bR\n" +
-	"isVerifiedB*Z(github.com/OmSingh2003/nimbus/pbb\x06proto3"
+	"isVerifiedB*Z(github.com/OmSingh2003/vaultguard-api/pbb\x06proto3"
 
 var (
 	file_rpc_verify_email_proto_rawDescOnce sync.Once

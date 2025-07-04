@@ -11,6 +11,7 @@ package mockdb
 
 import (
 	context "context"
+	sql "database/sql"
 	reflect "reflect"
 
 	db "github.com/OmSingh2003/nimbus/db/sqlc"
@@ -189,6 +190,21 @@ func (m *MockStore) GetAccount(ctx context.Context, id int64) (db.Account, error
 func (mr *MockStoreMockRecorder) GetAccount(ctx, id any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAccount", reflect.TypeOf((*MockStore)(nil).GetAccount), ctx, id)
+}
+
+// GetAccountByNumber mocks base method.
+func (m *MockStore) GetAccountByNumber(ctx context.Context, accountNumber sql.NullString) (db.Account, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetAccountByNumber", ctx, accountNumber)
+	ret0, _ := ret[0].(db.Account)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetAccountByNumber indicates an expected call of GetAccountByNumber.
+func (mr *MockStoreMockRecorder) GetAccountByNumber(ctx, accountNumber any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAccountByNumber", reflect.TypeOf((*MockStore)(nil).GetAccountByNumber), ctx, accountNumber)
 }
 
 // GetEntry mocks base method.

@@ -170,6 +170,38 @@
       }
     },
     "/v1/transfers": {
+      "get": {
+        "summary": "List user transfers",
+        "description": "Lists all transfers involving the authenticated user's accounts with pagination support.",
+        "operationId": "ListTransfers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbListTransfersResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "VaultguardAPI"
+        ]
+      },
       "post": {
         "summary": "Create a new transfer",
         "description": "Creates a new transfer between accounts. This endpoint validates account ownership, checks balances, and executes secure money transfers between accounts.",
@@ -371,6 +403,18 @@
           "items": {
             "type": "object",
             "$ref": "#/definitions/pbAccount"
+          }
+        }
+      }
+    },
+    "pbListTransfersResponse": {
+      "type": "object",
+      "properties": {
+        "transfers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbTransfer"
           }
         }
       }

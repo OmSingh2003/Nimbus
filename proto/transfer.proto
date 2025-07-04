@@ -4,6 +4,15 @@ package pb;
 
 option go_package = "github.com/OmSingh2003/vaultguard-api/pb";
 
+message ListTransfersRequest {
+  int32 page_number = 1;
+  int32 page_size = 2;
+}
+
+message ListTransfersResponse {
+  repeated Transfer transfers = 1;
+}
+
 message Transfer {
   int64 id = 1;
   int64 from_account_id = 2;
