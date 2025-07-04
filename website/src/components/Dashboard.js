@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Alert, Badge, Table, Spinner } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import apiClient from '../config/api';
-import DebugInfo from './DebugInfo';
 
 const Dashboard = () => {
   const [accounts, setAccounts] = useState([]);
@@ -28,16 +27,12 @@ const Dashboard = () => {
       
       // Check if user has a token
       const token = localStorage.getItem('token');
-      console.log('Dashboard: Token exists:', !!token);
-      console.log('Dashboard: Token length:', token ? token.length : 0);
       
       if (!token) {
         setError('Please log in to view your dashboard');
         setLoading(false);
         return;
       }
-      
-      console.log('Dashboard: Fetching accounts from /v1/accounts');
       // Fetch accounts with required pagination parameters
       const accountsResponse = await apiClient.get('/v1/accounts', {
         params: {
@@ -45,7 +40,6 @@ const Dashboard = () => {
           page_size: 50
         }
       });
-      console.log('Dashboard: Accounts response:', accountsResponse);
       const accounts = accountsResponse.data?.accounts || [];
       setAccounts(accounts);
 
@@ -72,14 +66,10 @@ const Dashboard = () => {
           const transfers = transfersResponse.data?.transfers || [];
           setRecentTransfers(transfers);
         } catch (transferError) {
-          console.log('No transfers found or error fetching transfers');
           setRecentTransfers([]);
         }
       }
     } catch (err) {
-      console.error('Dashboard: Error fetching data:', err);
-      console.error('Dashboard: Error response:', err.response?.data);
-      console.error('Dashboard: Error status:', err.response?.status);
       setError(`Failed to fetch dashboard data: ${err.response?.data?.message || err.message}`);
     } finally {
       setLoading(false);
@@ -144,7 +134,10 @@ const Dashboard = () => {
         <Col md={8}>
           <Card className="h-100">
             <Card.Header className="bg-primary text-white">
-              <h5 className="mb-0">💰 Total Balance Overview</h5>
+              <h5 className="mb-0">
+                <img src="/account Balance.png" alt="Balance" width="20" height="20" className="me-2" />
+                Total Balance Overview
+              </h5>
             </Card.Header>
             <Card.Body>
               {Object.keys(totalBalance).length > 0 ? (
@@ -187,7 +180,10 @@ const Dashboard = () => {
         <Col>
           <Card>
             <Card.Header>
-              <h5 className="mb-0">🚀 Quick Actions</h5>
+              <h5 className="mb-0">
+                <img src="/quickAction.png" alt="Quick Actions" width="20" height="20" className="me-2" />
+                Quick Actions
+              </h5>
             </Card.Header>
             <Card.Body>
               <Row className="g-3">
@@ -195,7 +191,7 @@ const Dashboard = () => {
                   <div className="d-grid">
                     <Button as={Link} to="/accounts" variant="outline-primary" size="lg">
                       <div className="py-2">
-                        <div>💼</div>
+                        <img src="/manageAccounts .png" alt="Manage Accounts" width="30" height="30" className="mb-2" />
                         <div>Manage Accounts</div>
                       </div>
                     </Button>
@@ -205,7 +201,7 @@ const Dashboard = () => {
                   <div className="d-grid">
                     <Button as={Link} to="/transfer" variant="outline-success" size="lg">
                       <div className="py-2">
-                        <div>💸</div>
+                        <img src="/money.png" alt="Send Money" width="30" height="30" className="mb-2" />
                         <div>Send Money</div>
                       </div>
                     </Button>
@@ -215,7 +211,7 @@ const Dashboard = () => {
                   <div className="d-grid">
                     <Button as={Link} to="/transactions" variant="outline-info" size="lg">
                       <div className="py-2">
-                        <div>📊</div>
+                        <img src="/transaction.png" alt="View Transactions" width="30" height="30" className="mb-2" />
                         <div>View Transactions</div>
                       </div>
                     </Button>
@@ -225,7 +221,7 @@ const Dashboard = () => {
                   <div className="d-grid">
                     <Button as={Link} to="/docs" variant="outline-secondary" size="lg">
                       <div className="py-2">
-                        <div>📖</div>
+                        <img src="/documentation.png" alt="Documentation" width="30" height="30" className="mb-2" />
                         <div>Documentation</div>
                       </div>
                     </Button>
@@ -242,7 +238,10 @@ const Dashboard = () => {
         <Col md={8}>
           <Card>
             <Card.Header className="d-flex justify-content-between align-items-center">
-              <h5 className="mb-0">🏦 Your Accounts</h5>
+              <h5 className="mb-0">
+                <img src="/bank.png" alt="Accounts" width="20" height="20" className="me-2" />
+                Your Accounts
+              </h5>
               <Button as={Link} to="/accounts" variant="outline-primary" size="sm">
                 Manage All
               </Button>
@@ -291,7 +290,10 @@ const Dashboard = () => {
         <Col md={4}>
           <Card>
             <Card.Header className="d-flex justify-content-between align-items-center">
-              <h5 className="mb-0">📈 Recent Activity</h5>
+              <h5 className="mb-0">
+                <img src="/clock.png" alt="Recent Activity" width="20" height="20" className="me-2" />
+                Recent Activity
+              </h5>
               <Button as={Link} to="/transactions" variant="outline-primary" size="sm">
                 View All
               </Button>
@@ -345,7 +347,10 @@ const Dashboard = () => {
         <Col md={6}>
           <Card className="border-info">
             <Card.Header className="bg-info text-white">
-              <h6 className="mb-0">💡 Pro Tips</h6>
+              <h6 className="mb-0">
+                <img src="/target.png" alt="Pro Tips" width="16" height="16" className="me-2" />
+                Pro Tips
+              </h6>
             </Card.Header>
             <Card.Body>
               <ul className="mb-0">
@@ -359,7 +364,10 @@ const Dashboard = () => {
         <Col md={6}>
           <Card className="border-warning">
             <Card.Header className="bg-warning text-dark">
-              <h6 className="mb-0">🔒 Security Status</h6>
+              <h6 className="mb-0">
+                <img src="/padlock.png" alt="Security Status" width="16" height="16" className="me-2" />
+                Security Status
+              </h6>
             </Card.Header>
             <Card.Body>
               <div className="d-flex align-items-center mb-2">
@@ -376,13 +384,6 @@ const Dashboard = () => {
               </div>
             </Card.Body>
           </Card>
-        </Col>
-      </Row>
-      
-      {/* Debug Information - Remove this in production */}
-      <Row className="mt-4">
-        <Col>
-          <DebugInfo />
         </Col>
       </Row>
     </Container>

@@ -92,7 +92,7 @@ const Home = () => {
           <Col md={4}>
             <Card className="h-100 border-primary">
               <Card.Body className="text-center">
-                <div className="feature-icon">💼</div>
+                <img src="/manageAccounts .png" alt="My Accounts" width="60" height="60" className="feature-icon mb-3" />
                 <Card.Title>My Accounts</Card.Title>
                 <Card.Text>
                   View and manage your bank accounts, check balances, and create new accounts.
@@ -106,7 +106,7 @@ const Home = () => {
           <Col md={4}>
             <Card className="h-100 border-success">
               <Card.Body className="text-center">
-                <div className="feature-icon">💸</div>
+                <img src="/money.png" alt="Send Money" width="60" height="60" className="feature-icon mb-3" />
                 <Card.Title>Send Money</Card.Title>
                 <Card.Text>
                   Transfer money securely between accounts with our instant transfer system.
@@ -120,7 +120,7 @@ const Home = () => {
           <Col md={4}>
             <Card className="h-100 border-info">
               <Card.Body className="text-center">
-                <div className="feature-icon">🔐</div>
+                <img src="/padlock.png" alt="Account Security" width="60" height="60" className="feature-icon mb-3" />
                 <Card.Title>Account Security</Card.Title>
                 <Card.Text>
                   Your security is our priority. All transactions are encrypted and monitored.
