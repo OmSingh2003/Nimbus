@@ -547,3 +547,48 @@ body, html {
   font-size: 0.9rem !important;
   opacity: 0.9 !important;
 }
+
+
+/* Dashboard Styles */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #00adf6 0%, #0096d9 100%) !important;
+}
+
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.dashboard-card {
+  transition: transform 0.2s ease-in-out;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.dashboard-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.quick-action-btn {
+  padding: 1.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.quick-action-btn:hover {
+  transform: scale(1.02);
+}
+
+/* Quick action cards */
+.quick-action-card {
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.quick-action-card:hover {
+  border-color: #00adf6;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 173, 246, 0.15);
+}

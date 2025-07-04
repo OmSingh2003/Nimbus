@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Dashboard from './Dashboard';
 
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,6 +15,11 @@ const Home = () => {
       setUsername(storedUsername || 'User');
     }
   }, []);
+
+  // If user is logged in, show Dashboard instead of marketing page
+  if (isLoggedIn) {
+    return <Dashboard />;
+  }
 
   return (
     <Container className="mt-4">

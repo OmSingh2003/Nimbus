@@ -8,6 +8,8 @@ import CreateUser from './components/CreateUser';
 import LoginUser from './components/LoginUser';
 import CreateTransfer from './components/CreateTransfer';
 import AccountManager from './components/AccountManager';
+import Transactions from './components/Transactions';
+import Dashboard from './components/Dashboard';
 import VerifyEmail from './components/VerifyEmail';
 import Documentation from './components/Documentation';
 import Footer from './components/Footer';
@@ -48,6 +50,7 @@ function Navigation({ isLoggedIn, username, onLogout }) {
               <>
                 <Nav.Link as={Link} to="/accounts">My Accounts</Nav.Link>
                 <Nav.Link as={Link} to="/transfer">Transfer</Nav.Link>
+                <Nav.Link as={Link} to="/transactions">Transactions</Nav.Link>
                 <Nav.Link as={Link} to="/docs">Documentation</Nav.Link>
               </>
             )}
@@ -142,6 +145,7 @@ function App() {
             />
             <Route path="/accounts" element={<AccountManager />} />
             <Route path="/transfer" element={<CreateTransfer />} />
+            <Route path="/transactions" element={<Transactions />} />
             <Route path="/verify-email" element={<VerifyEmail />} />
             <Route path="/docs" element={<Documentation />} />
           </Routes>
