@@ -48,6 +48,7 @@ function Navigation({ isLoggedIn, username, onLogout }) {
             {/* Show these only when logged in */}
             {isLoggedIn && (
               <>
+                <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
                 <Nav.Link as={Link} to="/accounts">My Accounts</Nav.Link>
                 <Nav.Link as={Link} to="/transfer">Transfer</Nav.Link>
                 <Nav.Link as={Link} to="/transactions">Transactions</Nav.Link>
@@ -146,6 +147,7 @@ function App() {
             <Route path="/accounts" element={<AccountManager />} />
             <Route path="/transfer" element={<CreateTransfer />} />
             <Route path="/transactions" element={<Transactions />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/verify-email" element={<VerifyEmail />} />
             <Route path="/docs" element={<Documentation />} />
           </Routes>

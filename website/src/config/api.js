@@ -38,5 +38,27 @@ apiClient.interceptors.request.use((config) => {
   return config;
 });
 
+// Add response interceptor to handle auth errors
+apiClient.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    // Check if the error is related to authentication
+    if (error.response?.status === 401 || 
+        error.response?.status === 500 && 
+        error.response?.data?.message?.includes('authorization')) {
+      
+      // Clear invalid token and redirect to login
+      localStorage.removeItem('token');
+      localStorage.removeItem('username');
+      
+      // Redirect to login page if not already there
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login';
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
 export { API_CONFIG, apiClient };
 export default apiClient;

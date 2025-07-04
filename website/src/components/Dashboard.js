@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Alert, Badge, Table, Spinner } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import apiClient from '../config/api';
 
 const Dashboard = () => {
@@ -10,14 +10,24 @@ const Dashboard = () => {
   const [error, setError] = useState('');
   const [username, setUsername] = useState('');
   const [totalBalance, setTotalBalance] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
+    // Check if user is logged in
+    const token = localStorage.getItem('token');
     const storedUsername = localStorage.getItem('username');
+    
+    if (!token) {
+      // Redirect to login if no token
+      navigate('/login');
+      return;
+    }
+    
     if (storedUsername) {
       setUsername(storedUsername);
     }
     fetchDashboardData();
-  }, []);
+  }, [navigate]);
 
   const fetchDashboardData = async () => {
     try {

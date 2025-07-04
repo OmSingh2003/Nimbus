@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Table, Button, Alert, Form, Badge, Spinner } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import apiClient from '../config/api';
 
 const Transactions = () => {
@@ -11,11 +12,21 @@ const Transactions = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(10);
   const [hasMore, setHasMore] = useState(true);
+  const navigate = useNavigate();
 
   // Fetch user accounts on component mount
   useEffect(() => {
+    // Check if user is logged in
+    const token = localStorage.getItem('token');
+    
+    if (!token) {
+      // Redirect to login if no token
+      navigate('/login');
+      return;
+    }
+    
     fetchAccounts();
-  }, []);
+  }, [navigate]);
 
   // Fetch transfers when account is selected
   useEffect(() => {
