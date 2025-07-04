@@ -2,6 +2,8 @@ package gapi
 
 import (
 	"context"
+	"database/sql"
+	"fmt"
 	"time"
 
 	db "github.com/OmSingh2003/nimbus/db/sqlc"
@@ -35,9 +37,32 @@ func (server *Server) CreateTransfer(ctx context.Context, req *pb.CreateTransfer
 	}
 
 	// Verify that the to_account exists
+	// Try to get account by ID first, then fall back to account number if ID fails
 	toAccount, err := server.store.GetAccount(ctx, req.GetToAccountId())
 	if err != nil {
-		return nil, status.Errorf(codes.Internal, "failed to get to account: %s", err)
+		// If account ID lookup fails, try looking up by account number
+		// Convert the numeric ID to string and try as account number
+		toAccountByNumber, err2 := server.store.GetAccountByNumber(ctx, sql.NullString{
+			String: fmt.Sprintf("%d", req.GetToAccountId()),
+			Valid:  true,
+		})
+		if err2 != nil {
+			// Try known demo account number as well
+			if req.GetToAccountId() == 1234567890 {
+				toAccountDemo, err3 := server.store.GetAccountByNumber(ctx, sql.NullString{
+					String: "DEMO-1234567890",
+					Valid:  true,
+				})
+				if err3 != nil {
+					return nil, status.Errorf(codes.Internal, "failed to get to account: account ID %d not found and account number lookup failed: %s", req.GetToAccountId(), err)
+				}
+				toAccount = toAccountDemo
+			} else {
+				return nil, status.Errorf(codes.Internal, "failed to get to account: account ID %d not found and account number lookup failed: %s", req.GetToAccountId(), err)
+			}
+		} else {
+			toAccount = toAccountByNumber
+		}
 	}
 
 	// Check if currency matches
@@ -51,7 +76,7 @@ func (server *Server) CreateTransfer(ctx context.Context, req *pb.CreateTransfer
 
 	arg := db.TransferTxParams{
 		FromAccountID: req.GetFromAccountId(),
-		ToAccountID:   req.GetToAccountId(),
+		ToAccountID:   toAccount.ID, // Use the actual account ID from the lookup
 		Amount:        req.GetAmount(),
 	}
 

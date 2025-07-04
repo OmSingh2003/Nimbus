@@ -10,6 +10,10 @@ RETURNING *;
 SELECT * FROM account
 WHERE id = $1 LIMIT 1;
 
+-- name: GetAccountByNumber :one
+SELECT * FROM account
+WHERE account_number = $1 LIMIT 1;
+
 SELECT * FROM account
 WHERE id = $1 LIMIT 1
 FOR UPDATE;

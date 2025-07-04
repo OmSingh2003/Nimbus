@@ -27,7 +27,7 @@ func (server *Server) CreateAccount(ctx context.Context, req *pb.CreateAccountRe
 	arg := db.CreateAccountParams{
 		Owner:         authPayload.Username,
 		Currency:      req.GetCurrency(),
-		Balance:       10000, // $100 free credit for testing
+		Balance:       util.GetWelcomeCreditAmount(req.GetCurrency()), // Currency-specific welcome credits
 		AccountNumber: sql.NullString{String: util.RandomAccountNumber(), Valid: true},
 	}
 

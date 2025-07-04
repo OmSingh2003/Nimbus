@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Card, Badge, Button, Alert, Tab, Tabs, Table } from 'react-bootstrap';
 
 const Documentation = () => {
-  const [demoAccountNumber, setDemoAccountNumber] = useState('DEMO-1234567890');
+  const [demoAccountNumber, setDemoAccountNumber] = useState('1234567890');
 
   return (
     <Container className="mt-4">

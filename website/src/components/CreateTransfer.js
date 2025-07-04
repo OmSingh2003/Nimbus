@@ -92,9 +92,18 @@ const CreateTransfer = () => {
     
     setLoading(true);
     try {
+      // Parse toAccountID - if it's numeric, use as is, otherwise try to parse it
+      let parsedToAccountID;
+      if (isNaN(toAccountID)) {
+        // If not a number, still try to parse - this will handle cases like "1234567890"
+        parsedToAccountID = parseInt(toAccountID) || 0;
+      } else {
+        parsedToAccountID = parseInt(toAccountID);
+      }
+      
       const response = await apiClient.post('/v1/transfers', {
         from_account_id: parseInt(fromAccountID),
-        to_account_id: parseInt(toAccountID),
+        to_account_id: parsedToAccountID,
         amount: parseInt(amount * 100), // Convert to cents
         currency: currency,
       });
@@ -185,14 +194,14 @@ const CreateTransfer = () => {
                   <Form.Group className="mb-3">
                     <Form.Label>To Account ID</Form.Label>
                     <Form.Control
-                      type="number"
-                      placeholder="Enter destination account ID"
+                      type="text"
+                      placeholder="Enter destination account ID or account number"
                       value={toAccountID}
                       onChange={(e) => setToAccountID(e.target.value)}
                       required
                     />
                     <Form.Text className="text-muted">
-                      Enter the account ID of the person you want to send money to.
+                      Enter the account ID or account number. For demo purposes, try: 1234567890
                     </Form.Text>
                   </Form.Group>
 

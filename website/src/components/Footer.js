@@ -26,7 +26,7 @@ const Footer = () => {
             </div>
           </Col>
           
-          <Col md={2}>
+          <Col md={4}>
             <h5>Product</h5>
             <p><a href="/">Accounts</a></p>
             <p><a href="/">Transfers</a></p>
@@ -34,28 +34,11 @@ const Footer = () => {
             <p><a href="/">Security</a></p>
           </Col>
           
-          <Col md={2}>
-            <h5>Company</h5>
-            <p><a href="/">About Us</a></p>
-            <p><a href="/">Careers</a></p>
-            <p><a href="/">Press</a></p>
-            <p><a href="/">Blog</a></p>
-          </Col>
-          
-          <Col md={2}>
+          <Col md={4}>
             <h5>Support</h5>
+            <p><a href="mailto:singhom2003.os@gmail.com">singhom2003.os@gmail.com</a></p>
+            <p><a href="tel:+918810967896">+91 8810967896</a></p>
             <p><a href="/">Help Center</a></p>
-            <p><a href="/">Contact Us</a></p>
-            <p><a href="/">Status</a></p>
-            <p><a href="/">Community</a></p>
-          </Col>
-          
-          <Col md={2}>
-            <h5>Legal</h5>
-            <p><a href="/">Privacy Policy</a></p>
-            <p><a href="/">Terms of Service</a></p>
-            <p><a href="/">Cookie Policy</a></p>
-            <p><a href="/">Compliance</a></p>
           </Col>
         </Row>
         
