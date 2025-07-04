@@ -94,6 +94,9 @@ const Transactions = () => {
   const formatDate = (dateString) => {
     if (!dateString) return 'N/A';
     
+    // Debug logging to understand the date format
+    console.log('Date formatting debug:', { dateString, type: typeof dateString });
+    
     try {
       // Handle protobuf timestamp format (for accounts)
       if (typeof dateString === 'object' && dateString.seconds) {
@@ -101,21 +104,41 @@ const Transactions = () => {
         return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
       }
       
+      // Handle Go time.Time string format (like "2025-07-04 13:32:33.123456 +0000 UTC")
+      if (typeof dateString === 'string' && dateString.includes('UTC')) {
+        // Extract the date part before the timezone
+        const datePart = dateString.split(' +')[0];
+        const date = new Date(datePart + 'Z'); // Add Z for UTC
+        if (!isNaN(date.getTime())) {
+          return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+        }
+      }
+      
       // Handle ISO string format
       const date = new Date(dateString);
       if (isNaN(date.getTime())) {
-        return 'Invalid Date';
+        return 'N/A';
       }
       
       return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
     } catch (error) {
       console.error('Date parsing error:', error, 'for dateString:', dateString);
-      return 'Invalid Date';
+      return 'N/A';
     }
   };
 
   const getTransferType = (transfer, accountId) => {
     const accountIdNum = parseInt(accountId);
+    
+    // Debug logging to understand the data structure
+    console.log('Transfer type debug:', {
+      transfer,
+      accountId,
+      accountIdNum,
+      from_account_id: transfer.from_account_id,
+      to_account_id: transfer.to_account_id
+    });
+    
     if (transfer.from_account_id === accountIdNum) {
       return 'outgoing';
     } else if (transfer.to_account_id === accountIdNum) {

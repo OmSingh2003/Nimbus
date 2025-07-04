@@ -130,7 +130,7 @@ const Dashboard = () => {
         <Col>
           <div className="d-flex justify-content-between align-items-center">
             <div>
-              <h2>Welcome back, {username}! 👋</h2>
+              <h2>Welcome back, {username}!</h2>
               <p className="text-muted">Here's an overview of your financial activity</p>
             </div>
             <div>
