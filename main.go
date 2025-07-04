@@ -101,6 +101,15 @@ func runGatewayServer(config util.Config, store db.Store, taskDistributor worker
 			h.ServeHTTP(w, r)
 		})
 	}
+
+	// Add health endpoint
+	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte(`{"status":"ok","message":"Nimbus backend is running"}`));
+	})
+
 	mux.Handle("/", corsHandler(grpcMux))
 
 	statikFS, err := fs.New()
