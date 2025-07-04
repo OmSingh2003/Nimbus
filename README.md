@@ -7,7 +7,6 @@
 
 A robust, full-featured banking backend system built with Go. This project demonstrates modern microservices architecture with REST/gRPC APIs, secure authentication, asynchronous task processing, and comprehensive testing.
 
-> **Status:** 🚧 Currently under active development
 
 ## ✨ Features
 
