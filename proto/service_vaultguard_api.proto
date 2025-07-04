@@ -110,4 +110,14 @@ service VaultguardAPI {
       summary: "List user accounts"
     };
   }
+
+  rpc ListTransfers(ListTransfersRequest) returns (ListTransfersResponse) {
+    option (google.api.http) = {
+      get: "/v1/transfers"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Lists all transfers involving the authenticated user's accounts with pagination support."
+      summary: "List user transfers"
+    };
+  }
 }

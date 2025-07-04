@@ -1,4 +1,18 @@
 services:
+  # Backend API Service
+  - type: web
+    name: vaultguard-api
+    env: go # Change this to your backend language (go, node, python, etc.)
+    plan: free
+    repo: https://github.com/OmSingh2003/vaultguard-api.git # Your backend repo
+    # rootDir: . # Uncomment if backend is in a subdirectory
+    buildCommand: go build -o main . # Change based on your backend build process
+    startCommand: ./main # Change based on how you start your backend
+    envVars:
+      - key: PORT
+        value: "8080"
+      # Add other environment variables your backend needs
+
   # Frontend Static Site
   - type: web
     name: vaultguard-website

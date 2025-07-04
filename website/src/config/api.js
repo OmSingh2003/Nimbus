@@ -2,8 +2,8 @@ import axios from 'axios';
 
 // API Configuration
 const API_CONFIG = {
-  // Use environment variable or fallback to development URL
-  BASE_URL: process.env.REACT_APP_API_URL || 'http://localhost:8080',
+  // Use environment variable or fallback to Render production URL
+  BASE_URL: process.env.REACT_APP_API_URL || 'https://nimbus-91j2.onrender.com',
   
   // API endpoints (gRPC Gateway paths)
   ENDPOINTS: {
