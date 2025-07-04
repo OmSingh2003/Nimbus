@@ -61,10 +61,7 @@ const AccountManager = () => {
 
   const getAuthHeaders = () => {
     const token = localStorage.getItem('token');
-    console.log('Token from localStorage:', token ? 'Token exists' : 'No token found');
-    console.log('Token length:', token ? token.length : 0);
     const headers = token ? { Authorization: `Bearer ${token}` } : {};
-    console.log('Headers being sent:', headers);
     return headers;
   };
 
@@ -75,7 +72,6 @@ const AccountManager = () => {
       setAccounts(response.data.accounts || []);
       showMessage('Accounts loaded successfully', 'success');
     } catch (error) {
-      console.error('Error fetching accounts:', error);
       let friendlyMessage;
       
       if (error.response?.status === 401) {
@@ -105,7 +101,6 @@ const AccountManager = () => {
       setCurrency('USD');
       fetchAccounts(); // Refresh the accounts list
     } catch (error) {
-      console.error('Error creating account:', error);
       let friendlyMessage;
       
       if (error.response?.status === 401) {
@@ -137,7 +132,26 @@ const AccountManager = () => {
   };
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleString();
+    if (!dateString) return 'N/A';
+    
+    try {
+      // Handle protobuf timestamp format (for accounts)
+      if (typeof dateString === 'object' && dateString.seconds) {
+        const date = new Date(dateString.seconds * 1000);
+        return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+      }
+      
+      // Handle ISO string format
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) {
+        return 'Invalid Date';
+      }
+      
+      return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+    } catch (error) {
+      console.error('Date parsing error:', error, 'for dateString:', dateString);
+      return 'Invalid Date';
+    }
   };
 
   return (

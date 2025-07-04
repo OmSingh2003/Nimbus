@@ -81,7 +81,26 @@ const Dashboard = () => {
   };
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString();
+    if (!dateString) return 'N/A';
+    
+    try {
+      // Handle protobuf timestamp format (for accounts)
+      if (typeof dateString === 'object' && dateString.seconds) {
+        const date = new Date(dateString.seconds * 1000);
+        return date.toLocaleDateString();
+      }
+      
+      // Handle ISO string format
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) {
+        return 'Invalid Date';
+      }
+      
+      return date.toLocaleDateString();
+    } catch (error) {
+      console.error('Date parsing error:', error, 'for dateString:', dateString);
+      return 'Invalid Date';
+    }
   };
 
   const getTransferType = (transfer, accountId) => {
