@@ -28,13 +28,21 @@ const Transactions = () => {
 
   const fetchAccounts = async () => {
     try {
+      const token = localStorage.getItem('token');
+      console.log('Transactions: Token exists:', !!token);
+      console.log('Transactions: Fetching accounts from /v1/accounts');
+      
       const response = await apiClient.get('/v1/accounts');
+      console.log('Transactions: Accounts response:', response);
+      
       setAccounts(response.data);
       if (response.data.length > 0) {
         setSelectedAccount(response.data[0].id.toString());
       }
     } catch (err) {
-      setError('Failed to fetch accounts');
+      console.error('Transactions: Error fetching accounts:', err);
+      console.error('Transactions: Error response:', err.response?.data);
+      setError(`Failed to fetch accounts: ${err.response?.data?.message || err.message}`);
     }
   };
 

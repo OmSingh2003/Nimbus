@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Alert, Badge, Table, Spinner } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import apiClient from '../config/api';
+import DebugInfo from './DebugInfo';
 
 const Dashboard = () => {
   const [accounts, setAccounts] = useState([]);
@@ -27,14 +28,19 @@ const Dashboard = () => {
       
       // Check if user has a token
       const token = localStorage.getItem('token');
+      console.log('Dashboard: Token exists:', !!token);
+      console.log('Dashboard: Token length:', token ? token.length : 0);
+      
       if (!token) {
         setError('Please log in to view your dashboard');
         setLoading(false);
         return;
       }
       
+      console.log('Dashboard: Fetching accounts from /v1/accounts');
       // Fetch accounts
       const accountsResponse = await apiClient.get('/v1/accounts');
+      console.log('Dashboard: Accounts response:', accountsResponse);
       setAccounts(accountsResponse.data || []);
 
       // Calculate total balance by currency
@@ -65,7 +71,10 @@ const Dashboard = () => {
         }
       }
     } catch (err) {
-      setError('Failed to fetch dashboard data');
+      console.error('Dashboard: Error fetching data:', err);
+      console.error('Dashboard: Error response:', err.response?.data);
+      console.error('Dashboard: Error status:', err.response?.status);
+      setError(`Failed to fetch dashboard data: ${err.response?.data?.message || err.message}`);
     } finally {
       setLoading(false);
     }
@@ -361,6 +370,13 @@ const Dashboard = () => {
               </div>
             </Card.Body>
           </Card>
+        </Col>
+      </Row>
+      
+      {/* Debug Information - Remove this in production */}
+      <Row className="mt-4">
+        <Col>
+          <DebugInfo />
         </Col>
       </Row>
     </Container>
