@@ -59,7 +59,7 @@ function Navigation({ isLoggedIn, username, onLogout }) {
           <Nav className="align-items-center">
             {/* GitHub link */}
             <Nav.Link 
-              href="https://github.com/OmSingh2003/Nimbus-API"
+              href="https://github.com/OmSingh2003/Nimbus"
               target="_blank" 
               rel="noopener noreferrer"
               className="me-3"
@@ -93,8 +93,8 @@ function App() {
 
 // Wake up server on app load
   useEffect(() => {
-    // Make a request to the backend homepage or health check endpoint
-    apiClient.get('/')
+    // Make a request to the backend health check endpoint
+    apiClient.get('/health')
       .then(response => {
         console.log('Backend active:', response.status);
       })

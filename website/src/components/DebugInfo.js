@@ -37,7 +37,7 @@ const DebugInfo = () => {
         <hr />
         <h6>Test API Call</h6>
         <button 
-          className="btn btn-sm btn-primary"
+          className="btn btn-sm btn-primary me-2"
           onClick={async () => {
             try {
               const response = await apiClient.get('/v1/accounts');
@@ -50,6 +50,24 @@ const DebugInfo = () => {
           }}
         >
           Test /v1/accounts
+        </button>
+        <button 
+          className="btn btn-sm btn-warning me-2"
+          onClick={() => {
+            localStorage.removeItem('token');
+            localStorage.removeItem('username');
+            alert('Local storage cleared! Please refresh the page and log in again.');
+          }}
+        >
+          Clear Storage
+        </button>
+        <button 
+          className="btn btn-sm btn-success"
+          onClick={() => {
+            window.location.reload();
+          }}
+        >
+          Refresh Page
         </button>
       </Card.Body>
     </Card>
