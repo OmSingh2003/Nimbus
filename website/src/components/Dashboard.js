@@ -90,23 +90,46 @@ const Dashboard = () => {
         return date.toLocaleDateString();
       }
       
-      // Handle ISO string format
-      const date = new Date(dateString);
-      if (isNaN(date.getTime())) {
-        return 'Invalid Date';
+      // Handle Go time.Time string formats
+      if (typeof dateString === 'string') {
+        let dateToParse = dateString;
+        
+        // Convert Go time string to ISO format
+        if (dateString.includes('UTC')) {
+          const parts = dateString.split(' ');
+          if (parts.length >= 2) {
+            const datePart = parts[0];
+            const timePart = parts[1].split('.')[0];
+            dateToParse = `${datePart}T${timePart}Z`;
+          }
+        }
+        
+        const date = new Date(dateToParse);
+        if (!isNaN(date.getTime())) {
+          return date.toLocaleDateString();
+        }
       }
       
-      return date.toLocaleDateString();
+      // Fallback
+      const date = new Date(dateString);
+      if (!isNaN(date.getTime())) {
+        return date.toLocaleDateString();
+      }
+      
+      return 'N/A';
     } catch (error) {
-      console.error('Date parsing error:', error, 'for dateString:', dateString);
-      return 'Invalid Date';
+      return 'N/A';
     }
   };
 
   const getTransferType = (transfer, accountId) => {
-    if (transfer.from_account_id === accountId) {
+    const accountIdNum = parseInt(accountId);
+    const fromAccountId = parseInt(transfer.from_account_id);
+    const toAccountId = parseInt(transfer.to_account_id);
+    
+    if (fromAccountId === accountIdNum) {
       return 'sent';
-    } else if (transfer.to_account_id === accountId) {
+    } else if (toAccountId === accountIdNum) {
       return 'received';
     }
     return 'unknown';

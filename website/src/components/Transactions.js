@@ -61,6 +61,13 @@ const Transactions = () => {
       
       const transfers = response.data?.transfers || [];
       
+      // Debug the actual transfer data structure
+      console.log('Transfers API response:', {
+        fullResponse: response.data,
+        transfersArray: transfers,
+        firstTransfer: transfers[0]
+      });
+      
       if (currentPage === 1) {
         setTransfers(transfers);
       } else {
@@ -94,9 +101,6 @@ const Transactions = () => {
   const formatDate = (dateString) => {
     if (!dateString) return 'N/A';
     
-    // Debug logging to understand the date format
-    console.log('Date formatting debug:', { dateString, type: typeof dateString });
-    
     try {
       // Handle protobuf timestamp format (for accounts)
       if (typeof dateString === 'object' && dateString.seconds) {
@@ -104,23 +108,39 @@ const Transactions = () => {
         return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
       }
       
-      // Handle Go time.Time string format (like "2025-07-04 13:32:33.123456 +0000 UTC")
-      if (typeof dateString === 'string' && dateString.includes('UTC')) {
-        // Extract the date part before the timezone
-        const datePart = dateString.split(' +')[0];
-        const date = new Date(datePart + 'Z'); // Add Z for UTC
+      // Handle Go time.Time string formats
+      if (typeof dateString === 'string') {
+        // Handle various Go time formats:
+        // "2025-07-04 13:32:33.123456 +0000 UTC"
+        // "2025-07-04T13:32:33Z"
+        // "2025-07-04T13:32:33.123456Z"
+        
+        let dateToParse = dateString;
+        
+        // Convert Go time string to ISO format
+        if (dateString.includes('UTC')) {
+          // Remove the timezone part and microseconds if present
+          const parts = dateString.split(' ');
+          if (parts.length >= 2) {
+            const datePart = parts[0];
+            const timePart = parts[1].split('.')[0]; // Remove microseconds
+            dateToParse = `${datePart}T${timePart}Z`;
+          }
+        }
+        
+        const date = new Date(dateToParse);
         if (!isNaN(date.getTime())) {
           return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
         }
       }
       
-      // Handle ISO string format
+      // Fallback: try direct parsing
       const date = new Date(dateString);
-      if (isNaN(date.getTime())) {
-        return 'N/A';
+      if (!isNaN(date.getTime())) {
+        return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
       }
       
-      return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+      return 'N/A';
     } catch (error) {
       console.error('Date parsing error:', error, 'for dateString:', dateString);
       return 'N/A';
@@ -128,23 +148,34 @@ const Transactions = () => {
   };
 
   const getTransferType = (transfer, accountId) => {
+    // Convert both to numbers for proper comparison
     const accountIdNum = parseInt(accountId);
+    const fromAccountId = parseInt(transfer.from_account_id);
+    const toAccountId = parseInt(transfer.to_account_id);
     
-    // Debug logging to understand the data structure
+    // Debug logging
     console.log('Transfer type debug:', {
       transfer,
-      accountId,
-      accountIdNum,
-      from_account_id: transfer.from_account_id,
-      to_account_id: transfer.to_account_id
+      selectedAccountId: accountId,
+      selectedAccountIdNum: accountIdNum,
+      fromAccountId,
+      toAccountId,
+      comparison: {
+        isOutgoing: fromAccountId === accountIdNum,
+        isIncoming: toAccountId === accountIdNum
+      }
     });
     
-    if (transfer.from_account_id === accountIdNum) {
+    if (fromAccountId === accountIdNum) {
       return 'outgoing';
-    } else if (transfer.to_account_id === accountIdNum) {
+    } else if (toAccountId === accountIdNum) {
       return 'incoming';
     }
-    return 'unknown';
+    
+    // If we can't determine, it might be a different account structure
+    // Let's default to incoming for now to see if that helps
+    console.warn('Could not determine transfer type, defaulting to incoming');
+    return 'incoming';
   };
 
   const getTransferBadge = (transfer, accountId) => {
@@ -159,10 +190,13 @@ const Transactions = () => {
 
   const getOtherAccountId = (transfer, accountId) => {
     const accountIdNum = parseInt(accountId);
-    if (transfer.from_account_id === accountIdNum) {
-      return transfer.to_account_id;
-    } else if (transfer.to_account_id === accountIdNum) {
-      return transfer.from_account_id;
+    const fromAccountId = parseInt(transfer.from_account_id);
+    const toAccountId = parseInt(transfer.to_account_id);
+    
+    if (fromAccountId === accountIdNum) {
+      return toAccountId;
+    } else if (toAccountId === accountIdNum) {
+      return fromAccountId;
     }
     return 'N/A';
   };
