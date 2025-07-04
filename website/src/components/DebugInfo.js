@@ -40,9 +40,15 @@ const DebugInfo = () => {
           className="btn btn-sm btn-primary me-2"
           onClick={async () => {
             try {
-              const response = await apiClient.get('/v1/accounts');
+              const response = await apiClient.get('/v1/accounts', {
+                params: {
+                  page_id: 1,
+                  page_size: 10
+                }
+              });
               console.log('Manual API test success:', response);
-              alert('API call successful! Check console for details.');
+              console.log('Accounts found:', response.data?.accounts?.length || 0);
+              alert(`API call successful! Found ${response.data?.accounts?.length || 0} accounts. Check console for details.`);
             } catch (error) {
               console.error('Manual API test failed:', error);
               alert(`API call failed: ${error.response?.data?.message || error.message}`);

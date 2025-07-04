@@ -32,12 +32,18 @@ const Transactions = () => {
       console.log('Transactions: Token exists:', !!token);
       console.log('Transactions: Fetching accounts from /v1/accounts');
       
-      const response = await apiClient.get('/v1/accounts');
+      const response = await apiClient.get('/v1/accounts', {
+        params: {
+          page_id: 1,
+          page_size: 50
+        }
+      });
       console.log('Transactions: Accounts response:', response);
       
-      setAccounts(response.data);
-      if (response.data.length > 0) {
-        setSelectedAccount(response.data[0].id.toString());
+      const accounts = response.data?.accounts || [];
+      setAccounts(accounts);
+      if (accounts.length > 0) {
+        setSelectedAccount(accounts[0].id.toString());
       }
     } catch (err) {
       console.error('Transactions: Error fetching accounts:', err);
@@ -55,20 +61,21 @@ const Transactions = () => {
     try {
       const response = await apiClient.get('/v1/transfers', {
         params: {
-          account_id: selectedAccount,
-          page_id: currentPage,
+          page_number: currentPage,
           page_size: pageSize
         }
       });
       
+      const transfers = response.data?.transfers || [];
+      
       if (currentPage === 1) {
-        setTransfers(response.data || []);
+        setTransfers(transfers);
       } else {
-        setTransfers(prev => [...prev, ...(response.data || [])]);
+        setTransfers(prev => [...prev, ...transfers]);
       }
       
       // Check if there are more transfers
-      setHasMore(response.data && response.data.length === pageSize);
+      setHasMore(transfers && transfers.length === pageSize);
     } catch (err) {
       setError('Failed to fetch transfers');
     } finally {

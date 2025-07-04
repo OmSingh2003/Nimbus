@@ -38,14 +38,20 @@ const Dashboard = () => {
       }
       
       console.log('Dashboard: Fetching accounts from /v1/accounts');
-      // Fetch accounts
-      const accountsResponse = await apiClient.get('/v1/accounts');
+      // Fetch accounts with required pagination parameters
+      const accountsResponse = await apiClient.get('/v1/accounts', {
+        params: {
+          page_id: 1,
+          page_size: 50
+        }
+      });
       console.log('Dashboard: Accounts response:', accountsResponse);
-      setAccounts(accountsResponse.data || []);
+      const accounts = accountsResponse.data?.accounts || [];
+      setAccounts(accounts);
 
       // Calculate total balance by currency
       const balances = {};
-      accountsResponse.data?.forEach(account => {
+      accounts.forEach(account => {
         if (balances[account.currency]) {
           balances[account.currency] += account.balance;
         } else {
@@ -54,17 +60,17 @@ const Dashboard = () => {
       });
       setTotalBalance(balances);
 
-      // Fetch recent transfers for the first account (if exists)
-      if (accountsResponse.data && accountsResponse.data.length > 0) {
+      // Fetch recent transfers if user has accounts
+      if (accounts && accounts.length > 0) {
         try {
           const transfersResponse = await apiClient.get('/v1/transfers', {
             params: {
-              account_id: accountsResponse.data[0].id,
-              page_id: 1,
+              page_number: 1,
               page_size: 5
             }
           });
-          setRecentTransfers(transfersResponse.data || []);
+          const transfers = transfersResponse.data?.transfers || [];
+          setRecentTransfers(transfers);
         } catch (transferError) {
           console.log('No transfers found or error fetching transfers');
           setRecentTransfers([]);
