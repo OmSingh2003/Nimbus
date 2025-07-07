@@ -82,15 +82,17 @@ const Documentation = () => {
 
           <Row>
             <Col>
-              <h4><img src="/microservices.png" alt="Microservices" width="24" height="24" className="me-2" /> Microservices Architecture</h4>
-              <p><strong>Microservices Architecture:</strong></p>
-              <ul>
-                <li><strong>API Gateway:</strong> Handles routing and authentication</li>
-                <li><strong>User Service:</strong> Account management and verification</li>
-                <li><strong>Transaction Service:</strong> Money transfers and balance management</li>
-                <li><strong>Email Service:</strong> Verification and notification emails</li>
-                <li><strong>Database Layer:</strong> PostgreSQL with connection pooling</li>
-              </ul>
+              <div className="bg-light p-4 rounded border mb-4">
+                <h4><img src="/microservices.png" alt="Microservices" width="24" height="24" className="me-2" /> Microservices Architecture</h4>
+                <p><strong>Microservices Architecture:</strong></p>
+                <ul>
+                  <li><strong>API Gateway:</strong> Handles routing and authentication</li>
+                  <li><strong>User Service:</strong> Account management and verification</li>
+                  <li><strong>Transaction Service:</strong> Money transfers and balance management</li>
+                  <li><strong>Email Service:</strong> Verification and notification emails</li>
+                  <li><strong>Database Layer:</strong> PostgreSQL with connection pooling</li>
+                </ul>
+              </div>
             </Col>
           </Row>
         </Tab>
@@ -99,47 +101,49 @@ const Documentation = () => {
         <Tab eventKey="user-guide" title="User Guide">
           <Row>
             <Col lg={10} className="mx-auto">
-              <h3><img src="/quickAction.png" alt="Getting Started" width="32" height="32" className="me-2" />Getting Started</h3>
-              
-              <div className="mb-4">
-                <h4>1. <img src="/target.png" alt="Account Registration" width="24" height="24" className="me-2" />Account Registration</h4>
-                <ol>
-                  <li>Click "Create Account" in the navigation</li>
-                  <li>Fill in your details (username, full name, email, password)</li>
-                  <li>Submit the form and check your email</li>
-                  <li>Click the verification link (expires in 24 hours)</li>
-                  <li>Welcome! You'll receive $100 USD in your account</li>
-                </ol>
-              </div>
+              <div className="bg-primary bg-opacity-10 p-4 rounded border border-primary mb-4">
+                <h3><img src="/quickAction.png" alt="Getting Started" width="32" height="32" className="me-2" />Getting Started</h3>
+                
+                <div className="bg-white p-3 rounded border mb-3">
+                  <h4>1. <img src="/target.png" alt="Account Registration" width="24" height="24" className="me-2" />Account Registration</h4>
+                  <ol>
+                    <li>Click "Create Account" in the navigation</li>
+                    <li>Fill in your details (username, full name, email, password)</li>
+                    <li>Submit the form and check your email</li>
+                    <li>Click the verification link (expires in 24 hours)</li>
+                    <li>Welcome! You'll receive $100 USD in your account</li>
+                  </ol>
+                </div>
 
-              <div className="mb-4">
-                <h4>2. <img src="/padlock.png" alt="Login Process" width="24" height="24" className="me-2" />Login Process</h4>
-                <ol>
-                  <li>Use your username and password to login</li>
-                  <li>Unverified accounts cannot login (check email first)</li>
-                  <li>Successful login redirects to account dashboard</li>
-                </ol>
-              </div>
+                <div className="bg-white p-3 rounded border mb-3">
+                  <h4>2. <img src="/padlock.png" alt="Login Process" width="24" height="24" className="me-2" />Login Process</h4>
+                  <ol>
+                    <li>Use your username and password to login</li>
+                    <li>Unverified accounts cannot login (check email first)</li>
+                    <li>Successful login redirects to account dashboard</li>
+                  </ol>
+                </div>
 
-              <div className="mb-4">
-                <h4>3. <img src="/manageAccounts .png" alt="Managing Accounts" width="24" height="24" className="me-2" />Managing Accounts</h4>
-                <ul>
-                  <li><strong>View Accounts:</strong> See all your accounts and balances</li>
-                  <li><strong>Create New Account:</strong> Support for 6 currencies</li>
-                  <li><strong>Account Details:</strong> View transaction history</li>
-                  <li><strong>Balance Updates:</strong> Real-time balance tracking</li>
-                </ul>
-              </div>
+                <div className="bg-white p-3 rounded border mb-3">
+                  <h4>3. <img src="/manageAccounts .png" alt="Managing Accounts" width="24" height="24" className="me-2" />Managing Accounts</h4>
+                  <ul>
+                    <li><strong>View Accounts:</strong> See all your accounts and balances</li>
+                    <li><strong>Create New Account:</strong> Support for 6 currencies</li>
+                    <li><strong>Account Details:</strong> View transaction history</li>
+                    <li><strong>Balance Updates:</strong> Real-time balance tracking</li>
+                  </ul>
+                </div>
 
-              <div className="mb-4">
-                <h4>4. <img src="/thunder.png" alt="Making Transfers" width="24" height="24" className="me-2" />Making Transfers</h4>
-                <ol>
-                  <li>Go to "Transfer" section</li>
-                  <li>Select your source account</li>
-                  <li>Enter recipient account number</li>
-                  <li>Specify amount and currency</li>
-                  <li>Confirm transfer (instant processing)</li>
-                </ol>
+                <div className="bg-white p-3 rounded border mb-3">
+                  <h4>4. <img src="/thunder.png" alt="Making Transfers" width="24" height="24" className="me-2" />Making Transfers</h4>
+                  <ol>
+                    <li>Go to "Transfer" section</li>
+                    <li>Select your source account</li>
+                    <li>Enter recipient account number</li>
+                    <li>Specify amount and currency</li>
+                    <li>Confirm transfer (instant processing)</li>
+                  </ol>
+                </div>
               </div>
             </Col>
           </Row>
@@ -156,75 +160,79 @@ const Documentation = () => {
                 </p>
               </Alert>
 
-              <h3><img src="/demo.png" alt="Demo Account Testing" width="32" height="32" className="me-2" />Demo Account Testing</h3>
-              
-              <div className="mb-4">
-                <h4>Demo Account Information</h4>
-                <Alert variant="info">
-                  <p><strong>Demo Account Number:</strong> <code>{demoAccountNumber}</code></p>
-                  <p><strong>Purpose:</strong> Send money to this account to see automatic responses</p>
-                  <p><strong>Auto-Response:</strong> You'll receive 2 demo transactions back</p>
-                </Alert>
+              <div className="bg-success bg-opacity-10 p-4 rounded border border-success mb-4">
+                <h3><img src="/demo.png" alt="Demo Account Testing" width="32" height="32" className="me-2" />Demo Account Testing</h3>
+                
+                <div className="bg-white p-3 rounded border mb-3">
+                  <h4>Demo Account Information</h4>
+                  <Alert variant="info">
+                    <p><strong>Demo Account Number:</strong> <code>{demoAccountNumber}</code></p>
+                    <p><strong>Purpose:</strong> Send money to this account to see automatic responses</p>
+                    <p><strong>Auto-Response:</strong> You'll receive 2 demo transactions back</p>
+                  </Alert>
+                </div>
+
+                <div className="bg-white p-3 rounded border mb-3">
+                  <h4>How to Test:</h4>
+                  <ol>
+                    <li>Create your account and verify email</li>
+                    <li>Use your $100 welcome credits</li>
+                    <li>Send any amount to demo account: <code>{demoAccountNumber}</code></li>
+                    <li>Watch for automatic demo transactions in return</li>
+                    <li>Check your account balance and transaction history</li>
+                  </ol>
+                </div>
+
+                <div className="bg-white p-3 rounded border mb-3">
+                  <h4>Sample Test Scenarios:</h4>
+                  <Table striped bordered>
+                    <thead>
+                      <tr>
+                        <th>Test Case</th>
+                        <th>Action</th>
+                        <th>Expected Result</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Email Verification</td>
+                        <td>Register new account</td>
+                        <td>Receive verification email, $100 credit after verification</td>
+                      </tr>
+                      <tr>
+                        <td>Currency Conversion</td>
+                        <td>Create EUR account</td>
+                        <td>Welcome amount shows as ~€95 (based on exchange rate)</td>
+                      </tr>
+                      <tr>
+                        <td>Demo Transaction</td>
+                        <td>Send $10 to demo account</td>
+                        <td>Receive 2 automatic demo transactions back</td>
+                      </tr>
+                      <tr>
+                        <td>Real-time Updates</td>
+                        <td>Make any transfer</td>
+                        <td>Balance updates immediately</td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                </div>
               </div>
 
-              <div className="mb-4">
-                <h4>How to Test:</h4>
-                <ol>
-                  <li>Create your account and verify email</li>
-                  <li>Use your $100 welcome credits</li>
-                  <li>Send any amount to demo account: <code>{demoAccountNumber}</code></li>
-                  <li>Watch for automatic demo transactions in return</li>
-                  <li>Check your account balance and transaction history</li>
-                </ol>
+              <div className="bg-warning bg-opacity-10 p-4 rounded border border-warning">
+                <h3><img src="/recuruters.png" alt="For Recruiters" width="32" height="32" className="me-2" />For Recruiters</h3>
+                <p>This project demonstrates:</p>
+                <ul>
+                  <li><strong>Full-Stack Development:</strong> Go backend + React frontend</li>
+                  <li><strong>Database Design:</strong> PostgreSQL with proper relationships</li>
+                  <li><strong>Security:</strong> JWT authentication, email verification</li>
+                  <li><strong>Email Integration:</strong> SMTP with HTML templates</li>
+                  <li><strong>Real-time Processing:</strong> Instant transaction updates</li>
+                  <li><strong>Error Handling:</strong> Comprehensive error management</li>
+                  <li><strong>UI/UX:</strong> Responsive design with modern aesthetics</li>
+                  <li><strong>Testing:</strong> Automated demo responses for easy testing</li>
+                </ul>
               </div>
-
-              <div className="mb-4">
-                <h4>Sample Test Scenarios:</h4>
-                <Table striped bordered>
-                  <thead>
-                    <tr>
-                      <th>Test Case</th>
-                      <th>Action</th>
-                      <th>Expected Result</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Email Verification</td>
-                      <td>Register new account</td>
-                      <td>Receive verification email, $100 credit after verification</td>
-                    </tr>
-                    <tr>
-                      <td>Currency Conversion</td>
-                      <td>Create EUR account</td>
-                      <td>Welcome amount shows as ~€95 (based on exchange rate)</td>
-                    </tr>
-                    <tr>
-                      <td>Demo Transaction</td>
-                      <td>Send $10 to demo account</td>
-                      <td>Receive 2 automatic demo transactions back</td>
-                    </tr>
-                    <tr>
-                      <td>Real-time Updates</td>
-                      <td>Make any transfer</td>
-                      <td>Balance updates immediately</td>
-                    </tr>
-                  </tbody>
-                </Table>
-              </div>
-
-              <h3><img src="/recuruters.png" alt="For Recruiters" width="32" height="32" className="me-2" />For Recruiters</h3>
-              <p>This project demonstrates:</p>
-              <ul>
-                <li><strong>Full-Stack Development:</strong> Go backend + React frontend</li>
-                <li><strong>Database Design:</strong> PostgreSQL with proper relationships</li>
-                <li><strong>Security:</strong> JWT authentication, email verification</li>
-                <li><strong>Email Integration:</strong> SMTP with HTML templates</li>
-                <li><strong>Real-time Processing:</strong> Instant transaction updates</li>
-                <li><strong>Error Handling:</strong> Comprehensive error management</li>
-                <li><strong>UI/UX:</strong> Responsive design with modern aesthetics</li>
-                <li><strong>Testing:</strong> Automated demo responses for easy testing</li>
-              </ul>
             </Col>
           </Row>
         </Tab>
@@ -233,47 +241,57 @@ const Documentation = () => {
         <Tab eventKey="api" title="API Reference">
           <Row>
             <Col>
-              <h3><img src="/api.png" alt="API Endpoints" width="32" height="32" className="me-2" />API Endpoints</h3>
-              
-              <h4>Authentication Endpoints</h4>
-              <Table striped>
-                <thead>
-                  <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td>POST</td><td>/v1/create_user</td><td>Create new user account</td></tr>
-                  <tr><td>POST</td><td>/v1/login_user</td><td>User authentication</td></tr>
-                  <tr><td>POST</td><td>/v1/verify_email</td><td>Email verification</td></tr>
-                </tbody>
-              </Table>
+              <div className="bg-info bg-opacity-10 p-4 rounded border border-info mb-4">
+                <h3><img src="/api.png" alt="API Endpoints" width="32" height="32" className="me-2" />API Endpoints</h3>
+                
+                <div className="bg-white p-3 rounded border mb-3">
+                  <h4>Authentication Endpoints</h4>
+                  <Table striped>
+                    <thead>
+                      <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>POST</td><td>/v1/create_user</td><td>Create new user account</td></tr>
+                      <tr><td>POST</td><td>/v1/login_user</td><td>User authentication</td></tr>
+                      <tr><td>POST</td><td>/v1/verify_email</td><td>Email verification</td></tr>
+                    </tbody>
+                  </Table>
+                </div>
 
-              <h4>Account Management</h4>
-              <Table striped>
-                <thead>
-                  <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td>POST</td><td>/v1/accounts</td><td>Create new account</td></tr>
-                  <tr><td>GET</td><td>/v1/accounts/:id</td><td>Get account details</td></tr>
-                  <tr><td>GET</td><td>/v1/accounts</td><td>List user accounts</td></tr>
-                </tbody>
-              </Table>
+                <div className="bg-white p-3 rounded border mb-3">
+                  <h4>Account Management</h4>
+                  <Table striped>
+                    <thead>
+                      <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>POST</td><td>/v1/accounts</td><td>Create new account</td></tr>
+                      <tr><td>GET</td><td>/v1/accounts/:id</td><td>Get account details</td></tr>
+                      <tr><td>GET</td><td>/v1/accounts</td><td>List user accounts</td></tr>
+                    </tbody>
+                  </Table>
+                </div>
 
-              <h4>Transactions</h4>
-              <Table striped>
-                <thead>
-                  <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td>POST</td><td>/v1/transfers</td><td>Create money transfer</td></tr>
-                  <tr><td>GET</td><td>/v1/transfers</td><td>Get transfer history</td></tr>
-                </tbody>
-              </Table>
+                <div className="bg-white p-3 rounded border mb-3">
+                  <h4>Transactions</h4>
+                  <Table striped>
+                    <thead>
+                      <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>POST</td><td>/v1/transfers</td><td>Create money transfer</td></tr>
+                      <tr><td>GET</td><td>/v1/transfers</td><td>Get transfer history</td></tr>
+                    </tbody>
+                  </Table>
+                </div>
+              </div>
 
-              <h3><img src="/responses.png" alt="Response Examples" width="32" height="32" className="me-2" />Response Examples</h3>
-              
-              <h4>Successful User Creation</h4>
-              <pre className="bg-light p-3 rounded">
+              <div className="bg-secondary bg-opacity-10 p-4 rounded border border-secondary">
+                <h3><img src="/responses.png" alt="Response Examples" width="32" height="32" className="me-2" />Response Examples</h3>
+                
+                <div className="bg-white p-3 rounded border mb-3">
+                  <h4>Successful User Creation</h4>
+                  <pre className="bg-light p-3 rounded">
 {`{
   "user": {
     "username": "john_doe",
@@ -282,10 +300,12 @@ const Documentation = () => {
     "created_at": "2025-01-01T12:00:00Z"
   }
 }`}
-              </pre>
+                  </pre>
+                </div>
 
-              <h4>Account List Response</h4>
-              <pre className="bg-light p-3 rounded">
+                <div className="bg-white p-3 rounded border mb-3">
+                  <h4>Account List Response</h4>
+                  <pre className="bg-light p-3 rounded">
 {`{
   "accounts": [
     {
@@ -297,7 +317,9 @@ const Documentation = () => {
     }
   ]
 }`}
-              </pre>
+                  </pre>
+                </div>
+              </div>
             </Col>
           </Row>
         </Tab>
