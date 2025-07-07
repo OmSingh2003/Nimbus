@@ -193,10 +193,17 @@ const Transactions = () => {
     const fromAccountId = parseInt(transfer.from_account_id);
     const toAccountId = parseInt(transfer.to_account_id);
     
+    console.log('getOtherAccountId debug:', {
+      accountIdNum,
+      fromAccountId,
+      toAccountId,
+      transfer
+    });
+    
     if (fromAccountId === accountIdNum) {
-      return toAccountId;
+      return toAccountId || 'N/A';
     } else if (toAccountId === accountIdNum) {
-      return fromAccountId;
+      return fromAccountId || 'N/A';
     }
     return 'N/A';
   };
@@ -231,7 +238,7 @@ const Transactions = () => {
                       <option value="">Choose an account...</option>
                       {accounts.map(account => (
                         <option key={account.id} value={account.id.toString()}>
-                          {account.currency} Account - Balance: {formatAmount(account.balance)}
+                          Account #{account.id} ({account.currency}) - Balance: {formatAmount(account.balance)}
                         </option>
                       ))}
                     </Form.Select>

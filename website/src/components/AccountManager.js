@@ -131,6 +131,14 @@ const AccountManager = () => {
     }).format(balance / 100); // Assuming balance is in cents
   };
 
+  const copyToClipboard = (accountNumber) => {
+    navigator.clipboard.writeText(accountNumber.toString()).then(() => {
+      showMessage(`Account number ${accountNumber} copied to clipboard!`, 'success');
+    }).catch(() => {
+      showMessage('Failed to copy account number', 'warning');
+    });
+  };
+
   const formatDate = (dateString) => {
     if (!dateString) return 'N/A';
     
@@ -225,9 +233,23 @@ const AccountManager = () => {
                     <ListGroup.Item key={account.id} className="d-flex justify-content-between align-items-start">
                       <div className="ms-2 me-auto">
                         <div className="fw-bold">Account #{account.id}</div>
+                        <div className="d-flex align-items-center">
+                          <span className="text-primary fw-bold me-2">Account Number: {account.id}</span>
+                          <Button 
+                            variant="outline-primary" 
+                            size="sm" 
+                            onClick={() => copyToClipboard(account.id)}
+                            title="Copy account number"
+                          >
+                            📋 Copy
+                          </Button>
+                        </div>
                         <small className="text-muted">
                           Created: {formatDate(account.created_at)}
                         </small>
+                        <div className="mt-1">
+                          <small className="text-info">💡 Share this account number with others to receive transfers</small>
+                        </div>
                       </div>
                       <div className="text-end">
                         <div className="fw-bold text-success">

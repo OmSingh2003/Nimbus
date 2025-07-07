@@ -19,6 +19,14 @@ const CreateTransfer = () => {
     setTimeout(() => setMessage(''), 5000);
   };
 
+  const copyToClipboard = (accountNumber) => {
+    navigator.clipboard.writeText(accountNumber.toString()).then(() => {
+      showMessage(`Account number ${accountNumber} copied to clipboard!`, 'success');
+    }).catch(() => {
+      showMessage('Failed to copy account number', 'warning');
+    });
+  };
+
   const getAuthHeaders = () => {
     const token = localStorage.getItem('token');
     return token ? { Authorization: `Bearer ${token}` } : {};
@@ -261,6 +269,39 @@ const CreateTransfer = () => {
         </Col>
         
         <Col md={4}>
+          <Card className="mb-3">
+            <Card.Header>
+              <h5>Your Account Numbers</h5>
+            </Card.Header>
+            <Card.Body>
+              {accounts.length > 0 ? (
+                <div>
+                  <p className="small text-muted mb-2">Share these numbers to receive transfers:</p>
+                  {accounts.map((account) => (
+                    <div key={account.id} className="border p-2 mb-2 rounded bg-light">
+                      <div className="d-flex justify-content-between align-items-center">
+                        <div>
+                          <div className="fw-bold text-primary">Account #{account.id}</div>
+                          <div className="small text-muted">{account.currency} - {formatBalance(account.balance, account.currency)}</div>
+                        </div>
+                        <Button 
+                          variant="outline-primary" 
+                          size="sm" 
+                          onClick={() => copyToClipboard(account.id)}
+                          title="Copy account number"
+                        >
+                          📋
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-muted">No accounts available</p>
+              )}
+            </Card.Body>
+          </Card>
+          
           <Card>
             <Card.Header>
               <h5>Transfer Tips</h5>
@@ -271,6 +312,7 @@ const CreateTransfer = () => {
                 <li>✓ Ensure you have sufficient balance</li>
                 <li>✓ Transfers are instant</li>
                 <li>✓ Currency must match between accounts</li>
+                <li>✓ Demo account: 1234567890</li>
               </ul>
             </Card.Body>
           </Card>

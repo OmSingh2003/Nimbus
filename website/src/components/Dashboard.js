@@ -293,6 +293,7 @@ const Dashboard = () => {
                 <Table responsive>
                   <thead>
                     <tr>
+                      <th>Account #</th>
                       <th>Currency</th>
                       <th>Balance</th>
                       <th>Status</th>
@@ -301,6 +302,9 @@ const Dashboard = () => {
                   <tbody>
                     {accounts.slice(0, 4).map(account => (
                       <tr key={account.id}>
+                        <td>
+                          <strong className="text-primary">{account.id}</strong>
+                        </td>
                         <td>
                           <strong>{account.currency}</strong>
                         </td>
