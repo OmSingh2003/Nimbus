@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/hibiken/asynq"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/rs/zerolog/log"
 
 	"github.com/OmSingh2003/nimbus/api"
@@ -16,6 +17,7 @@ import (
 	_ "github.com/OmSingh2003/nimbus/doc/statik"
 	"github.com/OmSingh2003/nimbus/gapi"
 	"github.com/OmSingh2003/nimbus/mail"
+	"github.com/OmSingh2003/nimbus/metrics"
 	"github.com/OmSingh2003/nimbus/pb"
 	"github.com/OmSingh2003/nimbus/util"
 	"github.com/OmSingh2003/nimbus/worker"
@@ -70,6 +72,12 @@ func main() {
 	taskDistributor := worker.NewRedisTaskDistributor(redisOpt)
 
 	go runTaskProcessor(&config, redisOpt, store)
+// Initialize metrics
+	metrics := metrics.NewMetrics()
+
+	// Start metrics server
+	go startMetricsServer()
+
 	// Run both HTTP Gateway and gRPC servers concurrently
 	go runGatewayServer(config, store, taskDistributor)
 	runGrpcServer(config, store, taskDistributor)
@@ -177,5 +185,20 @@ func runTaskProcessor(config *util.Config, redisOpt asynq.RedisClientOpt, store 
 	err := taskProcessor.Start()
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed to start task processor")
+	}
+}
+
+// startMetricsServer starts the Prometheus metrics server on port 2112
+func startMetricsServer() {
+	metricsAddr := ":2112"
+	if port := os.Getenv("METRICS_PORT"); port != "" {
+		metricsAddr = ":" + port
+	}
+
+	log.Info().Msgf("Starting metrics server on %s", metricsAddr)
+	http.Handle("/metrics", promhttp.Handler())
+	err := http.ListenAndServe(metricsAddr, nil)
+	if err != nil {
+		log.Fatal().Err(err).Msg("Cannot start metrics server")
 	}
 }
