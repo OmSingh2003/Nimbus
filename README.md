@@ -5,7 +5,7 @@
 [![Test Coverage](https://img.shields.io/codecov/c/github/OmSingh2003/nimbus)](https://codecov.io/gh/OmSingh2003/nimbus)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A robust, full-featured banking backend system built with Go. This project demonstrates modern microservices architecture with REST/gRPC APIs, secure authentication, asynchronous task processing, and comprehensive testing.
+A robust, full-featured banking backend system built with Go. This project demonstrates modern microservices architecture with REST/gRPC APIs, secure authentication, asynchronous task processing, and comprehensive testing. Prod : Broken -> working on it! Thanks😅
 
 
 ## ✨ Features
