@@ -21,7 +21,7 @@ A robust, full-featured banking backend system built with Go. This project demon
 * **Dockerized:** Fully containerized application using Docker and Docker Compose for consistent environments.
 * **Configuration:** Centralized configuration management using [Viper](https://github.com/spf13/viper).
 * **Logging:** Structured logging using [Zerolog](https://github.com/rs/zerolog).
-* **CI/CD:** Automated testing and build pipelines (e.g., using GitHub Actions - *placeholder*).
+* **CI/CD:** Automated testing and build pipelines (e.g., using GitHub Actions).
 
 ##  Tech Stack
 
