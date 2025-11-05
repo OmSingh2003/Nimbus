@@ -8,7 +8,7 @@
 A robust, full-featured banking backend system built with Go. This project demonstrates modern microservices architecture with REST/gRPC APIs, secure authentication, asynchronous task processing, and comprehensive testing. Prod : Broken -> working on it! Thanks😅
 
 
-## ✨ Features
+##  Features
 
 * **RESTful API:** Built with [Gin](https://github.com/gin-gonic/gin) for core banking operations (accounts, transfers, entries).
 * **gRPC API:** High-performance RPC framework for inter-service communication and client SDK generation.
@@ -23,7 +23,7 @@ A robust, full-featured banking backend system built with Go. This project demon
 * **Logging:** Structured logging using [Zerolog](https://github.com/rs/zerolog).
 * **CI/CD:** Automated testing and build pipelines (e.g., using GitHub Actions - *placeholder*).
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 * **Language:** [Go](https://golang.org/) (version 1.23+)
 * **API Frameworks:** [Gin](https://github.com/gin-gonic/gin), [gRPC](https://grpc.io/), [gRPC Gateway](https://github.com/grpc-ecosystem/grpc-gateway)
@@ -39,7 +39,7 @@ A robust, full-featured banking backend system built with Go. This project demon
 * **DB Documentation:** [DBML](https://dbml.org/), [dbdocs](https://dbdocs.io/)
 * **Mocking:** [Gomock](https://github.com/golang/mock)
 
-## 📋 Prerequisites & Tool Installation
+##  Prerequisites & Tool Installation
 
 Ensure you have the following core tools installed:
 
@@ -86,7 +86,7 @@ Install project-specific CLI tools:
     dbdocs login
     ```
 
-## 🚀 Local Development Setup
+##  Local Development Setup
 
 Follow these steps to set up the project for local development:
 
@@ -178,7 +178,7 @@ make worker
 - gRPC server: `:9090`
 - Asynq web UI (if enabled): `:8081`
 
-## 🧪 Running Tests
+##  Running Tests
 
 To run the test suite:
 
@@ -188,7 +188,7 @@ make test
 
 This runs `go test -v -cover -short ./...` which includes coverage reporting.
 
-## 🔄 Migrations Management
+##  Migrations Management
 
 Use Make commands to manage database schema migrations:
 
@@ -219,7 +219,7 @@ make new_migration name=<migration_name>
 
 > Replace `<migration_name>` with a descriptive name (e.g., `add_users_table`)
 
-## 📄 Database Documentation
+##  Database Documentation
 
 Generate and view database documentation using DBML and dbdocs:
 
@@ -235,7 +235,7 @@ make db_docs
 
 > Requires prior `dbdocs login`. Access the DB documentation at the URL provided by the command output.
 
-## 📄 API Documentation (Swagger)
+##  API Documentation (Swagger)
 
 API documentation is automatically generated from the Protobuf definitions and served via Swagger UI.
 
@@ -243,7 +243,7 @@ Once the server is running (using `docker-compose up` or `make server`), access 
 
 **http://localhost:8080/swagger/**
 
-## ☁️ Deployment (Kubernetes Example)
+##  Deployment (Kubernetes Example)
 
 These are example steps for setting up prerequisites in a Kubernetes cluster:
 
@@ -285,7 +285,7 @@ kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.4
 └── main.go              # Main application entry point
 ```
 
-## 🔄 CI/CD
+##  CI/CD
 
 This project uses GitHub Actions for continuous integration. The workflow includes:
 
@@ -294,7 +294,7 @@ This project uses GitHub Actions for continuous integration. The workflow includ
 - Building the application
 - Security scanning
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Please follow these guidelines:
 
@@ -309,6 +309,6 @@ Contributions are welcome! Please follow these guidelines:
 
 Please follow standard Go practices and ensure code coverage is maintained.
 
-## 📜 License
+##  License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
